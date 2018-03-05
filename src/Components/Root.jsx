@@ -12,7 +12,6 @@ const Root = ({ store }) => (
             <section className='container'>
                 <App/>
             </section>
-
         </HashRouter>
     </Provider>
 )

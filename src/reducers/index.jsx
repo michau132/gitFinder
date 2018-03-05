@@ -9,8 +9,8 @@ const initialState = {
         state = {...state, user: action.payload};
         return state;
     } else if (action.type === "ADD_REPO") {
-        state = {...state, userRepo: action.payload}
-        return state
+        state = {...state, userRepo: action.payload};
+        return state;
     }
     return state;
 }

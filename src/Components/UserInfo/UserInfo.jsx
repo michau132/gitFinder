@@ -3,9 +3,8 @@ import {connect} from "react-redux";
 import UserRepoList from './UserRepoList.jsx';
 
 class UserInfo extends React.Component {
-
-
     render() {
+        console.log(this.props)
         return (
             <section className='container__userInfo'>
                 <h2 className='container__userInfo-name'>{this.props.user.name}</h2>

@@ -42,24 +42,14 @@ class Form extends React.Component {
         }
     }
     render(){
-        if (this.props.user.length === 0){
-            return (
-                    <form onSubmit={event => this.searchUser(event)} className='container__header__form'>
-                        <h1 className='container__header__form-title'>GitFinder</h1>
-                        <input ref={inputRef => this.input = inputRef} type="text" className='container__header__form-input'/>
-                        <button className='container__header__form-button'>Search</button>
-                        <p className='container__header__form-para'>Enter github login to see more details about user</p>
-                    </form>
-                )
-        } else {
-            return (
+        console.log(this.props)
+        return (
                 <form onSubmit={event => this.searchUser(event)} className='container__header__form'>
                     <h1 className='container__header__form-title'>GitFinder</h1>
                     <input ref={inputRef => this.input = inputRef} type="text" className='container__header__form-input'/>
                     <button className='container__header__form-button'>Search</button>
                 </form>
             )
-        }
     }
 }
 const mapStateToProps = (state) => {
