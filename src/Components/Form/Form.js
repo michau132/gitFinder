@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import './Form.css';
 class Form extends React.Component {
@@ -42,7 +43,6 @@ class Form extends React.Component {
         }
     }
     render(){
-        console.log(this.props)
         return (
                 <form onSubmit={event => this.searchUser(event)} className='container__header__form'>
                     <h1 className='container__header__form-title'>GitFinder</h1>
