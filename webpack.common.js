@@ -6,13 +6,6 @@ module.exports = {
     filename: './out.js',
     path: __dirname,
   },
-  devServer: {
-    inline: true,
-    contentBase: './',
-    port: 3000,
-    open: true,
-  },
-  watch: true,
   module: {
     rules: [{
       test: /\.js$/,

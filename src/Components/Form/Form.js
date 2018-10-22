@@ -43,6 +43,7 @@ class Form extends React.Component {
         }
     }
     render(){
+        console.log('tera')
         return (
                 <form onSubmit={event => this.searchUser(event)} className='container__header__form'>
                     <h1 className='container__header__form-title'>GitFinder</h1>

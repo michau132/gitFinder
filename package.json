@@ -4,8 +4,8 @@
   "description": "GitFinder",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "webpack-dev-server --mode=development",
-    "build": "webpack --mode=production",
+    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
     "lint": "./node_modules/.bin/eslint src/** --fix"
   },
   "author": "",
@@ -18,7 +18,11 @@
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "webpack": "^4.22.0",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9",
+    "webpack-merge": "^4.1.4"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -32,10 +36,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.22.0",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.9"
+    "style-loader": "^0.23.1"
   },
   "repository": {
     "type": "git",

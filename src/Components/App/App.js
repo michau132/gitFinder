@@ -6,6 +6,7 @@ import './App.css';
 
 class App extends React.Component {
   render() {
+    console.log('jeste')
     return (
       <section>
         <header className="container__header">
