@@ -1,14 +1,14 @@
-.container__header__form {
+.form {
     justify-self: center;
     margin-top: 0.5rem;
     font-weight: bold;
     font-size: 1.1rem;
     height: 12rem;
 }
-.container__header__form-title {
+.formTitle {
     margin-left: -80px;
 }
-.container__header__form-button {
+.formButton {
     margin-left: 10px;
     background: #fff;
     border: 1px solid #7619FF;
@@ -17,7 +17,7 @@
     border-radius: 30px;
     transition: 0.5s all;
 }
-.container__header__form-button:hover {
+.formButton:hover {
     background: #43d1af;
     color: #fff;
 }

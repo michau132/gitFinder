@@ -1,25 +1,21 @@
 import React from 'react';
-import { Route } from 'react-router';
-import Form from '../Form/Form';
-import UserInfo from '../UserInfo/UserInfo';
-import './App.css';
+import {
+  Route,
+  Switch,
+} from 'react-router-dom';
+import UserViewContainer from '../../Containers/UserViewContainer';
+import styles from './App.css';
+import Header from '../Header/Header';
+import EmptyUser from '../EmptyUser';
 
-class App extends React.Component {
-  render() {
-    console.log('jeste')
-    return (
-      <section>
-        <header className="container__header">
-          <Route path="/" component={Form} />
-          <div className="loop-box">
-            <div className="loop" />
-          </div>
-        </header>
-        <Route path="/user/:id" component={UserInfo} />
-      </section>
-    );
-  }
-}
-
+const App = () => (
+  <section className={styles.container}>
+    <Header />
+    <Switch>
+      <Route exact path="/" component={EmptyUser} />
+      <Route path="/:user" component={UserViewContainer} />
+    </Switch>
+  </section>
+);
 
 export default App;
