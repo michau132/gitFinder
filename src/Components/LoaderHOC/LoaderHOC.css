@@ -1,0 +1,24 @@
+.ldsHourglass {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+}
+.ldsHourglass:after {
+  content: " ";
+  display: block;
+  width: 46px;
+  height: 46px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid rgb(70, 42, 42);
+  border-color: rgb(70, 42, 42) transparent rgb(70, 42, 42) transparent;
+  animation: ldsHourglass 1.2s linear infinite;
+}
+@keyframes ldsHourglass {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

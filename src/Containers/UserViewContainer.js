@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import UserView from '../Components/User/UserView';
-import { takeUserNameAndFetchData } from '../actions/actionCreators';
+import takeUserNameAndFetchData from '../actions/fetchData';
 
 class UserViewContainer extends Component {
   componentDidMount() {
@@ -13,16 +13,15 @@ class UserViewContainer extends Component {
   }
 
   render() {
-    const { userInfo, userRepos } = this.props;
+    const { user } = this.props;
     return (
-      <UserView userInfo={userInfo} userRepos={userRepos} />
+      <UserView user={user} />
     );
   }
 }
 
 const mapStateToProps = state => ({
-  userInfo: state.user.userInfo,
-  userRepos: state.user.userRepos,
+  user: state.user,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -30,18 +29,20 @@ const mapDispatchToProps = dispatch => ({
 });
 
 UserViewContainer.propTypes = {
-  userInfo: PropTypes.shape({
-    login: PropTypes.string.isRequired,
-    email: PropTypes.string,
-    avatar_url: PropTypes.string,
-    name: PropTypes.string,
+  user: PropTypes.shape({
+    userInfo: PropTypes.shape({
+      login: PropTypes.string.isRequired,
+      email: PropTypes.string,
+      avatar_url: PropTypes.string,
+      name: PropTypes.string,
+    }).isRequired,
+    userRepos: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        pushed_at: PropTypes.string.isRequired,
+      }),
+    ).isRequired,
   }).isRequired,
-  userRepos: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      pushed_at: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
   onValuePassedThroughParams: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({

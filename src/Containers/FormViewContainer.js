@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import FormView from '../Components/Form/FormView';
-import { takeUserNameAndFetchData } from '../actions/actionCreators';
+import takeUserNameAndFetchData from '../actions/fetchData';
 
 
 const FormViewContainer = ({onFormSubmit, history }) => {

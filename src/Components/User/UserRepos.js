@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import UserRepoListItem from './UserRepoListItem';
 
 const UserRepos = ({ userRepos }) => (
-  <ul className="container__userInfoRepoList">
+  <ul>
     <h4>Repositiories:</h4>
     {
       userRepos.map(listItem => (

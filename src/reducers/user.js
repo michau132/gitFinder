@@ -1,4 +1,5 @@
 import * as types from '../actions/types';
+import sortByPushedDate from '../utils/sortByPushedDate';
 
 const initialState = {
   userInfo: {
@@ -23,7 +24,7 @@ const user = (state = initialState, action) => {
       };
     case types.FETCH_USER_REPOS_SUCCESS:
       return {
-        ...state, userRepos: action.repos, isLoading: false, error: null,
+        ...state, isLoading: false, error: null, userRepos: sortByPushedDate(action.repos),
       };
     case types.FETCH_USER_ERROR:
       return {
