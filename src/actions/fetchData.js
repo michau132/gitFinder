@@ -22,11 +22,11 @@ function fetchData(dispatch, data) {
 
 export default function takeUserNameAndFetchData(name) {
   const userInfo = {
-    url: `https://api.github.com/users/${name}?client_id=fccd37f38519b0d71cd7&client_secret=61572c304be174f925b52e267794cf5c9f768e00`,
+    url: `https://api.github.com/users/${name}`,
     method: fetchUserInfoSucces,
   };
   const userRepo = {
-    url: `https://api.github.com/users/${name}/repos?client_id=fccd37f38519b0d71cd7&client_secret=61572c304be174f925b52e267794cf5c9f768e00`,
+    url: `https://api.github.com/users/${name}/repos`,
     method: fetchUserReposSuccess,
   };
   return (dispatch) => {
