@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import UserInfo from './UserInfo';
 import UserRepos from './UserRepos';
-import LoaderHOC from '../LoaderHOC/LoaderHOC';
+import LoaderHOC from '../hoc/LoaderHOC';
 
 const UserView = ({ user }) => (
   <div>
