@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const UserRepoListItem = ({ listItem }) => (
+const UserReposListItem = ({ listItem }) => (
   <li style={{ paddingTop: '10px' }}>
     <b>
       <i>
@@ -16,18 +16,18 @@ const UserRepoListItem = ({ listItem }) => (
   </li>
 );
 
-UserRepoListItem.defaultProps = {
+UserReposListItem.defaultProps = {
   listItem: {
     name: null,
     pushed_at: null,
   },
 };
 
-UserRepoListItem.propTypes = {
+UserReposListItem.propTypes = {
   listItem: PropTypes.shape({
     name: PropTypes.string.isRequired,
     pushed_at: PropTypes.string.isRequired,
   }),
 };
 
-export default UserRepoListItem;
+export default UserReposListItem;

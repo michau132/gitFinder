@@ -6,17 +6,22 @@ import FormView from '../Components/Form/FormView';
 import takeUserNameAndFetchData from '../actions/fetchData';
 
 
-const FormViewContainer = ({onFormSubmit, history }) => {
-  
-  return <FormView onFormSubmit={onFormSubmit} historyPush={history.push} />
-};
+const FormContainer = ({ onFormSubmit, history }) => (
+  <FormView
+    onFormSubmit={onFormSubmit}
+    historyPush={history.push}
+  />
+);
 
 const mapDispatchToProps = dispatch => ({
   onFormSubmit: val => dispatch(takeUserNameAndFetchData(val)),
 });
 
-FormViewContainer.propTypes = {
+FormContainer.propTypes = {
   onFormSubmit: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(FormViewContainer));
+export default withRouter(connect(null, mapDispatchToProps)(FormContainer));

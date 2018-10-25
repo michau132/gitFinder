@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import UserRepoListItem from './UserRepoListItem';
+import UserReposListItem from './UserReposListItem';
 
 const UserRepos = ({ userRepos }) => (
   <ul>
     <h4>Repositiories:</h4>
     {
       userRepos.map(listItem => (
-        <UserRepoListItem listItem={listItem} key={listItem.id} />
+        <UserReposListItem listItem={listItem} key={listItem.id} />
       ))
     }
   </ul>

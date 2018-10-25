@@ -23,9 +23,7 @@ const user = (state = initialState, action) => {
         ...state, userInfo: action.user, error: null, isLoading: true,
       };
     case types.FETCH_USER_REPOS_SUCCESS:
-      return {
-        ...state, isLoading: false, error: null, userRepos: sortByPushedDate(action.repos),
-      };
+      return sortByPushedDate(state, action.repos);
     case types.FETCH_USER_ERROR:
       return {
         ...state, error: action.message,

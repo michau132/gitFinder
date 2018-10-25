@@ -4,8 +4,8 @@ function sortByDate(a, b) {
   return 0;
 }
 
-export default function sortByPushedDate(data) {
-  const sortedData = data;
+export default function sortByPushedDate(state, repos) {
+  const sortedData = repos;
   sortedData.sort(sortByDate);
-  return sortedData;
+  return { ...state, isLoading: false, userRepos: sortedData };
 }

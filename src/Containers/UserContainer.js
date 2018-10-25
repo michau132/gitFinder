@@ -5,7 +5,7 @@ import { withRouter } from 'react-router';
 import UserView from '../Components/UserView';
 import takeUserNameAndFetchData from '../actions/fetchData';
 
-class UserViewContainer extends Component {
+class UserContainer extends Component {
   componentDidMount() {
     const { onValuePassedThroughParams, match } = this.props;
     const { user } = match.params;
@@ -28,7 +28,7 @@ const mapDispatchToProps = dispatch => ({
   onValuePassedThroughParams: val => dispatch(takeUserNameAndFetchData(val)),
 });
 
-UserViewContainer.propTypes = {
+UserContainer.propTypes = {
   user: PropTypes.shape({
     userInfo: PropTypes.shape({
       login: PropTypes.string.isRequired,
@@ -51,4 +51,4 @@ UserViewContainer.propTypes = {
   }).isRequired,
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserViewContainer));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserContainer));

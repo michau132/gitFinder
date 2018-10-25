@@ -3,7 +3,7 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import UserViewContainer from '../../Containers/UserViewContainer';
+import UserContainer from '../../Containers/UserContainer';
 import styles from './App.css';
 import Header from '../Header/Header';
 import EmptyUser from '../EmptyUser';
@@ -13,7 +13,7 @@ const App = () => (
     <Header />
     <Switch>
       <Route exact path="/" component={EmptyUser} />
-      <Route path="/:user" component={UserViewContainer} />
+      <Route path="/:user" component={UserContainer} />
     </Switch>
   </section>
 );
