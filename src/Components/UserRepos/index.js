@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './style.css';
-import UserReposListItem from '../UserReposListItem/UserReposListItem';
+import UserReposListItem from '../UserReposListItem';
 
 const UserRepos = ({ userRepos }) => (
   <div className={styles.userRepos}>

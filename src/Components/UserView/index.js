@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './UserView.css';
-import UserDetails from '../UserDetails/UserDetails';
-import UserRepos from '../UserRepos/UserRepos';
+import styles from './style.css';
+import UserDetails from '../UserDetails';
+import UserRepos from '../UserRepos';
 import LoaderHOC from '../../hoc/LoaderHOC';
-import UserAvatar from '../UserAvatar/UserAvatar';
+import UserAvatar from '../UserAvatar';
 
 const UserView = ({ user }) => (
   <div className={styles.userView}>

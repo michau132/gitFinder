@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Form.css';
+import styles from './style.css';
 
-const FormView = ({ onFormSubmit, historyPush }) => {
+const Header = ({ onFormSubmit, historyPush }) => {
   let input;
   return (
     <form
@@ -19,9 +19,9 @@ const FormView = ({ onFormSubmit, historyPush }) => {
   );
 };
 
-FormView.propTypes = {
+Header.propTypes = {
   onFormSubmit: PropTypes.func.isRequired,
   historyPush: PropTypes.func.isRequired,
 };
 
-export default FormView;
+export default Header;

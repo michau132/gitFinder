@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import UserView from '../Components/UserView/UserView';
+import UserView from '../Components/UserView';
 import takeUserNameAndFetchData from '../actions/fetchData';
 import LoaderHOC from '../hoc/LoaderHOC';
 
