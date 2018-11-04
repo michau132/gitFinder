@@ -1,20 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './style.css';
 
-const UserInfo = ({ userInfo }) => (
-  <section>
-    <h2>{userInfo.name}</h2>
-    <h3>{userInfo.login}</h3>
+const UserDetails = ({ userInfo }) => (
+  <section className={styles.userDetails}>
+    <h2>Public data</h2>
+    <h4>{userInfo.name}</h4>
+    <h5>{userInfo.login}</h5>
     <p>
         Email:
       {userInfo.email}
     </p>
-    <img src={userInfo.avatar_url} alt="avatar" />
+    <p>Location: {userInfo.location}</p>
+    
   </section>
 );
 
 
-UserInfo.propTypes = {
+UserDetails.propTypes = {
   userInfo: PropTypes.shape({
     login: PropTypes.string.isRequired,
     email: PropTypes.string,
@@ -23,4 +26,4 @@ UserInfo.propTypes = {
   }).isRequired,
 };
 
-export default UserInfo;
+export default UserDetails;

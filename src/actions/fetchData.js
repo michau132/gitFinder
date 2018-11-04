@@ -4,33 +4,35 @@ import {
   fetchUserInfoSucces,
   fetchUserError,
   fetchUserReposSuccess,
+  fetchUserLoadingEnd,
 } from './actionCreators';
 
-function fetchData(dispatch, data) {
-  dispatch(fetchUserBegin());
+function fetchData(url) {
   return (
-    fetch(data.url)
+    fetch(url)
       .then(result => result.json())
-      .then(that => dispatch(data.method(that)))
-      .catch((err) => {
-        console.log(`ERROR!${err}`);
-        dispatch(fetchUserError(err.message));
-      })
   );
 }
 
 
 export default function takeUserNameAndFetchData(name) {
-  const userInfo = {
-    url: `https://api.github.com/users/${name}`,
-    method: fetchUserInfoSucces,
-  };
-  const userRepo = {
-    url: `https://api.github.com/users/${name}/repos`,
-    method: fetchUserReposSuccess,
-  };
+  const userInfoUrl = `https://api.github.com/users/${name}?client_id=fccd37f38519b0d71cd7&client_secret=61572c304be174f925b52e267794cf5c9f768e00`;
+  const userRepoUrl = `https://api.github.com/users/${name}/repos?client_id=fccd37f38519b0d71cd7&client_secret=61572c304be174f925b52e267794cf5c9f768e00`;
+
   return (dispatch) => {
-    fetchData(dispatch, userInfo);
-    fetchData(dispatch, userRepo);
+    dispatch(fetchUserBegin());
+    Promise.all([
+      fetchData(userInfoUrl),
+      fetchData(userRepoUrl),
+    ])
+      .then(([info, repos]) => {
+        dispatch(fetchUserInfoSucces(info));
+        dispatch(fetchUserReposSuccess(repos));
+        dispatch(fetchUserLoadingEnd());
+      })
+      .catch((err) => {
+        console.log(`ERROR!${err}`);
+        dispatch(fetchUserError());
+      });
   };
 }

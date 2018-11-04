@@ -13,8 +13,7 @@ const FormView = ({ onFormSubmit, historyPush }) => {
       }}
       className={styles.form}
     >
-      <h1 className={styles.formTitle}>GitFinder</h1>
-      <input type="text" className={styles.formInput} ref={node => input = node} />
+      <input type="text" className={styles.formInput} ref={node => input = node} placeholder="github login" />
       <button type="submit" className={styles.formButton}>Search</button>
     </form>
   );

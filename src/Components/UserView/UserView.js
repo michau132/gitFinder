@@ -1,12 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import UserInfo from './UserInfo';
-import UserRepos from './UserRepos';
-import LoaderHOC from '../hoc/LoaderHOC';
+import styles from './UserView.css';
+import UserDetails from '../UserDetails/UserDetails';
+import UserRepos from '../UserRepos/UserRepos';
+import LoaderHOC from '../../hoc/LoaderHOC';
+import UserAvatar from '../UserAvatar/UserAvatar';
 
 const UserView = ({ user }) => (
-  <div>
-    <UserInfo userInfo={user.userInfo} />
+  <div className={styles.userView}>
+    <div className={styles.userInfo}>
+      <UserAvatar avatar={user.userInfo.avatar_url} />
+      <UserDetails userInfo={user.userInfo} />
+    </div>
     <UserRepos userRepos={user.userRepos} />
   </div>
 );

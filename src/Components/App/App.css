@@ -1,7 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+
 .container {
-    height: 100vh;
+    max-height: 100vh;
     margin: 0 auto;
-    text-align: center;
+    max-width: 1250px;
+    padding: 20px;
+    overflow: hidden;
 }
 
 

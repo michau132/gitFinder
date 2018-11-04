@@ -5,7 +5,13 @@ function sortByDate(a, b) {
 }
 
 export default function sortByPushedDate(state, repos) {
-  const sortedData = repos;
-  sortedData.sort(sortByDate);
-  return { ...state, isLoading: false, userRepos: sortedData };
+  let newState;
+  try {
+    const sortedData = repos;
+    sortedData.sort(sortByDate);
+    newState = { ...state, userRepos: sortedData };
+  } catch (e) {
+    console.log(`Chekck if user exists${e.message}`);
+  }
+  return newState;
 }

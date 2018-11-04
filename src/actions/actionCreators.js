@@ -27,3 +27,7 @@ export const fetchUserError = message => ({
   type: types.FETCH_USER_ERROR,
   message,
 });
+
+export const fetchUserLoadingEnd = () => ({
+  type: types.FETCH_USER_LOADING_END,
+});
