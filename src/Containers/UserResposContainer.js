@@ -4,6 +4,19 @@ import _ from 'lodash';
 import UserRepos from '../Components/UserRepos';
 
 class UserResposContainer extends Component {
+  static propTypes = {
+    userRepos: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        forks_count: PropTypes.number,
+        stargazers_count: PropTypes.number,
+        description: PropTypes.string,
+        html_url: PropTypes.string.isRequired,
+      }),
+    ).isRequired,
+  }
+  
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -56,11 +69,10 @@ class UserResposContainer extends Component {
   }
   
   openSelectedRepos = (e) => {
-    const openInNewTab = (url, i) => window.open(url, `_blank${i}`);
-      
+    const openInNewTab = (url) => window.open(url, `_blank`);
     e.preventDefault();
     const { selectedUserRepos } = this.state;
-    selectedUserRepos.forEach((item, i)=> openInNewTab(item.html_url, i))
+    selectedUserRepos.forEach(item=> openInNewTab(item.html_url))
     if (selectedUserRepos.length > 0) {
       this.setState({
         userReposFiltered: selectedUserRepos,
@@ -128,8 +140,6 @@ class UserResposContainer extends Component {
   }
 };
 
-UserResposContainer.propTypes = {
-  
-};
+
 
 export default UserResposContainer;

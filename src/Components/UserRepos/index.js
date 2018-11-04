@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './style.css';
 import UserReposList from './UserReposList';
-import Button from '../Button';
+import UserReposHeader from './UserReposHeader';
 
 const UserRepos = ({
   userRepos,
@@ -16,31 +15,15 @@ const UserRepos = ({
   selectedReposAreEmpty,
   openSingleRepo,
 }) => (
-  <div className={styles.userRepos}>
-    <div className={styles.filterForm}>
-      <span className={styles.square} />
-      <form className={styles.form}>
-        <input className={styles.formText} type="text" placeholder="filter projects" onKeyUp={filterOnKeyUp} />
-        <Button
-          type="button"
-          onClick={openSelectedRepos}
-          disabled={selectedReposAreEmpty}
-          text="open"
-        />
-        <Button
-          type="button"
-          onClick={hideSelectedRepos}
-          disabled={selectedReposAreEmpty}
-          text="hide"
-        />
-        <Button
-          type="button"
-          onClick={showAllRepos}
-          disabled={allReposAreShown}
-          text="show all"
-        />
-      </form>
-    </div>
+  <div>
+    <UserReposHeader
+      filterOnKeyUp={filterOnKeyUp}
+      showAllRepos={showAllRepos}
+      allReposAreShown={allReposAreShown}
+      openSelectedRepos={openSelectedRepos}
+      hideSelectedRepos={hideSelectedRepos}
+      selectedReposAreEmpty={selectedReposAreEmpty}
+    />
     <UserReposList
       userRepos={userRepos}
       selectUserRepo={selectUserRepo}
