@@ -8,18 +8,9 @@
     margin-left: -80px;
 }
 .formButton {
-    margin-left: 10px;
-    background: #fff;
-    border: 2px solid #7619FF;
-    color: #7619FF;
-    padding: 8px 20px;
-    border-radius: 30px;
-    transition: 0.5s all;
+    padding: 8px 16px !important;
 }
-.formButton:hover {
-    background: #43d1af;
-    color: #fff;
-}
+
 
 .formInput {
     padding: 8px;

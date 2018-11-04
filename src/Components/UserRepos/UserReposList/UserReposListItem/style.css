@@ -1,0 +1,65 @@
+.listItem {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.listItem:hover {
+  background-color: #c0c79f;
+}
+
+.active {
+  background-color: #FFB10D;
+}
+
+.listItemInfo {
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+.infoName {
+  display: inline-block;
+  margin: 10px;
+}
+.infoWrapper {
+  overflow: hidden;
+  flex: 1;
+}
+.infoDesc {
+  margin: 0;
+  word-wrap: break-word;
+}
+.btnWrapper {
+  margin-right: 15px;
+  align-self: center;
+}
+
+.btnOpen {
+  text-decoration: none;
+  text-transform: uppercase;
+  margin-right: 10px;
+  padding: 5px 10px;
+  background: #fff;
+  border: 2px solid #7619FF;
+  color: #7619FF;
+  transition: 0.2s all;
+}
+
+.btnOpen:hover { 
+  background: #43d1af;
+  color: #fff;
+}
+
+.btnHide {
+  text-transform: uppercase;
+  padding: 5px 10px;
+  background: #fff;
+  border: 2px solid #7619FF;
+  color: #7619FF;
+  transition: 0.2s all;
+}
+
+.btnHide:hover { 
+  background: #c22121;
+  color: #fff;
+}

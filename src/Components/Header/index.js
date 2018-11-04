@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './style.css';
+import Button from '../Button';
 
 const Header = ({ onFormSubmit, historyPush }) => {
   let input;
@@ -14,7 +15,7 @@ const Header = ({ onFormSubmit, historyPush }) => {
       className={styles.form}
     >
       <input type="text" className={styles.formInput} ref={node => input = node} placeholder="github login" />
-      <button type="submit" className={styles.formButton}>Search</button>
+      <Button type="submit" text="search" className={styles.formButton} />
     </form>
   );
 };

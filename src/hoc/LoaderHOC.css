@@ -1,13 +1,17 @@
 .ldsHourglass {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: inline-block;
-  width: 64px;
-  height: 64px;
+  width: 192px;
+  height: 192px;
 }
 .ldsHourglass:after {
   content: " ";
   display: block;
-  width: 46px;
-  height: 46px;
+  width: 136px;
+  height: 136px;
   margin: 1px;
   border-radius: 50%;
   border: 5px solid rgb(70, 42, 42);

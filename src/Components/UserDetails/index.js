@@ -11,8 +11,10 @@ const UserDetails = ({ userInfo }) => (
         Email:
       {userInfo.email}
     </p>
-    <p>Location: {userInfo.location}</p>
-    
+    <p>
+      Location:
+      {userInfo.location}
+    </p>
   </section>
 );
 

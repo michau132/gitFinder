@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './style.css';
 import UserDetails from '../UserDetails';
-import UserRepos from '../UserRepos';
 import LoaderHOC from '../../hoc/LoaderHOC';
 import UserAvatar from '../UserAvatar';
+import UserResposContainer from '../../Containers/UserResposContainer';
 
 const UserView = ({ user }) => (
   <div className={styles.userView}>
@@ -12,7 +12,7 @@ const UserView = ({ user }) => (
       <UserAvatar avatar={user.userInfo.avatar_url} />
       <UserDetails userInfo={user.userInfo} />
     </div>
-    <UserRepos userRepos={user.userRepos} />
+    <UserResposContainer userRepos={user.userRepos} />
   </div>
 );
 

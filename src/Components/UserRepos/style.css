@@ -1,24 +1,10 @@
-fieldset {
-  padding: 0;
-}
-.userRepos {
-  overflow: hidden; 
-  max-height: inherit;
-  max-width: 80%;
-}
 
 .filterForm {
   display: flex;
   margin-bottom: 15px;
 }
 
-.listRepos {
-  overflow: hidden;
-  overflow-y: scroll;
-  position: relative;
-  max-height: 500px;
-  list-style: none;
-}
+
 
 .square {
   height: 13px;
@@ -54,8 +40,4 @@ fieldset {
 
 .form button {
   margin: 0 5px;
-}
-
-.form button:last-of-type {
-  margin-right: 0;
 }
