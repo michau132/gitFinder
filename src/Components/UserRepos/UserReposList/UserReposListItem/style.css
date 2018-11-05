@@ -15,6 +15,7 @@
 .listItemInfo {
   flex-grow: 1;
   cursor: pointer;
+  max-width: 80%;
 }
 
 .infoName {

@@ -5,7 +5,7 @@ import {
   fetchUserError,
   fetchUserReposSuccess,
   fetchUserLoadingEnd,
-} from './actionCreators';
+} from './index';
 
 function fetchData(url) {
   return (

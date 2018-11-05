@@ -13,7 +13,6 @@ class UserContainer extends Component {
     if (user.userInfo.login.length === 0) {
       onValuePassedThroughParams(match.params.user);
     }
-    
   }
 
   render() {
