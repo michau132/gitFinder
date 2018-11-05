@@ -37,10 +37,11 @@ export const uploadFilterReposData = repos => ({
   repos,
 });
 
-export const setReposOnKeyUp = (repos, bool) => ({
+export const setReposOnKeyUp = (repos, bool, selectedRepos) => ({
   type: types.FILTER_ON_KEY_UP,
   repos,
   bool,
+  selectedRepos,
 });
 
 export const selectedUserRepo = (repos, selectedRepos) => ({

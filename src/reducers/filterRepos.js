@@ -18,6 +18,7 @@ const filterRepos = (state = initialState, action) => {
         ...state,
         userReposFiltered: action.repos,
         allReposAreShown: action.bool,
+        selectedUserRepos: action.selectedRepos,
       };
     case types.SELECT_USER_REPO:
       return {
