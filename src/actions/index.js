@@ -64,7 +64,8 @@ export const showAll = repos => ({
   repos,
 });
 
-export const hideRepo = repos => ({
+export const hideRepo = (repos, selectedRepos) => ({
   type: types.HIDE_SINGLE_REPO,
   repos,
+  selectedRepos,
 });

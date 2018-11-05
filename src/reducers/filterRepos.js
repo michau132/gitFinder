@@ -53,6 +53,7 @@ const filterRepos = (state = initialState, action) => {
       return {
         ...state,
         userReposFiltered: action.repos,
+        selectedUserRepos: action.selectedRepos,
         allReposAreShown: false,
       };
     default:
