@@ -5,7 +5,7 @@ export default function selectUserRepo(id) {
     let checkedRepos;
     let actualRepos;
     const { userReposFiltered, selectedUserRepos } = getState().filterRepos;
-    const getUserById = id => repo => repo.id === id;
+    const getUserById = val => repo => repo.id === val;
     const foundIndex = userReposFiltered.findIndex(getUserById(id));
     const currentRepo = userReposFiltered[foundIndex];
     const prevRepos = userReposFiltered.slice(0, foundIndex);

@@ -5,7 +5,6 @@ import { withRouter } from 'react-router';
 import Header from '../Components/Header';
 import takeUserNameAndFetchData from '../actions/fetchData';
 
-
 const HeaderContainer = ({ onFormSubmit, history }) => (
   <Header
     onFormSubmit={onFormSubmit}

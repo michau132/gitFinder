@@ -2,16 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './style.css';
 
-const UserAvatar = ({ avatar }) => {
-  return (
-    <div className={styles.userAvatar}>
-      <img src={avatar} alt="avatar" className={styles.avatar} />
-    </div>
-  );
-};
+const UserAvatar = ({ avatarUrl }) => (
+  <div className={styles.userAvatar}>
+    <img src={avatarUrl} alt="avatar" className={styles.avatar} />
+  </div>
+);
 
 UserAvatar.propTypes = {
-  
+  avatarUrl: PropTypes.string.isRequired,
 };
 
 export default UserAvatar;

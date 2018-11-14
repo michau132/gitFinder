@@ -31,8 +31,7 @@ export default function takeUserNameAndFetchData(name) {
         dispatch(fetchUserLoadingEnd());
       })
       .catch((err) => {
-        console.log(`ERROR!${err}`);
-        dispatch(fetchUserError());
+        dispatch(fetchUserError(err));
       });
   };
 }

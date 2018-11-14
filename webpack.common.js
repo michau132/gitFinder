@@ -1,27 +1,42 @@
 // Konfiguracja Webpack
+const path = require('path');
 
 module.exports = {
   entry: './src/index',
   output: {
-    filename: './out.js',
-    path: __dirname,
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
   },
   module: {
-    rules: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader',
-      query: {
-        presets: ['env', 'react', 'stage-2'],
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
       },
-    },
-    {
-      test: /\.css$/,
-      loaders: [
-        'style-loader?sourceMap',
-        'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-      ],
-    },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[path][name]__[local]--[hash:base64:5]',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ['babel-loader', 'eslint-loader'],
+      },
     ],
 
   },

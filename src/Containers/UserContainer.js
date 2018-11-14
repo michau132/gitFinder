@@ -32,26 +32,26 @@ const mapDispatchToProps = dispatch => ({
 
 const UserContainerWithLoading = LoaderHOC(UserContainer);
 
-// UserContainer.propTypes = {
-//   userInfo: PropTypes.shape({
-//     login: PropTypes.string.isRequired,
-//     email: PropTypes.string,
-//     avatar_url: PropTypes.string,
-//     name: PropTypes.string,
-//   }).isRequired,
-//   userRepos: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       name: PropTypes.string.isRequired,
-//       pushed_at: PropTypes.string.isRequired,
-//     }),
-//   ).isRequired,
-//   onValuePassedThroughParams: PropTypes.func.isRequired,
-//   match: PropTypes.shape({
-//     params: PropTypes.shape({
-//       user: PropTypes.string.isRequired,
-//     }).isRequired,
-//   }).isRequired,
-// };
+UserContainer.propTypes = {
+  userInfo: PropTypes.shape({
+    login: PropTypes.string.isRequired,
+    email: PropTypes.string,
+    avatar_url: PropTypes.string,
+    name: PropTypes.string,
+  }).isRequired,
+  userRepos: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      pushed_at: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  onValuePassedThroughParams: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      user: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default
 withRouter(

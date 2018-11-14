@@ -8,7 +8,7 @@ const UserDetails = ({ userInfo }) => (
     <h4>{userInfo.name}</h4>
     <h5>{userInfo.login}</h5>
     <p>
-        Email:
+      Email:
       {userInfo.email}
     </p>
     <p>
@@ -17,7 +17,6 @@ const UserDetails = ({ userInfo }) => (
     </p>
   </section>
 );
-
 
 UserDetails.propTypes = {
   userInfo: PropTypes.shape({

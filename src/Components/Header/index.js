@@ -14,7 +14,7 @@ const Header = ({ onFormSubmit, historyPush }) => {
       }}
       className={styles.form}
     >
-      <input type="text" className={styles.formInput} ref={node => input = node} placeholder="github login" />
+      <input type="text" className={styles.formInput} placeholder="github login" />
       <Button type="submit" text="search" className={styles.formButton} />
     </form>
   );

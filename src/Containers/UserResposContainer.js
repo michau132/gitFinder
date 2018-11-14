@@ -14,20 +14,28 @@ import UserRepos from '../Components/UserRepos';
 class UserResposContainer extends Component {
   static propTypes = {
     uploadFilterReposData: PropTypes.func.isRequired,
-    userRepos: PropTypes.array.isRequired,
+    userRepos: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      forks_count: PropTypes.number,
+      stargazers_count: PropTypes.number,
+      description: PropTypes.string,
+      html_url: PropTypes.string.isRequired,
+    })).isRequired,
   }
-  
+
   componentDidMount() {
+    // eslint-disable-next-line no-shadow
     const { uploadFilterReposData, userRepos } = this.props;
     uploadFilterReposData(userRepos);
   }
-  
+
   render() {
     return (
       <UserRepos {...this.props} />
     );
   }
-};
+}
 
 const mapStateToProps = state => ({
   userRepos: state.user.userRepos,
@@ -44,7 +52,5 @@ const mapDispatchToProps = dispatch => ({
   hideSingleRepo: id => () => dispatch(hideSingleRepo(id)),
   openSingleRepo: id => () => dispatch(openSingleRepo(id)),
 });
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserResposContainer);

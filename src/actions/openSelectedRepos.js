@@ -1,4 +1,6 @@
-import { openLinks } from '.';
+import {
+  openLinks,
+} from '.';
 
 export default function openSelectedRepos(e) {
   return (dispatch, getState) => {

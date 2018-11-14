@@ -4,9 +4,11 @@
     font-size: 1.1rem;
     height: 10vh;
 }
+
 .formTitle {
     margin-left: -80px;
 }
+
 .formButton {
     padding: 8px 16px !important;
 }
@@ -16,4 +18,3 @@
     padding: 8px;
     width: 90%;
 }
-
