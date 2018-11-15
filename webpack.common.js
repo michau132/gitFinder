@@ -9,6 +9,7 @@ module.exports = {
   },
   module: {
     rules: [
+
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -35,7 +36,10 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader'],
+        use: [
+          { loader: 'babel-loader' },
+          { loader: 'eslint-loader' },
+        ],
       },
     ],
 

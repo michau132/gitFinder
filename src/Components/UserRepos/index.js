@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import UserReposList from './UserReposList';
 import UserReposHeader from './UserReposHeader';
+import styles from './style.css';
 
 const UserRepos = ({
-  filterRepos,
+  user,
   filterOnKeyUp,
   selectUserRepo,
   showAllRepos,
@@ -13,9 +14,9 @@ const UserRepos = ({
   hideSingleRepo,
   openSingleRepo,
 }) => {
-  const { userReposFiltered, selectedReposAreEmpty, allReposAreShown } = filterRepos;
+  const { userRepos, selectedReposAreEmpty, allReposAreShown } = user;
   return (
-    <div style={{ width: '74%' }}>
+    <div className={styles.userRepos}>
       <UserReposHeader
         filterOnKeyUp={filterOnKeyUp}
         showAllRepos={showAllRepos}
@@ -25,7 +26,7 @@ const UserRepos = ({
         selectedReposAreEmpty={selectedReposAreEmpty}
       />
       <UserReposList
-        userRepos={userReposFiltered}
+        userRepos={userRepos}
         selectUserRepo={selectUserRepo}
         hideSingleRepo={hideSingleRepo}
         openSingleRepo={openSingleRepo}
@@ -35,8 +36,8 @@ const UserRepos = ({
 };
 
 UserRepos.propTypes = {
-  filterRepos: PropTypes.shape({
-    userReposFiltered: PropTypes.arrayOf(
+  user: PropTypes.shape({
+    userRepos: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,

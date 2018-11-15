@@ -9,7 +9,7 @@ import UserResposContainer from '../../Containers/UserResposContainer';
 const UserView = ({ user }) => (
   <div className={styles.userView}>
     <div className={styles.userInfo}>
-      <UserAvatar avatar={user.userInfo.avatar_url} />
+      <UserAvatar avatarUrl={user.userInfo.avatar_url} />
       <UserDetails userInfo={user.userInfo} />
     </div>
     <UserResposContainer userRepos={user.userRepos} />

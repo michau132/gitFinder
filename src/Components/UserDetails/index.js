@@ -2,18 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './style.css';
 
-const UserDetails = ({ userInfo }) => (
+const UserDetails = ({
+  userInfo: {
+    name, login, email, location,
+  },
+}) => (
   <section className={styles.userDetails}>
     <h2>Public data</h2>
-    <h4>{userInfo.name}</h4>
-    <h5>{userInfo.login}</h5>
+    <h4>{name}</h4>
+    <h5>{login}</h5>
     <p>
       Email:
-      {userInfo.email}
+      {email}
     </p>
     <p>
       Location:
-      {userInfo.location}
+      {location}
     </p>
   </section>
 );

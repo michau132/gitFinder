@@ -10,11 +10,14 @@
 }
 
 .formButton {
-    padding: 8px 16px !important;
+    padding: 8px 16px;
 }
 
 
 .formInput {
     padding: 8px;
     width: 90%;
+}
+.errorInput {
+    border-color: red;
 }

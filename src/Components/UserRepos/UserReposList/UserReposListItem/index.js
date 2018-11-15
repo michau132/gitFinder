@@ -15,7 +15,7 @@ const UserReposListItem = ({
   <li className={classnames(styles.listItem, { [styles.active]: listItem.isChecked })}>
     <div className={styles.listItemInfo} onClick={selectUserRepo(listItem.id)}>
       <div className={styles.infoWrapper}>
-        <input type="checkbox" checked={listItem.isChecked || false} onChange={selectUserRepo(listItem.id)} />
+        <input type="checkbox" checked={listItem.isChecked || false} readOnly />
         <h4 className={styles.infoName}>
           {listItem.name}
           (forks:

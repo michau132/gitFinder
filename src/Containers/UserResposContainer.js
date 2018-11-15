@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { uploadFilterReposData } from '../actions';
-import filterOnKeyUp from '../actions/filterOnKeyUp';
-import selectUserRepo from '../actions/selectUserRepo';
-import openSelectedRepos from '../actions/openSelectedRepos';
-import hideSelectedRepos from '../actions/hideSelectedRepos';
-import showAllRepos from '../actions/showAllRepos';
-import hideSingleRepo from '../actions/hideSingleRepo';
+import {
+  uploadFilterReposData, setReposOnKeyUp, selectedUserRepo, openLinks, hideRepos, hideRepo, showAll,
+} from '../actions';
 import openSingleRepo from '../actions/openSingleRepo';
 import UserRepos from '../Components/UserRepos';
 
@@ -38,18 +34,17 @@ class UserResposContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  userRepos: state.user.userRepos,
-  filterRepos: state.filterRepos,
+  user: state.user,
 });
 
 const mapDispatchToProps = dispatch => ({
   uploadFilterReposData: repos => dispatch(uploadFilterReposData(repos)),
-  filterOnKeyUp: event => dispatch(filterOnKeyUp(event)),
-  selectUserRepo: id => () => dispatch(selectUserRepo(id)),
-  openSelectedRepos: e => dispatch(openSelectedRepos(e)),
-  hideSelectedRepos: e => dispatch(hideSelectedRepos(e)),
-  showAllRepos: e => dispatch(showAllRepos(e)),
-  hideSingleRepo: id => () => dispatch(hideSingleRepo(id)),
+  filterOnKeyUp: event => dispatch(setReposOnKeyUp(event.target.value)),
+  selectUserRepo: id => () => dispatch(selectedUserRepo(id)),
+  openSelectedRepos: e => dispatch(openLinks(e)),
+  hideSelectedRepos: () => dispatch(hideRepos()),
+  showAllRepos: e => dispatch(showAll(e)),
+  hideSingleRepo: id => () => dispatch(hideRepo(id)),
   openSingleRepo: id => () => dispatch(openSingleRepo(id)),
 });
 
