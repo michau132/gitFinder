@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import githubUsernameRegex from 'github-username-regex';
 import Header from '../Components/Header';
 import takeUserNameAndFetchData from '../actions/fetchData';
 
@@ -23,25 +24,28 @@ class HeaderContainer extends Component {
 
   onFormSubmit = (e) => {
     const { onFormSubmit, history } = this.props;
-    const { inputValue } = this.state;
+    const { inputValue, errorInput } = this.state;
     e.preventDefault();
-    if (inputValue.match(/[0-9a-z]/g) || inputValue.length > 1) {
-      onFormSubmit(inputValue);
-      history.push(`/${inputValue}`);
+    if (errorInput) {
+      return;
+    }
+    onFormSubmit(inputValue);
+    history.push(`/${inputValue}`);
+  }
+
+  updateInputValue = (val) => {
+    const { value } = val.target;
+    if (githubUsernameRegex.test(value)) {
       this.setState({
+        inputValue: value,
         errorInput: null,
       });
     } else {
       this.setState({
         errorInput: true,
+        inputValue: value,
       });
     }
-  }
-
-  updateInputValue = (val) => {
-    this.setState({
-      inputValue: val.target.value,
-    });
   }
 
   render() {

@@ -13,8 +13,11 @@ const UserRepos = ({
   hideSelectedRepos,
   hideSingleRepo,
   openSingleRepo,
+  selectAllRepos,
 }) => {
-  const { userRepos, selectedReposAreEmpty, allReposAreShown } = user;
+  const {
+    userRepos, selectedReposAreEmpty, allReposAreShown, filterProjectsInput, allReposAreSelected,
+  } = user;
   return (
     <div className={styles.userRepos}>
       <UserReposHeader
@@ -24,6 +27,9 @@ const UserRepos = ({
         openSelectedRepos={openSelectedRepos}
         hideSelectedRepos={hideSelectedRepos}
         selectedReposAreEmpty={selectedReposAreEmpty}
+        selectAllRepos={selectAllRepos}
+        filterProjectsInput={filterProjectsInput}
+        allReposAreSelected={allReposAreSelected}
       />
       <UserReposList
         userRepos={userRepos}
@@ -57,6 +63,7 @@ UserRepos.propTypes = {
   hideSelectedRepos: PropTypes.func.isRequired,
   hideSingleRepo: PropTypes.func.isRequired,
   openSingleRepo: PropTypes.func.isRequired,
+  selectAllRepos: PropTypes.func.isRequired,
 };
 
 export default UserRepos;

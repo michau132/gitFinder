@@ -3,29 +3,6 @@
   margin-bottom: 15px;
 }
 
-
-
-.square {
-  height: 13px;
-  width: 13px;
-  border: 1px solid black;
-  align-self: center;
-  margin: 0 20px;
-  position: relative;
-  display: inline-block;
-}
-
-.square:before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 9px;
-  height: 1px;
-  background-color: black;
-}
-
 .form {
   display: inline-block;
   width: calc(100% - 50px);
@@ -39,4 +16,8 @@
 
 .form button {
   margin: 0 5px;
+}
+
+.checkAll {
+  text-align: center;
 }

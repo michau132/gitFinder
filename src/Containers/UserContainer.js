@@ -7,10 +7,10 @@ import LoaderHOC from '../hoc/LoaderHOC';
 
 class UserContainer extends Component {
   componentDidMount() {
-    const { onValuePassedThroughParams, match, user } = this.props;
+    const { fetchData, match, user } = this.props;
 
     if (user.userInfo.login.length === 0) {
-      onValuePassedThroughParams(match.params.user);
+      fetchData(match.params.user);
     }
   }
 
@@ -26,7 +26,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  onValuePassedThroughParams: takeUserNameAndFetchData,
+  fetchData: takeUserNameAndFetchData,
 };
 
 const UserContainerWithLoading = LoaderHOC(UserContainer);

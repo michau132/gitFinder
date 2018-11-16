@@ -4,7 +4,7 @@ import styles from './style.css';
 import UserDetails from '../UserDetails';
 import LoaderHOC from '../../hoc/LoaderHOC';
 import UserAvatar from '../UserAvatar';
-import UserResposContainer from '../../Containers/UserResposContainer';
+import UserReposContainer from '../../Containers/UserReposContainer';
 
 const UserView = ({ user }) => (
   <div className={styles.userView}>
@@ -12,7 +12,7 @@ const UserView = ({ user }) => (
       <UserAvatar avatarUrl={user.userInfo.avatar_url} />
       <UserDetails userInfo={user.userInfo} />
     </div>
-    <UserResposContainer userRepos={user.userRepos} />
+    <UserReposContainer userRepos={user.userRepos} />
   </div>
 );
 

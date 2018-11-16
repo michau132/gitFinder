@@ -26,6 +26,8 @@ const initialState = {
   allReposAreShown: true,
   selectedReposAreEmpty: true,
   allUserRepos: [],
+  filterProjectsInput: '',
+  allReposAreSelected: false,
 };
 const user = (state = initialState, action) => {
   const { payload } = action;
@@ -58,29 +60,25 @@ const user = (state = initialState, action) => {
         ...state,
         error: payload.message,
       };
-    case types.UPLOAD_FILTER_REPOS_DATA:
-      return {
-        ...state,
-        userReposFiltered: payload.repos,
-      };
     case types.FILTER_ON_KEY_UP: {
-      const { userRepos } = state;
-      const { selectedUserRepos } = state;
+      const { userRepos, allUserRepos, selectedUserRepos } = state;
+      const { val } = payload;
       const findMatchingRepos = value => repo => (
         repo.name.match(value) || (repo.description && repo.description.match(value))
       );
-      const userReposFiltered = userRepos.filter(findMatchingRepos(payload.val));
-      const checkSelectedRepos = userReposFiltered.filter(item => (
-        selectedUserRepos.find(o => item.id === o.id)));
-      const setRepoToChecked = userReposFiltered.map((item, i) => (
-        (checkSelectedRepos[i] && checkSelectedRepos[i].id) === item.id
+      const filteredRepos = allUserRepos.filter(findMatchingRepos(val));
+
+      // checking in selectedUsers if to not delete checked users repositories
+      const setReposToChecked = filteredRepos.map((item, i) => (
+        (selectedUserRepos[i] && selectedUserRepos[i].id) === item.id
           ? ({ ...item, isChecked: true }) : item));
-      const allReposAreShown = _.isEqual(userReposFiltered, userRepos);
+
+      const allReposAreShown = _.isEqual(filteredRepos, userRepos);
       return {
         ...state,
-        userReposFiltered: setRepoToChecked,
+        userRepos: setReposToChecked,
         allReposAreShown,
-        selectedUserRepos: checkSelectedRepos,
+        filterProjectsInput: val,
       };
     }
     case types.SELECT_USER_REPO: {
@@ -106,7 +104,8 @@ const user = (state = initialState, action) => {
         ...state,
         userRepos: actualRepos,
         selectedUserRepos: checkedRepos,
-        selectedReposAreEmpty: false,
+        selectedReposAreEmpty: checkedRepos.length === 0,
+        allReposAreSelected: actualRepos.length === checkedRepos.length,
       };
     }
     case types.OPEN_SELECTED_REPOS: {
@@ -128,6 +127,7 @@ const user = (state = initialState, action) => {
         allReposAreShown: false,
         selectedUserRepos: [],
         selectedReposAreEmpty: true,
+        allReposAreSelected: false,
       };
     }
 
@@ -137,6 +137,8 @@ const user = (state = initialState, action) => {
         userRepos: state.allUserRepos,
         allReposAreShown: true,
         selectedReposAreEmpty: true,
+        filterProjectsInput: '',
+        allReposAreSelected: false,
       };
     case types.HIDE_SINGLE_REPO: {
       const { userRepos, selectedUserRepos } = state;
@@ -148,6 +150,29 @@ const user = (state = initialState, action) => {
         userRepos: actualRepos,
         selectedUserRepos: selectedRepos,
         allReposAreShown: false,
+        selectedReposAreEmpty: selectedRepos.length === 0,
+      };
+    }
+    case types.SELECT_ALL_REPOS: {
+      const { userRepos } = state;
+      let checkedSelectedRepos;
+      let selectedReposAreEmpty;
+      if (userRepos.every(item => item.isChecked === true)) {
+        checkedSelectedRepos = userRepos.map(item => ({ ...item, isChecked: false }));
+        selectedReposAreEmpty = true;
+      } else {
+        checkedSelectedRepos = userRepos.map(item => ({ ...item, isChecked: true }));
+        selectedReposAreEmpty = false;
+      }
+      const selectedUserRepos = checkedSelectedRepos
+        .filter(item => item.isChecked === true).map(o => o.id);
+      const allReposAreSelected = selectedUserRepos.length === checkedSelectedRepos.length;
+      return {
+        ...state,
+        userRepos: checkedSelectedRepos,
+        selectedReposAreEmpty,
+        selectedUserRepos,
+        allReposAreSelected,
       };
     }
     default:

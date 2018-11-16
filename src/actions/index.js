@@ -17,11 +17,7 @@ export const fetchUserError = message => createAction(types.FETCH_USER_ERROR, { 
 
 export const fetchUserLoadingEnd = () => createAction(types.FETCH_USER_LOADING_END);
 
-export const uploadFilterReposData = repos => (
-  createAction(types.UPLOAD_FILTER_REPOS_DATA, { repos }));
-
-export const setReposOnKeyUp = val => (
-  createAction(types.FILTER_ON_KEY_UP, { val }));
+export const setReposOnKeyUp = val => createAction(types.FILTER_ON_KEY_UP, { val });
 
 export const selectedUserRepo = id => (
   createAction(types.SELECT_USER_REPO, { id }));
@@ -33,3 +29,5 @@ export const hideRepos = () => createAction(types.HIDE_SELECTED_REPOS);
 export const showAll = () => createAction(types.SHOW_ALL_REPOS);
 
 export const hideRepo = id => createAction(types.HIDE_SINGLE_REPO, { id });
+
+export const selectAllRepos = () => createAction(types.SELECT_ALL_REPOS);

@@ -13,7 +13,7 @@ const UserReposListItem = ({
   openSingleRepo,
 }) => (
   <li className={classnames(styles.listItem, { [styles.active]: listItem.isChecked })}>
-    <div className={styles.listItemInfo} onClick={selectUserRepo(listItem.id)}>
+    <div className={styles.listItemInfo} onClick={() => selectUserRepo(listItem.id)}>
       <div className={styles.infoWrapper}>
         <input type="checkbox" checked={listItem.isChecked || false} readOnly />
         <h4 className={styles.infoName}>
@@ -33,12 +33,12 @@ const UserReposListItem = ({
     <div className={styles.btnWrapper}>
       <Button
         type="button"
-        onClick={openSingleRepo(listItem.html_url)}
+        onClick={() => openSingleRepo(listItem.html_url)}
         text="open"
       />
       <Button
         type="button"
-        onClick={hideSingleRepo(listItem.id)}
+        onClick={() => hideSingleRepo(listItem.id)}
         text="hide"
       />
     </div>

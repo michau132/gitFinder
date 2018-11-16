@@ -10,11 +10,17 @@ const UserReposHeader = ({
   hideSelectedRepos,
   showAllRepos,
   allReposAreShown,
+  selectAllRepos,
+  filterProjectsInput,
+  allReposAreSelected,
 }) => (
   <div className={styles.filterForm}>
-    <span className={styles.square} />
+    <div className={styles.checkAll}>
+      <span>Select all</span>
+      <input type="checkbox" onChange={selectAllRepos} checked={allReposAreSelected} />
+    </div>
     <form className={styles.form}>
-      <input className={styles.formText} type="text" placeholder="filter projects" onKeyUp={filterOnKeyUp} />
+      <input className={styles.formText} value={filterProjectsInput} type="text" placeholder="filter projects" onChange={e => filterOnKeyUp(e.target.value)} />
       <Button
         type="button"
         onClick={openSelectedRepos}
@@ -44,6 +50,9 @@ UserReposHeader.propTypes = {
   openSelectedRepos: PropTypes.func.isRequired,
   hideSelectedRepos: PropTypes.func.isRequired,
   selectedReposAreEmpty: PropTypes.bool.isRequired,
+  selectAllRepos: PropTypes.func.isRequired,
+  filterProjectsInput: PropTypes.string.isRequired,
+  allReposAreSelected: PropTypes.bool.isRequired,
 };
 
 export default UserReposHeader;
