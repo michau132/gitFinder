@@ -5,65 +5,39 @@ import UserReposHeader from './UserReposHeader';
 import styles from './style.css';
 
 const UserRepos = ({
-  user,
-  filterOnKeyUp,
+  userRepos,
   selectUserRepo,
-  showAllRepos,
-  openSelectedRepos,
-  hideSelectedRepos,
   hideSingleRepo,
   openSingleRepo,
-  selectAllRepos,
-}) => {
-  const {
-    userRepos, selectedReposAreEmpty, allReposAreShown, filterProjectsInput, allReposAreSelected,
-  } = user;
-  return (
-    <div className={styles.userRepos}>
-      <UserReposHeader
-        filterOnKeyUp={filterOnKeyUp}
-        showAllRepos={showAllRepos}
-        allReposAreShown={allReposAreShown}
-        openSelectedRepos={openSelectedRepos}
-        hideSelectedRepos={hideSelectedRepos}
-        selectedReposAreEmpty={selectedReposAreEmpty}
-        selectAllRepos={selectAllRepos}
-        filterProjectsInput={filterProjectsInput}
-        allReposAreSelected={allReposAreSelected}
-      />
-      <UserReposList
-        userRepos={userRepos}
-        selectUserRepo={selectUserRepo}
-        hideSingleRepo={hideSingleRepo}
-        openSingleRepo={openSingleRepo}
-      />
-    </div>
-  );
-};
+  ...restProps
+}) => (
+  <div className={styles.userRepos}>
+    <UserReposHeader
+      {...restProps}
+    />
+    <UserReposList
+      userRepos={userRepos}
+      selectUserRepo={selectUserRepo}
+      hideSingleRepo={hideSingleRepo}
+      openSingleRepo={openSingleRepo}
+    />
+  </div>
+);
 
 UserRepos.propTypes = {
-  user: PropTypes.shape({
-    userRepos: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        forks_count: PropTypes.number,
-        stargazers_count: PropTypes.number,
-        description: PropTypes.string,
-        html_url: PropTypes.string.isRequired,
-      }),
-    ).isRequired,
-    selectedReposAreEmpty: PropTypes.bool.isRequired,
-    allReposAreShown: PropTypes.bool.isRequired,
-  }).isRequired,
-  filterOnKeyUp: PropTypes.func.isRequired,
+  userRepos: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      forks_count: PropTypes.number,
+      stargazers_count: PropTypes.number,
+      description: PropTypes.string,
+      html_url: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
   selectUserRepo: PropTypes.func.isRequired,
-  showAllRepos: PropTypes.func.isRequired,
-  openSelectedRepos: PropTypes.func.isRequired,
-  hideSelectedRepos: PropTypes.func.isRequired,
   hideSingleRepo: PropTypes.func.isRequired,
   openSingleRepo: PropTypes.func.isRequired,
-  selectAllRepos: PropTypes.func.isRequired,
 };
 
 export default UserRepos;

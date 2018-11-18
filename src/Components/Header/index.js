@@ -21,7 +21,11 @@ const Header = ({
     <Button type="submit" text="search" className={styles.formButton} />
     {
       errorInput
-      && <p>Invalid github login. In login you can&apos;t have special signs like @, #, etc.</p>
+      && (
+      <p className={styles.error}>
+        sInvalid github login. In login you can&apos;t have special signs like @, #, etc.
+      </p>
+      )
     }
   </form>
 );

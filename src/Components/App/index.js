@@ -9,7 +9,7 @@ import UserContainer from '../../Containers/UserContainer';
 import styles from './style.css';
 import HeaderContainer from '../../Containers/HeaderContainer';
 import EmptyUser from '../EmptyUser';
-import store from '../../utils/store';
+import store from '../../store';
 
 
 const App = () => (

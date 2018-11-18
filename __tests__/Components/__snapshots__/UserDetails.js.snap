@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing UserDetails component matching snapshot 1`] = `
+<section>
+  <h2>
+    Public data
+  </h2>
+  <h4>
+    Adam Oko
+  </h4>
+  <h5>
+    aOko123
+  </h5>
+  <p>
+    Email:
+    aoko123@gmail.com
+  </p>
+  <p>
+    Location:
+  </p>
+</section>
+`;

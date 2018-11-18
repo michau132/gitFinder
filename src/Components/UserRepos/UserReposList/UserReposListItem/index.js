@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
@@ -7,38 +8,46 @@ import styles from './style.css';
 import Button from '../../../Button';
 
 const UserReposListItem = ({
-  listItem,
+  listItem: {
+    id,
+    isChecked,
+    name,
+    forks_count,
+    stargazers_count,
+    description,
+    html_url,
+  },
   selectUserRepo,
   hideSingleRepo,
   openSingleRepo,
 }) => (
-  <li className={classnames(styles.listItem, { [styles.active]: listItem.isChecked })}>
-    <div className={styles.listItemInfo} onClick={() => selectUserRepo(listItem.id)}>
+  <li className={classnames(styles.listItem, { [styles.active]: isChecked })}>
+    <div className={styles.listItemInfo} onClick={() => selectUserRepo(id)}>
       <div className={styles.infoWrapper}>
-        <input type="checkbox" checked={listItem.isChecked || false} readOnly />
+        <input type="checkbox" checked={isChecked || false} readOnly />
         <h4 className={styles.infoName}>
-          {listItem.name}
+          {name}
           (forks:
           {' '}
-          {listItem.forks_count}
+          {forks_count}
           ,
           stars:
           {' '}
-          {listItem.stargazers_count}
+          {stargazers_count}
           )
         </h4>
       </div>
-      <p className={styles.infoDesc}>{listItem.description}</p>
+      <p className={styles.infoDesc}>{description}</p>
     </div>
     <div className={styles.btnWrapper}>
       <Button
         type="button"
-        onClick={() => openSingleRepo(listItem.html_url)}
+        onClick={() => openSingleRepo(html_url)}
         text="open"
       />
       <Button
         type="button"
-        onClick={() => hideSingleRepo(listItem.id)}
+        onClick={() => hideSingleRepo(id)}
         text="hide"
       />
     </div>

@@ -18,6 +18,11 @@
     padding: 8px;
     width: 90%;
 }
+
 .errorInput {
     border-color: red;
+}
+
+.error {
+    font-size: 13px;
 }

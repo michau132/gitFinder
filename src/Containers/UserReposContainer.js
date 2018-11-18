@@ -6,13 +6,7 @@ import {
 import openSingleRepo from '../actions/openSingleRepo';
 import UserRepos from '../Components/UserRepos';
 
-const UserReposContainer = props => (
-  <UserRepos {...props} />
-);
-
-const mapStateToProps = state => ({
-  user: state.user,
-});
+const UserReposContainer = props => <UserRepos {...props} />;
 
 const mapDispatchToProps = {
   filterOnKeyUp: setReposOnKeyUp,
@@ -25,4 +19,4 @@ const mapDispatchToProps = {
   selectAllRepos,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserReposContainer);
+export default connect(null, mapDispatchToProps)(UserReposContainer);

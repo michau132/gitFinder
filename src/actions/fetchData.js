@@ -1,4 +1,4 @@
-import 'whatwg-fetch';
+import fetch from 'isomorphic-fetch';
 import {
   fetchUserBegin,
   fetchUserInfoSucces,

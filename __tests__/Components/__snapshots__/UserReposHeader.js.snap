@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing UserReposHeader matching snapshot 1`] = `
+<div>
+  <div>
+    <span>
+      Select all
+    </span>
+    <input
+      checked={false}
+      onChange={[MockFunction]}
+      type="checkbox"
+    />
+  </div>
+  <form>
+    <input
+      onChange={[Function]}
+      placeholder="filter projects"
+      type="text"
+      value="project"
+    />
+    <Button
+      className={null}
+      disabled={true}
+      onClick={[MockFunction]}
+      text="open"
+      type="button"
+    />
+    <Button
+      className={null}
+      disabled={true}
+      onClick={[MockFunction]}
+      text="hide"
+      type="button"
+    />
+    <Button
+      className={null}
+      disabled={true}
+      onClick={[MockFunction]}
+      text="show all"
+      type="button"
+    />
+  </form>
+</div>
+`;

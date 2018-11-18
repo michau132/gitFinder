@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing UserView component matching snapshot 1`] = `
+<div>
+  <div>
+    <UserAvatar
+      avatarUrl="https://via.placeholder.com/150"
+    />
+    <UserDetails
+      userInfo={
+        Object {
+          "avatar_url": "https://via.placeholder.com/150",
+          "email": "aoko123@gmail.com",
+          "loctation": "Raszyn",
+          "login": "aOko123",
+          "name": "Adam Oko",
+        }
+      }
+    />
+  </div>
+  <Connect(UserReposContainer)
+    userInfo={
+      Object {
+        "avatar_url": "https://via.placeholder.com/150",
+        "email": "aoko123@gmail.com",
+        "loctation": "Raszyn",
+        "login": "aOko123",
+        "name": "Adam Oko",
+      }
+    }
+    userRepos={
+      Array [
+        Object {
+          "description": "First repo description",
+          "forks_count": 0,
+          "html_url": "https://github.com/aOko123/firstRepo",
+          "id": 1,
+          "name": "firstRepo",
+          "stargazers_count": 0,
+        },
+        Object {
+          "description": "Second repo description",
+          "forks_count": 0,
+          "html_url": "https://github.com/aOko123/secondRepo",
+          "id": 2,
+          "name": "secondRepo",
+          "stargazers_count": 0,
+        },
+      ]
+    }
+  />
+</div>
+`;

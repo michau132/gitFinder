@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './style.css';
 import UserDetails from '../UserDetails';
-import LoaderHOC from '../../hoc/LoaderHOC';
 import UserAvatar from '../UserAvatar';
 import UserReposContainer from '../../Containers/UserReposContainer';
 
@@ -12,7 +11,7 @@ const UserView = ({ user }) => (
       <UserAvatar avatarUrl={user.userInfo.avatar_url} />
       <UserDetails userInfo={user.userInfo} />
     </div>
-    <UserReposContainer userRepos={user.userRepos} />
+    <UserReposContainer {...user} />
   </div>
 );
 
@@ -26,11 +25,15 @@ UserView.propTypes = {
     }).isRequired,
     userRepos: PropTypes.arrayOf(
       PropTypes.shape({
+        id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
-        pushed_at: PropTypes.string.isRequired,
+        forks_count: PropTypes.number,
+        stargazers_count: PropTypes.number,
+        description: PropTypes.string,
+        html_url: PropTypes.string.isRequired,
       }),
     ).isRequired,
   }).isRequired,
 };
 
-export default LoaderHOC(UserView);
+export default UserView;

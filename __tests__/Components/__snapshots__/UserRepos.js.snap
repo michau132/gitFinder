@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing UserRepos component matching snapshot 1`] = `
+<div>
+  <UserReposHeader
+    allReposAreSelected={false}
+    allReposAreShown={true}
+    filterOnKeyUp={[MockFunction]}
+    filterProjectsInput="project"
+    hideSelectedRepos={[MockFunction]}
+    openSelectedRepos={[MockFunction]}
+    selectAllRepos={[MockFunction]}
+    selectedReposAreEmpty={true}
+    showAllRepos={[MockFunction]}
+  />
+  <UserReposList
+    hideSingleRepo={[MockFunction]}
+    openSingleRepo={[MockFunction]}
+    selectUserRepo={[MockFunction]}
+    userRepos={
+      Array [
+        Object {
+          "description": "First repo description",
+          "forks_count": 0,
+          "html_url": "https://github.com/aOko123/firstRepo",
+          "id": 1,
+          "name": "firstRepo",
+          "stargazers_count": 0,
+        },
+        Object {
+          "description": "Second repo description",
+          "forks_count": 0,
+          "html_url": "https://github.com/aOko123/secondRepo",
+          "id": 2,
+          "name": "secondRepo",
+          "stargazers_count": 0,
+        },
+      ]
+    }
+  />
+</div>
+`;

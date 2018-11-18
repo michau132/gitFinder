@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing UserReposListItem component matching snapshot 1`] = `
+<li
+  className=""
+>
+  <div
+    onClick={[Function]}
+  >
+    <div>
+      <input
+        checked={false}
+        readOnly={true}
+        type="checkbox"
+      />
+      <h4>
+        (forks:
+         
+        , stars:
+         
+        )
+      </h4>
+    </div>
+    <p />
+  </div>
+  <div>
+    <Button
+      className={null}
+      disabled={false}
+      onClick={[Function]}
+      text="open"
+      type="button"
+    />
+    <Button
+      className={null}
+      disabled={false}
+      onClick={[Function]}
+      text="hide"
+      type="button"
+    />
+  </div>
+</li>
+`;

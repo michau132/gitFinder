@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing Header component error is set to true 1`] = `"sInvalid github login. In login you can't have special signs like @, #, etc."`;
+
+exports[`testing Header component matching snapshot 1`] = `
+<form
+  onSubmit={[MockFunction]}
+>
+  <input
+    className=""
+    onChange={[MockFunction]}
+    placeholder="github login"
+    type="text"
+    value="adam"
+  />
+  <Button
+    className={null}
+    disabled={false}
+    onClick={null}
+    text="search"
+    type="submit"
+  />
+</form>
+`;

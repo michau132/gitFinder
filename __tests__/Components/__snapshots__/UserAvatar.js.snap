@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing UserAvatar component matching snapshot 1`] = `
+<div>
+  <img
+    alt="avatar"
+    src="https://via.placeholder.com/150"
+  />
+</div>
+`;
