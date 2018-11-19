@@ -6,6 +6,7 @@ exports[`testing UserReposListItem component matching snapshot 1`] = `
 >
   <div
     onClick={[Function]}
+    role="presentation"
   >
     <div>
       <input

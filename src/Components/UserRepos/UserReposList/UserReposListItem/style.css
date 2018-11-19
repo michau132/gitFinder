@@ -8,9 +8,6 @@
   background-color: #c0c79f;
 }
 
-.active {
-  background-color: #FFB10D;
-}
 
 .listItemInfo {
   flex-grow: 1;
@@ -22,14 +19,17 @@
   display: inline-block;
   margin: 10px;
 }
+
 .infoWrapper {
   overflow: hidden;
   flex: 1;
 }
+
 .infoDesc {
   margin: 0;
   word-wrap: break-word;
 }
+
 .btnWrapper {
   margin-right: 15px;
   align-self: center;
@@ -46,7 +46,7 @@
   transition: 0.2s all;
 }
 
-.btnOpen:hover { 
+.btnOpen:hover {
   background: #43d1af;
   color: #fff;
 }
@@ -60,7 +60,27 @@
   transition: 0.2s all;
 }
 
-.btnHide:hover { 
+.btnHide:hover {
   background: #c22121;
   color: #fff;
+}
+
+.isFounded {
+  background-color: violet;
+}
+
+.isChecked {
+  background-color: #FFB10D;
+}
+
+.isChecked.isFounded {
+  background-color: lightskyblue;
+}
+
+.isChecked.isFounded:hover {
+  background-color: silver;
+}
+
+.isHidden {
+  display: none;
 }

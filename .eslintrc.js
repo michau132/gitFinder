@@ -16,6 +16,8 @@ module.exports = {
         "no-console": process.env.NODE_ENV === 'production' ? 2 : 0,
         "no-debugger": process.env.NODE_ENV === 'production' ? 2 : 0,
         "no-underscore-dangle": ["error", { "allow": ["__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"] }],
+        "camelcase": 0,
+        "no-underscore-dangle": 0,
     },
     "env": {
         "browser": true,

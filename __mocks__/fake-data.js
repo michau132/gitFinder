@@ -6,6 +6,9 @@ const __userRepos = [
     stargazers_count: 0,
     description: 'First repo description',
     html_url: 'https://github.com/aOko123/firstRepo',
+    isChecked: false,
+    isHidden: false,
+    isFounded: false,
   },
   {
     id: 2,
@@ -14,6 +17,9 @@ const __userRepos = [
     stargazers_count: 0,
     description: 'Second repo description',
     html_url: 'https://github.com/aOko123/secondRepo',
+    isChecked: false,
+    isHidden: false,
+    isFounded: false,
   },
 ];
 
