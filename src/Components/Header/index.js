@@ -23,7 +23,7 @@ const Header = ({
       errorInput
       && (
       <p className={styles.error}>
-        sInvalid github login. In login you can&apos;t have special signs like @, #, etc.
+        Invalid github login. In login you can&apos;t have special signs like @, #, etc.
       </p>
       )
     }

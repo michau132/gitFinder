@@ -40,7 +40,7 @@ const user = (state = initialState, action) => {
     case types.FETCH_USER_INFO_SUCCESS:
       return {
         ...state,
-        userInfo: payload.user,
+        userInfo: payload.userInfo,
         error: null,
         isLoading: true,
       };

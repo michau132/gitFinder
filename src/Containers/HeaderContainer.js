@@ -66,4 +66,6 @@ const mapDispatchToProps = {
   onFormSubmit: takeUserNameAndFetchData,
 };
 
+export { HeaderContainer };
+
 export default withRouter(connect(null, mapDispatchToProps)(HeaderContainer));

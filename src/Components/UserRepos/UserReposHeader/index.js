@@ -5,7 +5,7 @@ import styles from './style.css';
 import Button from '../../Button';
 
 const UserReposHeader = ({
-  filterOnKeyUp,
+  setReposOnKeyUp,
   openSelectedRepos,
   hideSelectedRepos,
   showAllRepos,
@@ -21,7 +21,7 @@ const UserReposHeader = ({
       <input type="checkbox" onChange={selectAllRepos} checked={allReposAreSelected} />
     </div>
     <form className={styles.form}>
-      <input className={styles.formText} value={filterProjectsInput} type="text" placeholder="filter projects" onChange={e => filterOnKeyUp(e.target.value)} />
+      <input className={styles.formText} value={filterProjectsInput} type="text" placeholder="filter projects" onChange={e => setReposOnKeyUp(e.target.value)} />
       <Button
         type="button"
         onClick={openSelectedRepos}
@@ -45,7 +45,7 @@ const UserReposHeader = ({
 );
 
 UserReposHeader.propTypes = {
-  filterOnKeyUp: PropTypes.func.isRequired,
+  setReposOnKeyUp: PropTypes.func.isRequired,
   showAllRepos: PropTypes.func.isRequired,
   allReposAreShown: PropTypes.bool.isRequired,
   selectedReposAreEmpty: PropTypes.bool.isRequired,
