@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch';
+import apikey from '../../apikey';
 import {
   fetchUserBegin,
   fetchUserInfoSucces,
@@ -6,6 +7,8 @@ import {
   fetchUserReposSuccess,
   fetchUserLoadingEnd,
 } from './index';
+
+const apkey = process.env.NODE_ENV === 'production' ? '' : apikey;
 
 function fetchData(url) {
   return (
@@ -16,8 +19,8 @@ function fetchData(url) {
 
 
 export default function takeUserNameAndFetchData(name) {
-  const userInfoUrl = `https://api.github.com/users/${name}`;
-  const userRepoUrl = `https://api.github.com/users/${name}/repos`;
+  const userInfoUrl = `https://api.github.com/users/${name}${apkey}`;
+  const userRepoUrl = `https://api.github.com/users/${name}/repos${apkey}`;
 
   return (dispatch) => {
     dispatch(fetchUserBegin());
