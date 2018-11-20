@@ -16,8 +16,8 @@ function fetchData(url) {
 
 
 export default function takeUserNameAndFetchData(name) {
-  const userInfoUrl = `https://api.github.com/users/${name}?client_id=fccd37f38519b0d71cd7&client_secret=61572c304be174f925b52e267794cf5c9f768e00`;
-  const userRepoUrl = `https://api.github.com/users/${name}/repos?client_id=fccd37f38519b0d71cd7&client_secret=61572c304be174f925b52e267794cf5c9f768e00`;
+  const userInfoUrl = `https://api.github.com/users/${name}`;
+  const userRepoUrl = `https://api.github.com/users/${name}/repos`;
 
   return (dispatch) => {
     dispatch(fetchUserBegin());
