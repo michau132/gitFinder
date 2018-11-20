@@ -29,7 +29,7 @@ describe('testing UserRepos component', () => {
       selectUserRepo: jest.fn(),
       hideSingleRepo: jest.fn(),
       openSingleRepo: jest.fn(),
-      filterOnKeyUp: jest.fn(),
+      setReposOnKeyUp: jest.fn(),
       openSelectedRepos: jest.fn(),
       hideSelectedRepos: jest.fn(),
       showAllRepos: jest.fn(),

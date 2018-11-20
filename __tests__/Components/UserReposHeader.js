@@ -8,7 +8,7 @@ describe('testing UserReposHeader', () => {
   let props;
   beforeEach(() => {
     props = {
-      filterOnKeyUp: jest.fn(),
+      setReposOnKeyUp: jest.fn(),
       openSelectedRepos: jest.fn(),
       hideSelectedRepos: jest.fn(),
       showAllRepos: jest.fn(),
@@ -38,7 +38,7 @@ describe('testing UserReposHeader', () => {
     const filterInput = wrapper.find('input[type="text"]');
     expect(filterInput.prop('value')).toEqual(props.filterProjectsInput);
     filterInput.simulate('change', { target: { value: 'ddds' } });
-    expect(props.filterOnKeyUp).toHaveBeenCalledWith('ddds');
+    expect(props.setReposOnKeyUp).toHaveBeenCalledWith('ddds');
   });
 
   describe('testing buttons', () => {

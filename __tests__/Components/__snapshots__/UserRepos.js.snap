@@ -5,12 +5,12 @@ exports[`testing UserRepos component matching snapshot 1`] = `
   <UserReposHeader
     allReposAreSelected={false}
     allReposAreShown={true}
-    filterOnKeyUp={[MockFunction]}
     filterProjectsInput="project"
     hideSelectedRepos={[MockFunction]}
     openSelectedRepos={[MockFunction]}
     selectAllRepos={[MockFunction]}
     selectedReposAreEmpty={true}
+    setReposOnKeyUp={[MockFunction]}
     showAllRepos={[MockFunction]}
   />
   <UserReposList

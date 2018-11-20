@@ -39,9 +39,4 @@ describe('testing Header component', () => {
   test('error is set to null', () => {
     expect(wrapper.find('.error')).toHaveLength(0);
   });
-
-  test('error is set to true', () => {
-    wrapper.setProps({ errorInput: true });
-    expect(wrapper.find('p').text()).toMatchSnapshot();
-  });
 });
