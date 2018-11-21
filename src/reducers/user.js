@@ -42,7 +42,6 @@ const user = (state = initialState, action) => {
         ...state,
         userInfo: payload.userInfo,
         error: null,
-        isLoading: true,
       };
 
     case types.FETCH_USER_REPOS_SUCCESS: {
@@ -120,9 +119,8 @@ const user = (state = initialState, action) => {
 
     case types.HIDE_SELECTED_REPOS: {
       const { userRepos } = state;
-      const selectedRepos = userRepos.map(
-        repo => ((repo.isChecked === true) ? { ...repo, isHidden: true } : repo),
-      );
+      const selectedRepos = userRepos.map(repo => (
+        (repo.isChecked === true) ? { ...repo, isHidden: true } : { ...repo, isHidden: false }));
 
       return {
         ...state,

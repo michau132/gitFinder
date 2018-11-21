@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch';
+import axios from 'axios';
 import apikey from '../../apikey';
 import {
   fetchUserBegin,
@@ -10,10 +10,9 @@ import {
 
 const apkey = process.env.NODE_ENV === 'production' ? '' : apikey;
 
-function fetchData(url) {
+export function fetchData(url) {
   return (
-    fetch(url)
-      .then(result => result.json())
+    axios(url).then(result => result.data)
   );
 }
 
@@ -24,7 +23,7 @@ export default function takeUserNameAndFetchData(name) {
 
   return (dispatch) => {
     dispatch(fetchUserBegin());
-    Promise.all([
+    return Promise.all([
       fetchData(userInfoUrl),
       fetchData(userRepoUrl),
     ])
