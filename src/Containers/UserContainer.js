@@ -37,7 +37,7 @@ class UserContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user,
+  user: state,
 });
 
 const mapDispatchToProps = {

@@ -4,7 +4,7 @@ import {
   compose,
 } from 'redux';
 import thunk from 'redux-thunk';
-import rootReducer from '../reducers/index';
+import user from '../reducers/user';
 
 const composeEnhancers = typeof window === 'object'
   && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -17,5 +17,5 @@ const enhancer = composeEnhancers(
   // other store enhancers if any
 );
 
-const store = createStore(rootReducer, enhancer);
+const store = createStore(user, enhancer);
 export default store;
