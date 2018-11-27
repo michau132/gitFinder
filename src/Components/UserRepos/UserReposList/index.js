@@ -5,9 +5,7 @@ import UserReposListItem from './UserReposListItem';
 
 const UserReposList = ({
   userRepos,
-  selectUserRepo,
-  hideSingleRepo,
-  openSingleRepo,
+  ...restProps
 }) => (
   <fieldset>
     <legend>Projects</legend>
@@ -17,9 +15,7 @@ const UserReposList = ({
           <UserReposListItem
             listItem={listItem}
             key={listItem.id}
-            selectUserRepo={selectUserRepo}
-            hideSingleRepo={hideSingleRepo}
-            openSingleRepo={openSingleRepo}
+            {...restProps}
           />
         ))
       }

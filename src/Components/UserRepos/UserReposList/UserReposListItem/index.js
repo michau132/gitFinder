@@ -15,6 +15,7 @@ const UserReposListItem = ({
     isChecked,
     isFounded,
     isHidden,
+    allReposAreShown,
   },
   selectUserRepo,
   hideSingleRepo,
@@ -26,6 +27,7 @@ const UserReposListItem = ({
       { [styles.isChecked]: isChecked },
       { [styles.isFounded]: isFounded },
       { [styles.isHidden]: isHidden },
+      { [styles.allRepos]: !allReposAreShown },
     )}
   >
     <div className={styles.listItemInfo} onClick={() => selectUserRepo(id)} role="presentation">
@@ -63,7 +65,6 @@ const UserReposListItem = ({
 UserReposListItem.defaultProps = {
   listItem: {
     name: null,
-    id: null,
     html_url: null,
   },
 };

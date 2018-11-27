@@ -9,10 +9,12 @@ const UserRepos = ({
   selectUserRepo,
   hideSingleRepo,
   openSingleRepo,
+  allReposAreShown,
   ...restProps
 }) => (
   <div className={styles.userRepos}>
     <UserReposHeader
+      allReposAreShown={allReposAreShown}
       {...restProps}
     />
     <UserReposList
@@ -20,6 +22,7 @@ const UserRepos = ({
       selectUserRepo={selectUserRepo}
       hideSingleRepo={hideSingleRepo}
       openSingleRepo={openSingleRepo}
+      allReposAreShown={allReposAreShown}
     />
   </div>
 );

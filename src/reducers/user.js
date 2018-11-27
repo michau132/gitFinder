@@ -120,7 +120,8 @@ const user = (state = initialState, action) => {
     case types.HIDE_SELECTED_REPOS: {
       const { userRepos } = state;
       const selectedRepos = userRepos.map(repo => (
-        (repo.isChecked === true) ? { ...repo, isHidden: true } : { ...repo, isHidden: false }));
+        (repo.isChecked === true || repo.isHidden === true)
+          ? { ...repo, isHidden: true } : { ...repo, isHidden: false }));
 
       return {
         ...state,

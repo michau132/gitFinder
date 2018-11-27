@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import githubUsernameRegex from 'github-username-regex';
-import Header from '../Components/Header';
 import takeUserNameAndFetchData from '../actions/fetchData';
 
 class HeaderContainer extends Component {
@@ -49,14 +48,20 @@ class HeaderContainer extends Component {
   }
 
   render() {
+    const { render } = this.props;
     const { inputValue, errorInput } = this.state;
+    const { onFormSubmit, updateInputValue } = this;
     return (
-      <Header
-        onFormSubmit={this.onFormSubmit}
-        updateInputValue={this.updateInputValue}
-        inputValue={inputValue}
-        errorInput={errorInput}
-      />
+      <Fragment>
+        {
+          render({
+            onFormSubmit,
+            updateInputValue,
+            inputValue,
+            errorInput,
+          })
+      }
+      </Fragment>
     );
   }
 }

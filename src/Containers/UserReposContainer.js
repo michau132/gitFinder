@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {
   setReposOnKeyUp,
-  selectUserRepo, openSelectedRepos,
+  selectUserRepo,
+  openSelectedRepos,
   hideSelectedRepos,
   hideSingleRepo,
   showAllRepos,

@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import UserView from '../Components/UserView';
 import takeUserNameAndFetchData from '../actions/fetchData';
 import LoaderHOC from '../hoc/LoaderHOC';
 
@@ -30,8 +29,13 @@ class UserContainer extends Component {
   }
 
   render() {
+    const { render } = this.props;
     return (
-      <UserView {...this.props} />
+      <Fragment>
+        {
+          render({ ...this.props })
+        }
+      </Fragment>
     );
   }
 }

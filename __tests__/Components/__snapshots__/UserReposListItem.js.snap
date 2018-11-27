@@ -2,7 +2,7 @@
 
 exports[`testing UserReposListItem component matching snapshot 1`] = `
 <li
-  className=""
+  className="undefined"
 >
   <div
     onClick={[Function]}

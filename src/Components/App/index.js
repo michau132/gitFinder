@@ -10,16 +10,18 @@ import styles from './style.css';
 import HeaderContainer from '../../Containers/HeaderContainer';
 import EmptyUser from '../EmptyUser';
 import store from '../../store';
+import Header from '../Header';
+import UserView from '../UserView';
 
 
 const App = () => (
   <Provider store={store}>
     <HashRouter>
       <section className={styles.container}>
-        <HeaderContainer />
+        <HeaderContainer render={props => <Header {...props} />} />
         <Switch>
           <Route exact path="/" component={EmptyUser} />
-          <Route path="/:user" component={UserContainer} />
+          <Route path="/:user" component={() => <UserContainer render={props => <UserView {...props} />} />} />
         </Switch>
       </section>
     </HashRouter>
