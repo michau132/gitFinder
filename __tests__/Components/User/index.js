@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import UserView from '../../src/Components/UserView';
+import UserView from '../../../src/Components/User';
 
 describe('testing UserView component', () => {
   let wrapper;

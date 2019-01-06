@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import UserReposListItem from '../../src/Components/UserRepos/UserReposList/UserReposListItem';
+import UserReposListItem from '../../../src/Components/User/UserReposListItem';
 
 describe('testing UserReposListItem component', () => {
   let wrapper;

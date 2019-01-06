@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import takeUserNameAndFetchData from '../actions/fetchData';
-import LoaderHOC from '../hoc/LoaderHOC';
-import ErrorHOC from '../hoc/ErrorHOC';
+import WithLoading from '../hoc/Loading';
+import ErrorHOC from '../hoc/HasError';
 
 class UserContainer extends Component {
   static propTypes = {
@@ -62,7 +62,7 @@ const mapDispatchToProps = {
   fetchData: takeUserNameAndFetchData,
 };
 
-const UserContainerWithLoading = ErrorHOC(LoaderHOC(UserContainer));
+const UserContainerWithLoading = ErrorHOC(WithLoading(UserContainer));
 
 export { UserContainer };
 

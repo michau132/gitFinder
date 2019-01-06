@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import UserReposHeader from '../../src/Components/UserRepos/UserReposHeader';
+import UserReposHeader from '../../../src/Components/User/UserReposHeader';
 
 describe('testing UserReposHeader', () => {
   let wrapper;

@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import UserRepos from '../../src/Components/UserRepos';
+import UserReposList from '../../../src/Components/User/UserReposList';
 
-describe('testing UserRepos component', () => {
+describe('testing UserReposList component', () => {
   let wrapper;
   let props;
   beforeEach(() => {
@@ -29,18 +29,9 @@ describe('testing UserRepos component', () => {
       selectUserRepo: jest.fn(),
       hideSingleRepo: jest.fn(),
       openSingleRepo: jest.fn(),
-      setReposOnKeyUp: jest.fn(),
-      openSelectedRepos: jest.fn(),
-      hideSelectedRepos: jest.fn(),
-      showAllRepos: jest.fn(),
-      selectAllRepos: jest.fn(),
-      isShowAllBtnDisabled: true,
-      selectedReposAreEmpty: true,
-      filterProjectsInput: 'project',
-      allReposAreSelected: false,
     };
 
-    wrapper = shallow(<UserRepos {...props} />);
+    wrapper = shallow(<UserReposList {...props} />);
   });
 
   test('renders without crashing', () => {

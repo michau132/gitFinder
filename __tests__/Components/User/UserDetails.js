@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import UserDetails from '../../src/Components/UserDetails';
+import UserDetails from '../../../src/Components/User/UserDetails';
 
 describe('testing UserDetails component', () => {
   let wrapper;
