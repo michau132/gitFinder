@@ -4,7 +4,7 @@ exports[`testing UserRepos component matching snapshot 1`] = `
 <div>
   <UserReposHeader
     allReposAreSelected={false}
-    allReposAreShown={true}
+    isShowAllBtnDisabled={true}
     filterProjectsInput="project"
     hideSelectedRepos={[MockFunction]}
     openSelectedRepos={[MockFunction]}
@@ -14,7 +14,7 @@ exports[`testing UserRepos component matching snapshot 1`] = `
     showAllRepos={[MockFunction]}
   />
   <UserReposList
-    allReposAreShown={true}
+    isShowAllBtnDisabled={true}
     hideSingleRepo={[MockFunction]}
     openSingleRepo={[MockFunction]}
     selectUserRepo={[MockFunction]}

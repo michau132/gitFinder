@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -13,19 +14,44 @@ class HeaderContainer extends Component {
     }).isRequired,
   }
 
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
     this.state = {
       inputValue: '',
-      errorInput: null,
+      pathname: '',
+      errorInput: false,
     };
+  }
+
+  componentDidMount() {
+    const { location: { pathname } } = this.props;
+    const path = pathname.substring(1);
+    const isValidPath = !githubUsernameRegex.test(path);
+    if (path) {
+      this.setState({
+        inputValue: path,
+        pathname,
+        errorInput: isValidPath,
+      });
+    }
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { pathname } = nextProps.location;
+    if (pathname !== prevState.pathname) {
+      return {
+        inputValue: pathname.substring(1),
+        pathname,
+      };
+    }
+    return null;
   }
 
   onFormSubmit = (e) => {
     const { onFormSubmit, history } = this.props;
     const { inputValue, errorInput } = this.state;
     e.preventDefault();
-    if (errorInput) {
+    if (errorInput || !inputValue) {
       return;
     }
     onFormSubmit(inputValue);
@@ -34,10 +60,10 @@ class HeaderContainer extends Component {
 
   updateInputValue = (val) => {
     const { value } = val.target;
-    if (githubUsernameRegex.test(value)) {
+    if (githubUsernameRegex.test(value) || !value) {
       this.setState({
         inputValue: value,
-        errorInput: null,
+        errorInput: false,
       });
     } else {
       this.setState({

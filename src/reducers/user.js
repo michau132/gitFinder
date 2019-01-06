@@ -22,7 +22,7 @@ const initialState = {
   userRepos: [],
   isLoading: false,
   error: null,
-  allReposAreShown: true,
+  isShowAllBtnDisabled: true,
   selectedReposAreEmpty: true,
   filterProjectsInput: '',
   allReposAreSelected: false,
@@ -60,6 +60,7 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         error: payload.message,
+        isLoading: false,
       };
 
     case types.FILTER_ON_KEY_UP: {
@@ -68,7 +69,7 @@ const user = (state = initialState, action) => {
       let matchedRepos;
       if (val !== ' ') {
         const findMatchingRepos = value => repo => (
-          (repo.name.match(value) || (repo.description && repo.description.match(value))
+          (repo.name.includes(value) || (repo.description && repo.description.includes(value))
             ? { ...repo, isFounded: true } : { ...repo, isFounded: false }
           )
         );
@@ -80,6 +81,7 @@ const user = (state = initialState, action) => {
           ...state,
           userRepos: matchedRepos,
           filterProjectsInput: val,
+          isShowAllBtnDisabled: false,
         };
       }
       return state;
@@ -107,6 +109,7 @@ const user = (state = initialState, action) => {
         userRepos: actualRepos,
         selectedReposAreEmpty,
         allReposAreSelected,
+        isShowAllBtnDisabled: false,
       };
     }
 
@@ -121,12 +124,12 @@ const user = (state = initialState, action) => {
       const { userRepos } = state;
       const selectedRepos = userRepos.map(repo => (
         (repo.isChecked === true || repo.isHidden === true)
-          ? { ...repo, isHidden: true } : { ...repo, isHidden: false }));
+          ? { ...repo, isHidden: true, isChecked: false } : { ...repo, isHidden: false }));
 
       return {
         ...state,
         userRepos: selectedRepos,
-        allReposAreShown: false,
+        isShowAllBtnDisabled: false,
         selectedReposAreEmpty: true,
         allReposAreSelected: false,
       };
@@ -141,7 +144,7 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         userRepos: allReposVisible,
-        allReposAreShown: true,
+        isShowAllBtnDisabled: true,
         selectedReposAreEmpty: true,
         filterProjectsInput: '',
         allReposAreSelected: false,
@@ -153,16 +156,22 @@ const user = (state = initialState, action) => {
       const { id } = payload;
       const actualRepos = userRepos.map(repo => (
         repo.id === id ? { ...repo, isHidden: true, isChecked: false } : repo));
-      const selectedReposAreEmpty = userRepos.every(checkIfRepoIsSetToTrue());
+      const selectedReposAreEmpty = !actualRepos.some(checkIfRepoIsSetToTrue());
       return {
         ...state,
         userRepos: actualRepos,
-        allReposAreShown: false,
+        isShowAllBtnDisabled: false,
         selectedReposAreEmpty,
       };
     }
     case types.SELECT_ALL_REPOS: {
       const { userRepos } = state;
+      const areAllReposAreHidden = userRepos.every(repo => repo.isHidden === true);
+      if (areAllReposAreHidden) {
+        return {
+          ...state,
+        };
+      }
       let checkedSelectedRepos;
       if (userRepos.every(checkIfRepoIsSetToTrue())) {
         checkedSelectedRepos = userRepos.map(repo => ({ ...repo, isChecked: false }));

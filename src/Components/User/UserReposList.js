@@ -1,15 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './style.css';
+import { List, Typography } from '@material-ui/core';
+import styled from 'styled-components';
 import UserReposListItem from './UserReposListItem';
+
+const StyledFieldset = styled.fieldset`
+  display: block;
+  width: 100%;
+`;
+
+const StyledLegend = styled.legend`
+  margin-left: 10px;
+`;
+
+const StyledList = styled(List)`
+  list-style: none;
+  height: 450px;
+  overflow: hidden;
+  overflow-y: scroll;
+`;
 
 const UserReposList = ({
   userRepos,
   ...restProps
 }) => (
-  <fieldset>
-    <legend>Projects</legend>
-    <ul className={styles.listRepos}>
+  <StyledFieldset>
+    <StyledLegend>
+      <Typography variant="subtitle1">
+        Projects
+      </Typography>
+    </StyledLegend>
+
+    <StyledList>
       {
         userRepos.map(listItem => (
           <UserReposListItem
@@ -19,8 +41,8 @@ const UserReposList = ({
           />
         ))
       }
-    </ul>
-  </fieldset>
+    </StyledList>
+  </StyledFieldset>
 );
 
 UserReposList.propTypes = {
@@ -35,7 +57,6 @@ UserReposList.propTypes = {
     }),
   ).isRequired,
   hideSingleRepo: PropTypes.func.isRequired,
-  openSingleRepo: PropTypes.func.isRequired,
   selectUserRepo: PropTypes.func.isRequired,
 };
 

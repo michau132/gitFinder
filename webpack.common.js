@@ -1,5 +1,6 @@
 // Konfiguracja Webpack
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index',
@@ -42,6 +43,9 @@ module.exports = {
         ],
       },
     ],
-
   },
+  plugins: [new HtmlWebpackPlugin({
+    title: 'GitFinder',
+    template: './src/index.html',
+  })],
 };

@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './style.css';
+import styled from 'styled-components';
+
+const Image = styled.img`
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+`;
 
 const UserAvatar = ({ avatarUrl }) => (
-  <div className={styles.userAvatar}>
-    <img src={avatarUrl} alt="avatar" className={styles.avatar} />
-  </div>
+  <Image src={avatarUrl} alt="avatar" />
 );
 
 UserAvatar.propTypes = {

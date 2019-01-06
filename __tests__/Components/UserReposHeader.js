@@ -13,7 +13,7 @@ describe('testing UserReposHeader', () => {
       hideSelectedRepos: jest.fn(),
       showAllRepos: jest.fn(),
       selectAllRepos: jest.fn(),
-      allReposAreShown: true,
+      isShowAllBtnDisabled: true,
       selectedReposAreEmpty: true,
       filterProjectsInput: 'project',
       allReposAreSelected: false,

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import takeUserNameAndFetchData from '../actions/fetchData';
 import LoaderHOC from '../hoc/LoaderHOC';
+import ErrorHOC from '../hoc/ErrorHOC';
 
 class UserContainer extends Component {
   static propTypes = {
@@ -20,10 +21,23 @@ class UserContainer extends Component {
     }).isRequired,
   }
 
+  constructor(props, context) {
+    super(props, context);
+    this.state = {};
+  }
+
   componentDidMount() {
     const { fetchData, match, user } = this.props;
-
     if (user.userInfo.login.length === 0) {
+      fetchData(match.params.user);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { fetchData, match } = this.props;
+    const previousUser = prevProps.match.params.user;
+    const nextUser = match.params.user;
+    if (previousUser !== nextUser) {
       fetchData(match.params.user);
     }
   }
@@ -48,7 +62,7 @@ const mapDispatchToProps = {
   fetchData: takeUserNameAndFetchData,
 };
 
-const UserContainerWithLoading = LoaderHOC(UserContainer);
+const UserContainerWithLoading = ErrorHOC(LoaderHOC(UserContainer));
 
 export { UserContainer };
 

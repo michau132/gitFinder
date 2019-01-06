@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import styles from './LoaderHOC.css';
 
 const LoaderHOC = WrappedComponent => (props) => {
-  const { user } = props;
-  if (user.isLoading) {
+  const { user: { isLoading } } = props;
+  if (isLoading) {
     return <div className={styles.ldsHourglass} />;
   }
   return <WrappedComponent {...props} />;

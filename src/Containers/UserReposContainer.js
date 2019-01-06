@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import {
   setReposOnKeyUp,
@@ -9,10 +8,8 @@ import {
   showAllRepos,
   selectAllRepos,
 } from '../actions';
-import openSingleRepo from '../actions/openSingleRepo';
-import UserRepos from '../Components/UserRepos';
 
-const UserReposContainer = props => <UserRepos {...props} />;
+const UserReposContainer = ({ render, ...restProps }) => render({ ...restProps });
 
 const mapDispatchToProps = {
   setReposOnKeyUp,
@@ -21,7 +18,6 @@ const mapDispatchToProps = {
   hideSelectedRepos,
   showAllRepos,
   hideSingleRepo,
-  openSingleRepo,
   selectAllRepos,
 };
 
