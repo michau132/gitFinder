@@ -8,8 +8,8 @@ export const getUser = name => createAction(types.GET_USER, { name });
 
 export const fetchUserBegin = () => createAction(types.FETCH_USER_BEGIN);
 
-export const fetchUserInfoSucces = userInfo => (
-  createAction(types.FETCH_USER_INFO_SUCCESS, { userInfo }));
+export const fetchUserInfoSucces = informations => (
+  createAction(types.FETCH_USER_INFO_SUCCESS, { informations }));
 
 export const fetchUserReposSuccess = repos => (
   createAction(types.FETCH_USER_REPOS_SUCCESS, { repos }));

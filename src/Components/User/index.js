@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid, withStyles } from '@material-ui/core';
+import { compose } from 'recompose';
 import UserDetails from './UserDetails';
 import UserAvatar from './UserAvatar';
 import UserReposContainer from '../../Containers/UserReposContainer';
 import UserReposHeader from './UserReposHeader';
 import UserReposList from './UserReposList';
+import HasError from '../../hoc/HasError';
+import Loading from '../../hoc/Loading';
+
 
 const styles = theme => ({
   root: {
@@ -26,8 +30,8 @@ const styles = theme => ({
   },
 });
 
-const UserView = ({ user, classes }) => {
-  const { userInfo, userRepos, ...restUserProps } = user;
+const User = ({ user, classes }) => {
+  const { informations, repos, ...restUserProps } = user;
   return (
     <Grid container spacing={40} className={classes.root}>
       <Grid
@@ -41,10 +45,10 @@ const UserView = ({ user, classes }) => {
         className={classes.avatarAndInfo}
       >
         <Grid item xs={12} sm={6} md="auto" container justify="center" alignItems="center">
-          <UserAvatar avatarUrl={userInfo.avatar_url} />
+          <UserAvatar avatarUrl={informations.avatar_url} />
         </Grid>
         <Grid item xs={12} sm={6} md="auto">
-          <UserDetails userInfo={userInfo} />
+          <UserDetails informations={informations} />
         </Grid>
       </Grid>
       <UserReposContainer
@@ -53,7 +57,7 @@ const UserView = ({ user, classes }) => {
             <Grid item xs={12} sm={12} md={9} container justify="flex-end">
               <UserReposHeader {...restUserProps} {...propsFromContainer} />
               <UserReposList
-                userRepos={userRepos}
+                repos={repos}
                 hideSingleRepo={hideSingleRepo}
                 selectUserRepo={selectUserRepo}
               />
@@ -64,15 +68,15 @@ const UserView = ({ user, classes }) => {
   );
 };
 
-UserView.propTypes = {
+User.propTypes = {
   user: PropTypes.shape({
-    userInfo: PropTypes.shape({
+    informations: PropTypes.shape({
       login: PropTypes.string.isRequired,
       email: PropTypes.string,
       avatar_url: PropTypes.string,
       name: PropTypes.string,
     }).isRequired,
-    userRepos: PropTypes.arrayOf(
+    repos: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
@@ -85,4 +89,8 @@ UserView.propTypes = {
   }).isRequired,
 };
 
-export default withStyles(styles)(UserView);
+export default compose(
+  withStyles(styles),
+  HasError,
+  Loading,
+)(User);

@@ -21,7 +21,7 @@ const StyledList = styled(List)`
 `;
 
 const UserReposList = ({
-  userRepos,
+  repos,
   ...restProps
 }) => (
   <StyledFieldset>
@@ -33,7 +33,7 @@ const UserReposList = ({
 
     <StyledList>
       {
-        userRepos.map(listItem => (
+        repos.map(listItem => (
           <UserReposListItem
             listItem={listItem}
             key={listItem.id}
@@ -46,7 +46,7 @@ const UserReposList = ({
 );
 
 UserReposList.propTypes = {
-  userRepos: PropTypes.arrayOf(
+  repos: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,

@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import takeUserNameAndFetchData from '../actions/fetchData';
-import WithLoading from '../hoc/Loading';
-import ErrorHOC from '../hoc/HasError';
 
 class UserContainer extends Component {
   static propTypes = {
@@ -15,20 +13,15 @@ class UserContainer extends Component {
       }).isRequired,
     }).isRequired,
     user: PropTypes.shape({
-      userInfo: PropTypes.shape({
+      informations: PropTypes.shape({
         login: PropTypes.string.isRequired,
       }).isRequired,
     }).isRequired,
   }
 
-  constructor(props, context) {
-    super(props, context);
-    this.state = {};
-  }
-
   componentDidMount() {
     const { fetchData, match, user } = this.props;
-    if (user.userInfo.login.length === 0) {
+    if (user.informations.login.length === 0) {
       fetchData(match.params.user);
     }
   }
@@ -43,11 +36,11 @@ class UserContainer extends Component {
   }
 
   render() {
-    const { render } = this.props;
+    const { render, ...restProps } = this.props;
     return (
       <Fragment>
         {
-          render({ ...this.props })
+          render({ ...restProps })
         }
       </Fragment>
     );
@@ -62,11 +55,9 @@ const mapDispatchToProps = {
   fetchData: takeUserNameAndFetchData,
 };
 
-const UserContainerWithLoading = ErrorHOC(WithLoading(UserContainer));
-
 export { UserContainer };
 
 export default
 withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(UserContainerWithLoading),
+  connect(mapStateToProps, mapDispatchToProps)(UserContainer),
 );

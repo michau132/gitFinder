@@ -56,7 +56,7 @@ const App = ({ classes }) => (
             <Route
               exact
               path="/:user"
-              component={() => (
+              render={() => (
                 <UserContainer
                   render={props => (
                     <User {...props} />

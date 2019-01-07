@@ -12,7 +12,7 @@ const StyledCard = styled(Card)`
 
 
 const UserDetails = ({
-  userInfo: {
+  informations: {
     name, login, email, location,
   },
 }) => (
@@ -37,7 +37,7 @@ const UserDetails = ({
 
 
 UserDetails.propTypes = {
-  userInfo: PropTypes.shape({
+  informations: PropTypes.shape({
     login: PropTypes.string.isRequired,
     email: PropTypes.string,
     avatar_url: PropTypes.string,
