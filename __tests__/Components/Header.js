@@ -15,7 +15,7 @@ describe('testing Header component', () => {
       updateInputValue: jest.fn(() => 'updateInputValue'),
       errorInput: null,
     };
-    wrapper = shallow(<Header {...props} />);
+    wrapper = shallow(<Header {...props} />).dive();
   });
   test('renders without crashing', () => {
     expect(wrapper).toBeDefined();
@@ -26,11 +26,11 @@ describe('testing Header component', () => {
   });
 
   test('submiting form', () => {
-    wrapper.simulate('submit');
+    wrapper.find('form').simulate('submit');
     expect(props.onFormSubmit).toHaveBeenCalled();
   });
-  test('checking form input', () => {
-    const input = wrapper.find('input');
+  test('checking form input and onChange method', () => {
+    const input = wrapper.find('Styled(TextField)');
     expect(input.prop('value')).toEqual('adam');
     input.simulate('change');
     expect(props.updateInputValue).toHaveBeenCalled();

@@ -1,58 +1,74 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { observer } from 'mobx-react';
 import { withRouter } from 'react-router';
-import takeUserNameAndFetchData from '../actions/fetchData';
-import LoaderHOC from '../hoc/LoaderHOC';
+import { toJS } from 'mobx';
+import store from '../store';
 
+@observer
 class UserContainer extends Component {
-  static propTypes = {
-    fetchData: PropTypes.func.isRequired,
-    match: PropTypes.shape({
-      params: PropTypes.shape({
-        user: PropTypes.string.isRequired,
-      }).isRequired,
-    }).isRequired,
-    user: PropTypes.shape({
-      userInfo: PropTypes.shape({
-        login: PropTypes.string.isRequired,
-      }).isRequired,
-    }).isRequired,
+  componentDidMount() {
+    const { match } = this.props;
+    store.getUserInfoAndRepos(match.params.user);
   }
 
-  componentDidMount() {
-    const { fetchData, match, user } = this.props;
-
-    if (user.userInfo.login.length === 0) {
-      fetchData(match.params.user);
+  componentDidUpdate(prevProps) {
+    const { match } = this.props;
+    const previousUser = prevProps.match.params.user;
+    const nextUser = match.params.user;
+    if (previousUser !== nextUser) {
+      store.getUserInfoAndRepos(match.params.user);
     }
+  }
+
+  handleFilterRepos = (e) => { store.filterRepos(e.target.value); }
+
+  handleSelectUserRepo = (id) => { store.selectUserRepo(id); }
+
+  handleShowAllRepos = () => { store.showAllRepos(); }
+
+  handleHideSelectedRepos = () => { store.hideSelectedRepos(); }
+
+  handleHideSingleRepo = (id) => { store.hideSingleRepo(id); }
+
+  handleSelectAllRepos = () => { store.selectAllRepos(); }
+
+
+  openSelectedRepos = () => {
+    const openInNewTab = url => window.open(url, '_blank');
+    store.repos.forEach(repo => repo.isChecked && openInNewTab(repo.html_url));
   }
 
   render() {
     const { render } = this.props;
+    const {
+      handleFilterRepos,
+      handleHideSelectedRepos,
+      handleHideSingleRepo,
+      handleSelectAllRepos,
+      handleSelectUserRepo,
+      handleShowAllRepos,
+      openSelectedRepos,
+    } = this;
+    const { informations, repos, ...restStore } = toJS(store);
     return (
       <Fragment>
         {
-          render({ ...this.props })
+          render({
+            informations,
+            repos,
+            restStore,
+            handleFilterRepos,
+            handleHideSelectedRepos,
+            handleHideSingleRepo,
+            handleSelectAllRepos,
+            handleSelectUserRepo,
+            handleShowAllRepos,
+            openSelectedRepos,
+          })
         }
       </Fragment>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  user: state,
-});
-
-const mapDispatchToProps = {
-  fetchData: takeUserNameAndFetchData,
-};
-
-const UserContainerWithLoading = LoaderHOC(UserContainer);
-
-export { UserContainer };
-
-export default
-withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(UserContainerWithLoading),
-);
+export default withRouter(UserContainer);

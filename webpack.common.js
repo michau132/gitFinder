@@ -1,5 +1,6 @@
 // Konfiguracja Webpack
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index',
@@ -16,24 +17,6 @@ module.exports = {
         use: 'babel-loader',
       },
       {
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[path][name]__[local]--[hash:base64:5]',
-            },
-          },
-        ],
-      },
-      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: [
@@ -42,6 +25,9 @@ module.exports = {
         ],
       },
     ],
-
   },
+  plugins: [new HtmlWebpackPlugin({
+    title: 'GitFinder',
+    template: './src/index.html',
+  })],
 };
