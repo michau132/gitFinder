@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing UserReposHeader matching snapshot 1`] = `
+<UserReposHeader
+  allReposAreSelected={false}
+  classes={
+    Object {
+      "formControl": "UserReposHeader-formControl-1",
+    }
+  }
+  filterProjectsInput="project"
+  hideSelectedRepos={[MockFunction]}
+  isShowAllBtnDisabled={true}
+  openSelectedRepos={[MockFunction]}
+  selectAllRepos={[MockFunction]}
+  selectedReposAreEmpty={true}
+  setReposOnKeyUp={[MockFunction]}
+  showAllRepos={[MockFunction]}
+/>
+`;

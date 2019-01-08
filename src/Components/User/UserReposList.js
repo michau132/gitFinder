@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { List, Typography } from '@material-ui/core';
@@ -56,8 +57,8 @@ UserReposList.propTypes = {
       html_url: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  hideSingleRepo: PropTypes.func.isRequired,
-  selectUserRepo: PropTypes.func.isRequired,
+  handleHideSingleRepo: PropTypes.func.isRequired,
+  handleSelectUserRepo: PropTypes.func.isRequired,
 };
 
 export default UserReposList;

@@ -4,13 +4,13 @@ import reducer from '../../src/reducers/user';
 describe('user reducer', () => {
   test('should return initial state', () => {
     expect(reducer(undefined, {})).toEqual({
-      userInfo: {
+      informations: {
         login: '',
         email: '',
         avatar_url: '',
         name: '',
       },
-      userRepos: [],
+      repos: [],
       isLoading: false,
       error: null,
       isShowAllBtnDisabled: true,
@@ -37,16 +37,16 @@ describe('user reducer', () => {
   test('should return user information', () => {
     expect(
       reducer(
-        { userInfo: {} },
-        { type: types.FETCH_USER_INFO_SUCCESS, payload: { userInfo: { login: 'adam' } } },
+        { informations: {} },
+        { type: types.FETCH_USER_INFO_SUCCESS, payload: { informations: { login: 'adam' } } },
       ),
-    ).toEqual({ userInfo: { login: 'adam' }, error: null });
+    ).toEqual({ informations: { login: 'adam' }, error: null });
   });
 
   test('should return repos ', () => {
     expect(
       reducer(
-        { userRepos: [] },
+        { repos: [] },
         {
           type: types.FETCH_USER_REPOS_SUCCESS,
           payload: {
@@ -59,7 +59,7 @@ describe('user reducer', () => {
         },
       ),
     ).toEqual({
-      userRepos: [
+      repos: [
         { pushed_at: '2018-10-10' },
         { pushed_at: '2018-02-01' },
         { pushed_at: '2015-01-01' },
@@ -76,7 +76,7 @@ describe('user reducer', () => {
   test('should return repos which have in name or description "dot"', () => {
     expect(
       reducer({
-        userRepos: [
+        repos: [
           { description: 'jakis opis', name: 'javascript for begginers' },
           { description: 'no description', name: 'dotnet' },
           { description: 'dota', name: 'asd' },
@@ -84,7 +84,7 @@ describe('user reducer', () => {
       }, { type: types.FILTER_ON_KEY_UP, payload: { val: 'dot' } }),
     ).toEqual(
       {
-        userRepos: [
+        repos: [
           { description: 'jakis opis', name: 'javascript for begginers', isFounded: false },
           { description: 'no description', name: 'dotnet', isFounded: true },
           { description: 'dota', name: 'asd', isFounded: true },
@@ -97,7 +97,7 @@ describe('user reducer', () => {
   test('should return checked repo', () => {
     expect(
       reducer({
-        userRepos: [
+        repos: [
           { id: 1, isChecked: false },
           { id: 2, isChecked: false },
           { id: 3, isChecked: true },
@@ -105,7 +105,7 @@ describe('user reducer', () => {
       }, { type: types.SELECT_USER_REPO, payload: { id: 1 } }),
     ).toEqual(
       {
-        userRepos: [
+        repos: [
           { id: 1, isChecked: true },
           { id: 2, isChecked: false },
           { id: 3, isChecked: true },
@@ -119,7 +119,7 @@ describe('user reducer', () => {
   test('should return hidden selected repos', () => {
     expect(
       reducer({
-        userRepos: [
+        repos: [
           { id: 1, isChecked: true },
           { id: 2, isChecked: false },
           { id: 3, isChecked: true },
@@ -127,7 +127,7 @@ describe('user reducer', () => {
       }, { type: types.HIDE_SELECTED_REPOS }),
     ).toEqual(
       {
-        userRepos: [
+        repos: [
           { id: 1, isChecked: true, isHidden: true },
           { id: 2, isChecked: false, isHidden: false },
           { id: 3, isChecked: true, isHidden: true },
@@ -142,7 +142,7 @@ describe('user reducer', () => {
   test('should return all repos that are hidden and reset isChecked, isFounded', () => {
     expect(
       reducer({
-        userRepos: [
+        repos: [
           {
             id: 1, isChecked: true, isHidden: true, isFounded: true,
           },
@@ -156,7 +156,7 @@ describe('user reducer', () => {
       }, { type: types.SHOW_ALL_REPOS }),
     ).toEqual(
       {
-        userRepos: [
+        repos: [
           {
             id: 1, isChecked: false, isHidden: false, isFounded: false,
           },
@@ -178,7 +178,7 @@ describe('user reducer', () => {
   test('should return one repo to be unChecked', () => {
     expect(
       reducer({
-        userRepos: [
+        repos: [
           { id: 1, isChecked: true },
           { id: 2 },
           { id: 3 },
@@ -188,7 +188,7 @@ describe('user reducer', () => {
       }, { type: types.HIDE_SINGLE_REPO, payload: { id: 3 } }),
     ).toEqual(
       {
-        userRepos: [
+        repos: [
           { id: 1, isChecked: true },
           { id: 2 },
           { id: 3, isHidden: true, isChecked: false },
@@ -202,7 +202,7 @@ describe('user reducer', () => {
   test('should return all repos to be selected', () => {
     expect(
       reducer({
-        userRepos: [
+        repos: [
           { id: 1, isChecked: true },
           { id: 2 },
           { id: 3 },
@@ -211,7 +211,7 @@ describe('user reducer', () => {
       }, { type: types.SELECT_ALL_REPOS }),
     ).toEqual(
       {
-        userRepos: [
+        repos: [
           { id: 1, isChecked: true },
           { id: 2, isChecked: true },
           { id: 3, isChecked: true },

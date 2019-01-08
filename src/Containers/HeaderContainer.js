@@ -1,14 +1,11 @@
 /* eslint-disable react/prop-types */
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import githubUsernameRegex from 'github-username-regex';
-import takeUserNameAndFetchData from '../actions/fetchData';
 
 class HeaderContainer extends Component {
   static propTypes = {
-    onFormSubmit: PropTypes.func.isRequired,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
     }).isRequired,
@@ -48,13 +45,12 @@ class HeaderContainer extends Component {
   }
 
   onFormSubmit = (e) => {
-    const { onFormSubmit, history } = this.props;
+    const { history } = this.props;
     const { inputValue, errorInput } = this.state;
     e.preventDefault();
     if (errorInput || !inputValue) {
       return;
     }
-    onFormSubmit(inputValue);
     history.push(`/${inputValue}`);
   }
 
@@ -93,10 +89,6 @@ class HeaderContainer extends Component {
 }
 
 
-const mapDispatchToProps = {
-  onFormSubmit: takeUserNameAndFetchData,
-};
-
 export { HeaderContainer };
 
-export default withRouter(connect(null, mapDispatchToProps)(HeaderContainer));
+export default withRouter(HeaderContainer);

@@ -8,7 +8,7 @@ describe('testing UserDetails component', () => {
   let props;
   beforeEach(() => {
     props = {
-      userInfo: {
+      informations: {
         name: 'Adam Oko',
         login: 'aOko123',
         email: 'aoko123@gmail.com',

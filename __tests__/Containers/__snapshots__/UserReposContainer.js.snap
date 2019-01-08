@@ -5,7 +5,7 @@ exports[`testing UserReposContainer should match snapshot 1`] = `
   hideSingleRepo={[MockFunction]}
   openSingleRepo={[MockFunction]}
   selectUserRepo={[MockFunction]}
-  userInfo={
+  informations={
     Object {
       "avatar_url": "https://via.placeholder.com/150",
       "email": "aoko123@gmail.com",
@@ -14,7 +14,7 @@ exports[`testing UserReposContainer should match snapshot 1`] = `
       "name": "Adam Oko",
     }
   }
-  userRepos={
+  repos={
     Array [
       Object {
         "description": "First repo description",

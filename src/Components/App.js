@@ -4,7 +4,8 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { Provider } from 'mobx-react';
+import { configure } from 'mobx';
 import { Paper, withStyles } from '@material-ui/core';
 import styled, { createGlobalStyle } from 'styled-components';
 import UserContainer from '../Containers/UserContainer';
@@ -14,6 +15,8 @@ import store from '../store';
 import Header from './Header';
 import User from './User';
 import NotFound from './NotFound';
+
+configure({ enforceActions: 'observed' });
 
 const styles = {
   paper: {

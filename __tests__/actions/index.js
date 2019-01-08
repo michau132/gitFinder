@@ -19,9 +19,9 @@ describe('actions', () => {
   });
 
   test('should create an action to fetch user info succes', () => {
-    const userInfo = {};
-    const expectedAction = actions.createAction(types.FETCH_USER_INFO_SUCCESS, { userInfo });
-    expect(actions.fetchUserInfoSucces(userInfo)).toEqual(expectedAction);
+    const informations = {};
+    const expectedAction = actions.createAction(types.FETCH_USER_INFO_SUCCESS, { informations });
+    expect(actions.fetchUserInfoSucces(informations)).toEqual(expectedAction);
   });
 
   test('should create an action to fetch user repos succes', () => {

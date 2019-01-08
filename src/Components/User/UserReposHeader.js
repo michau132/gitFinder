@@ -1,4 +1,3 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -13,16 +12,18 @@ const styles = {
 };
 
 const UserReposHeader = ({
-  setReposOnKeyUp,
+  handleFilterRepos,
   openSelectedRepos,
-  hideSelectedRepos,
-  showAllRepos,
-  selectAllRepos,
-  isShowAllBtnDisabled,
-  selectedReposAreEmpty,
-  filterProjectsInput,
-  allReposAreSelected,
+  handleHideSelectedRepos,
+  handleShowAllRepos,
+  handleSelectAllRepos,
   classes,
+  restStore: {
+    isShowAllBtnDisabled,
+    selectedReposAreEmpty,
+    filterProjectsInput,
+    allReposAreSelected,
+  },
 }) => (
   <Grid container justify="space-between" alignItems="center" spacing={8}>
     <Grid item xs={1} container justify="center">
@@ -36,7 +37,7 @@ const UserReposHeader = ({
       )}
         label="Select all"
         labelPlacement="top"
-        onChange={selectAllRepos}
+        onChange={handleSelectAllRepos}
         checked={allReposAreSelected}
       />
     </Grid>
@@ -46,7 +47,7 @@ const UserReposHeader = ({
         label="filter projects"
         variant="outlined"
         value={filterProjectsInput}
-        onChange={e => setReposOnKeyUp(e.target.value)}
+        onChange={handleFilterRepos}
         fullWidth
       />
     </Grid>
@@ -61,7 +62,7 @@ const UserReposHeader = ({
         open
         </Button>
         <Button
-          onClick={hideSelectedRepos}
+          onClick={handleHideSelectedRepos}
           disabled={selectedReposAreEmpty}
           color="primary"
           variant="contained"
@@ -69,7 +70,7 @@ const UserReposHeader = ({
         hide
         </Button>
         <Button
-          onClick={showAllRepos}
+          onClick={handleShowAllRepos}
           disabled={isShowAllBtnDisabled}
           variant="contained"
           color="primary"
@@ -82,15 +83,17 @@ const UserReposHeader = ({
 );
 
 UserReposHeader.propTypes = {
-  setReposOnKeyUp: PropTypes.func.isRequired,
-  showAllRepos: PropTypes.func.isRequired,
-  isShowAllBtnDisabled: PropTypes.bool.isRequired,
-  selectedReposAreEmpty: PropTypes.bool.isRequired,
-  filterProjectsInput: PropTypes.string.isRequired,
-  allReposAreSelected: PropTypes.bool.isRequired,
+  handleFilterRepos: PropTypes.func.isRequired,
+  handleShowAllRepos: PropTypes.func.isRequired,
   openSelectedRepos: PropTypes.func.isRequired,
-  hideSelectedRepos: PropTypes.func.isRequired,
-  selectAllRepos: PropTypes.func.isRequired,
+  handleHideSelectedRepos: PropTypes.func.isRequired,
+  handleSelectAllRepos: PropTypes.func.isRequired,
+  restStore: PropTypes.shape({
+    isShowAllBtnDisabled: PropTypes.bool.isRequired,
+    selectedReposAreEmpty: PropTypes.bool.isRequired,
+    filterProjectsInput: PropTypes.string.isRequired,
+    allReposAreSelected: PropTypes.bool.isRequired,
+  }).isRequired,
   classes: PropTypes.shape({}).isRequired,
 };
 

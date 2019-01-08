@@ -29,8 +29,8 @@ const UserReposListItem = ({
     isFounded = false,
     isHidden = false,
   },
-  selectUserRepo,
-  hideSingleRepo,
+  handleSelectUserRepo,
+  handleHideSingleRepo,
 }) => (
   <StyledCollapse
     in={!isHidden}
@@ -40,7 +40,7 @@ const UserReposListItem = ({
     <ListItem
       divider
       button
-      onClick={() => selectUserRepo(id)}
+      onClick={() => handleSelectUserRepo(id)}
       selected={isChecked}
     >
       <Checkbox
@@ -68,7 +68,7 @@ const UserReposListItem = ({
         <Button
           variant="contained"
           color="primary"
-          onClick={() => hideSingleRepo(id)}
+          onClick={() => handleHideSingleRepo(id)}
         >
         hide
         </Button>
@@ -96,8 +96,8 @@ UserReposListItem.propTypes = {
     isFounded: PropTypes.bool,
     isHidden: PropTypes.bool,
   }),
-  selectUserRepo: PropTypes.func.isRequired,
-  hideSingleRepo: PropTypes.func.isRequired,
+  handleSelectUserRepo: PropTypes.func.isRequired,
+  handleHideSingleRepo: PropTypes.func.isRequired,
 };
 
 export default UserReposListItem;

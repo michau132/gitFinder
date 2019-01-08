@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`testing UserContainer should match snapshot 1`] = `
-<UserView
+<User
   fetchData={[MockFunction]}
   match={
     Object {
@@ -12,14 +12,14 @@ exports[`testing UserContainer should match snapshot 1`] = `
   }
   user={
     Object {
-      "userInfo": Object {
+      "informations": Object {
         "avatar_url": "https://via.placeholder.com/150",
         "email": "aoko123@gmail.com",
         "loctation": "Raszyn",
         "login": "aOko123",
         "name": "Adam Oko",
       },
-      "userRepos": Array [
+      "repos": Array [
         Object {
           "description": "First repo description",
           "forks_count": 0,

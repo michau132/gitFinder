@@ -33,5 +33,5 @@ const __userInfo = {
 const data = jest.fn();
 data.__getUserInfo = __userInfo;
 data.__getUserRepos = __userRepos;
-data.__getAll = { userInfo: __userInfo, userRepos: __userRepos };
+data.__getAll = { informations: __userInfo, repos: __userRepos };
 export default data;

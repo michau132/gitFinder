@@ -8,7 +8,7 @@ describe('testing UserReposListItem component', () => {
   let props;
   beforeEach(() => {
     props = {
-      userRepos: [
+      repos: [
         {
           id: 1,
           name: 'firstRepo',

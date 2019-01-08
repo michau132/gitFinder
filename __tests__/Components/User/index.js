@@ -1,22 +1,22 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import UserView from '../../../src/Components/User';
+import User from '../../../src/Components/User';
 
-describe('testing UserView component', () => {
+describe('testing User component', () => {
   let wrapper;
   let props;
   beforeEach(() => {
     props = {
       user: {
-        userInfo: {
+        informations: {
           name: 'Adam Oko',
           login: 'aOko123',
           email: 'aoko123@gmail.com',
           loctation: 'Raszyn',
           avatar_url: 'https://via.placeholder.com/150',
         },
-        userRepos: [
+        repos: [
           {
             id: 1,
             name: 'firstRepo',
@@ -37,7 +37,7 @@ describe('testing UserView component', () => {
       },
     };
     wrapper = shallow(
-      <UserView {...props} />,
+      <User {...props} />,
     );
   });
   test('renders without crashing', () => {

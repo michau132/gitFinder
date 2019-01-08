@@ -97,7 +97,7 @@ const user = (state = initialState, action) => {
       const prevRepos = repos.slice(0, foundIndex);
       const nextRepos = repos.slice(foundIndex + 1);
 
-      if (repos.some(repo => repo.id === id && repo.isChecked === true)) {
+      if (currentRepo.isChecked) {
         actualRepos = [...prevRepos, { ...currentRepo, isChecked: false }, ...nextRepos];
       } else {
         actualRepos = [...prevRepos, { ...currentRepo, isChecked: true }, ...nextRepos];

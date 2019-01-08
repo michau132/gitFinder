@@ -3,7 +3,7 @@ import React from 'react';
 import { Typography } from '@material-ui/core';
 
 const ErrorHOC = Component => (props) => {
-  const { user: { error } } = props;
+  const { restStore: { error } } = props;
   if (error) {
     return (
       <Typography variant="h5" color="error">

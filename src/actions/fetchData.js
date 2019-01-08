@@ -1,5 +1,5 @@
 import axios from 'axios';
-import apikey from '../../apikey';
+import apikey from '../../key';
 import {
   fetchUserBegin,
   fetchUserInfoSucces,

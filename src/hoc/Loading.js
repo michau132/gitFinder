@@ -36,7 +36,7 @@ const WithLoadingStyles = styled.div`
 `;
 
 const WithLoading = WrappedComponent => (props) => {
-  const { user: { isLoading } } = props;
+  const { restStore: { isLoading } } = props;
   if (isLoading) {
     return <WithLoadingStyles />;
   }
