@@ -4,14 +4,12 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import { Provider } from 'mobx-react';
 import { configure } from 'mobx';
 import { Paper, withStyles } from '@material-ui/core';
 import styled, { createGlobalStyle } from 'styled-components';
 import UserContainer from '../Containers/UserContainer';
 import HeaderContainer from '../Containers/HeaderContainer';
 import EmptyUser from './EmptyUser';
-import store from '../store';
 import Header from './Header';
 import User from './User';
 import NotFound from './NotFound';
@@ -44,35 +42,33 @@ const PaperWithPadding = styled(Paper)`
 `;
 
 const App = ({ classes }) => (
-  <Provider store={store}>
-    <HashRouter>
-      <PaperWithPadding classes={{ root: classes.paper }}>
-        <GlobalStyle />
-        <PaperWithPadding>
-          <HeaderContainer
-            render={props => (
-              <Header {...props} />
+  <HashRouter>
+    <PaperWithPadding classes={{ root: classes.paper }}>
+      <GlobalStyle />
+      <PaperWithPadding>
+        <HeaderContainer
+          render={props => (
+            <Header {...props} />
+          )}
+        />
+        <Switch>
+          <Route exact path="/" component={EmptyUser} />
+          <Route
+            exact
+            path="/:user"
+            render={() => (
+              <UserContainer
+                render={props => (
+                  <User {...props} />
+                )}
+              />
             )}
           />
-          <Switch>
-            <Route exact path="/" component={EmptyUser} />
-            <Route
-              exact
-              path="/:user"
-              render={() => (
-                <UserContainer
-                  render={props => (
-                    <User {...props} />
-                  )}
-                />
-              )}
-            />
-            <Route component={NotFound} />
-          </Switch>
-        </PaperWithPadding>
+          <Route component={NotFound} />
+        </Switch>
       </PaperWithPadding>
-    </HashRouter>
-  </Provider>
+    </PaperWithPadding>
+  </HashRouter>
 
 );
 

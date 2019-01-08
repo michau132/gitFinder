@@ -1,16 +1,8 @@
-/* eslint-disable react/prop-types */
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import githubUsernameRegex from 'github-username-regex';
 
 class HeaderContainer extends Component {
-  static propTypes = {
-    history: PropTypes.shape({
-      push: PropTypes.func.isRequired,
-    }).isRequired,
-  }
-
   constructor(props) {
     super(props);
     this.state = {

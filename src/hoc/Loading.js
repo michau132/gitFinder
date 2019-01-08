@@ -44,7 +44,7 @@ const WithLoading = WrappedComponent => (props) => {
 };
 
 WithLoading.propTypes = {
-  user: PropTypes.shape({
+  restStore: PropTypes.shape({
     isLoading: PropTypes.bool.isRequired,
   }).isRequired,
 };

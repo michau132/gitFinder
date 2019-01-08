@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
 
 const ErrorHOC = Component => (props) => {
@@ -12,6 +12,12 @@ const ErrorHOC = Component => (props) => {
     );
   }
   return <Component {...props} />;
+};
+
+ErrorHOC.propTypes = {
+  restStore: PropTypes.shape({
+    error: PropTypes.bool.isRequired,
+  }).isRequired,
 };
 
 export default ErrorHOC;

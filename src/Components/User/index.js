@@ -1,11 +1,7 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
-/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid, withStyles } from '@material-ui/core';
 import { compose } from 'recompose';
-import { toJS } from 'mobx';
 import UserDetails from './UserDetails';
 import UserAvatar from './UserAvatar';
 import UserReposHeader from './UserReposHeader';
@@ -65,26 +61,26 @@ const User = ({
   </Grid>
 );
 
-// User.propTypes = {
-//   user: PropTypes.shape({
-//     informations: PropTypes.shape({
-//       login: PropTypes.string.isRequired,
-//       email: PropTypes.string,
-//       avatar_url: PropTypes.string,
-//       name: PropTypes.string,
-//     }).isRequired,
-//     repos: PropTypes.arrayOf(
-//       PropTypes.shape({
-//         id: PropTypes.number.isRequired,
-//         name: PropTypes.string.isRequired,
-//         forks_count: PropTypes.number,
-//         stargazers_count: PropTypes.number,
-//         description: PropTypes.string,
-//         html_url: PropTypes.string.isRequired,
-//       }),
-//     ).isRequired,
-//   }).isRequired,
-// };
+User.propTypes = {
+  informations: PropTypes.shape({
+    login: PropTypes.string.isRequired,
+    email: PropTypes.string,
+    avatar_url: PropTypes.string,
+    name: PropTypes.string,
+  }).isRequired,
+  repos: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      forks_count: PropTypes.number,
+      stargazers_count: PropTypes.number,
+      description: PropTypes.string,
+      html_url: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  handleSelectUserRepo: PropTypes.func.isRequired,
+  handleHideSingleRepo: PropTypes.func.isRequired,
+};
 
 export default compose(
   withStyles(styles),
