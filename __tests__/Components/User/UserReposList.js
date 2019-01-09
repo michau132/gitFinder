@@ -26,9 +26,8 @@ describe('testing UserReposList component', () => {
           html_url: 'https://github.com/aOko123/secondRepo',
         },
       ],
-      selectUserRepo: jest.fn(),
-      hideSingleRepo: jest.fn(),
-      openSingleRepo: jest.fn(),
+      handleSelectUserRepo: jest.fn(),
+      handleHideSingleRepo: jest.fn(),
     };
 
     wrapper = shallow(<UserReposList {...props} />);

@@ -71,4 +71,6 @@ class UserContainer extends Component {
   }
 }
 
+export { UserContainer };
+
 export default withRouter(UserContainer);

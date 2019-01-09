@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing UserReposListItem component matching snapshot 1`] = `
+<Styled(WithStyles(Collapse))
+  in={true}
+  isfounded={0}
+  timeout={700}
+>
+  <WithStyles(ListItem)
+    button={true}
+    className="listItem"
+    divider={true}
+    onClick={[Function]}
+    selected={false}
+  >
+    <WithStyles(Checkbox)
+      checked={false}
+      className="checkbox"
+      color="primary"
+      readOnly={true}
+    />
+    <WithStyles(Grid)
+      container={true}
+      direction="column"
+    >
+      <WithStyles(ListItemText)>
+        <WithStyles(Typography)
+          className="forkAndCount"
+          gutterBottom={true}
+          variant="subtitle2"
+        >
+          firstRepo(forks: 0, stars0)
+        </WithStyles(Typography)>
+      </WithStyles(ListItemText)>
+      <WithStyles(ListItemText)
+        className="description"
+        primary="First repo description"
+      />
+    </WithStyles(Grid)>
+    <WithStyles(ListItemSecondaryAction)>
+      <WithStyles(Button)
+        className="open"
+        color="primary"
+        href="https://github.com/aOko123/firstRepo"
+        target="_blank"
+        variant="contained"
+      >
+        open
+      </WithStyles(Button)>
+      <WithStyles(Button)
+        className="hide"
+        color="primary"
+        onClick={[Function]}
+        variant="contained"
+      >
+        hide
+      </WithStyles(Button)>
+    </WithStyles(ListItemSecondaryAction)>
+  </WithStyles(ListItem)>
+</Styled(WithStyles(Collapse))>
+`;

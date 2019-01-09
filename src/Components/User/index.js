@@ -29,7 +29,7 @@ const styles = theme => ({
   },
 });
 
-const User = ({
+export const User = ({
   classes, handleSelectUserRepo, handleHideSingleRepo, informations, repos, ...userProps
 }) => (
   <Grid container spacing={40} className={classes.root}>

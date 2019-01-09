@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
 
-const ErrorHOC = Component => (props) => {
+const HasError = Component => (props) => {
   const { restStore: { error } } = props;
   if (error) {
     return (
@@ -14,10 +14,10 @@ const ErrorHOC = Component => (props) => {
   return <Component {...props} />;
 };
 
-ErrorHOC.propTypes = {
+HasError.propTypes = {
   restStore: PropTypes.shape({
     error: PropTypes.bool.isRequired,
   }).isRequired,
 };
 
-export default ErrorHOC;
+export default HasError;

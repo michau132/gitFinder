@@ -1,20 +1,94 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`testing UserReposHeader matching snapshot 1`] = `
-<UserReposHeader
-  allReposAreSelected={false}
-  classes={
-    Object {
-      "formControl": "UserReposHeader-formControl-1",
-    }
-  }
-  filterProjectsInput="project"
-  hideSelectedRepos={[MockFunction]}
-  isShowAllBtnDisabled={true}
-  openSelectedRepos={[MockFunction]}
-  selectAllRepos={[MockFunction]}
-  selectedReposAreEmpty={true}
-  setReposOnKeyUp={[MockFunction]}
-  showAllRepos={[MockFunction]}
-/>
+<WithStyles(Grid)
+  alignItems="center"
+  container={true}
+  justify="space-between"
+  spacing={8}
+>
+  <WithStyles(Grid)
+    container={true}
+    item={true}
+    justify="center"
+    xs={1}
+  >
+    <WithStyles(WithFormControlContext(FormControlLabel))
+      checked={false}
+      className="checkbox"
+      classes={
+        Object {
+          "root": "UserReposHeader-formControl-1",
+        }
+      }
+      control={
+        <WithStyles(Checkbox)
+          color="primary"
+          value="checkedI"
+        />
+      }
+      label="Select all"
+      labelPlacement="top"
+      onChange={[MockFunction]}
+    />
+  </WithStyles(Grid)>
+  <WithStyles(Grid)
+    alignItems="center"
+    container={true}
+    item={true}
+    xs={7}
+  >
+    <TextField
+      className="input"
+      fullWidth={true}
+      label="filter projects"
+      onChange={[MockFunction]}
+      required={false}
+      select={false}
+      type="search"
+      value="project"
+      variant="outlined"
+    />
+  </WithStyles(Grid)>
+  <WithStyles(Grid)
+    alignItems="center"
+    container={true}
+    item={true}
+    xs={4}
+  >
+    <WithStyles(Grid)
+      container={true}
+      justify="space-around"
+      spacing={8}
+    >
+      <WithStyles(Button)
+        className="open"
+        color="primary"
+        disabled={true}
+        onClick={[MockFunction]}
+        variant="contained"
+      >
+        open
+      </WithStyles(Button)>
+      <WithStyles(Button)
+        className="hide"
+        color="primary"
+        disabled={true}
+        onClick={[MockFunction]}
+        variant="contained"
+      >
+        hide
+      </WithStyles(Button)>
+      <WithStyles(Button)
+        className="showAll"
+        color="primary"
+        disabled={true}
+        onClick={[MockFunction]}
+        variant="contained"
+      >
+        show all
+      </WithStyles(Button)>
+    </WithStyles(Grid)>
+  </WithStyles(Grid)>
+</WithStyles(Grid)>
 `;

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing UserDetails component matching snapshot 1`] = `
+<Styled(WithStyles(Card))>
+  <WithStyles(CardContent)>
+    <WithStyles(Typography)
+      component="h6"
+      gutterBottom={true}
+      variant="h6"
+    >
+      Adam Oko
+    </WithStyles(Typography)>
+    <WithStyles(Typography)
+      variant="subtitle1"
+    >
+      aOko123
+    </WithStyles(Typography)>
+    <WithStyles(Typography)
+      variant="subtitle1"
+    >
+      aoko123@gmail.com
+    </WithStyles(Typography)>
+    <WithStyles(Typography)
+      variant="subtitle1"
+    />
+  </WithStyles(CardContent)>
+  <WithStyles(CardActions)>
+    <WithStyles(Button)
+      href="https://github.com/aOko123"
+      size="small"
+      variant="outlined"
+    >
+      Show profile
+    </WithStyles(Button)>
+  </WithStyles(CardActions)>
+</Styled(WithStyles(Card))>
+`;

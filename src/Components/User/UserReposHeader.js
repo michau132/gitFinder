@@ -39,6 +39,7 @@ const UserReposHeader = ({
         labelPlacement="top"
         onChange={handleSelectAllRepos}
         checked={allReposAreSelected}
+        className="checkbox"
       />
     </Grid>
     <Grid item xs={7} container alignItems="center">
@@ -49,6 +50,7 @@ const UserReposHeader = ({
         value={filterProjectsInput}
         onChange={handleFilterRepos}
         fullWidth
+        className="input"
       />
     </Grid>
     <Grid item xs={4} container alignItems="center">
@@ -58,6 +60,7 @@ const UserReposHeader = ({
           disabled={selectedReposAreEmpty}
           variant="contained"
           color="primary"
+          className="open"
         >
         open
         </Button>
@@ -66,6 +69,7 @@ const UserReposHeader = ({
           disabled={selectedReposAreEmpty}
           color="primary"
           variant="contained"
+          className="hide"
         >
         hide
         </Button>
@@ -74,6 +78,7 @@ const UserReposHeader = ({
           disabled={isShowAllBtnDisabled}
           variant="contained"
           color="primary"
+          className="showAll"
         >
         show all
         </Button>

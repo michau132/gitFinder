@@ -8,17 +8,20 @@ describe('testing UserReposHeader', () => {
   let props;
   beforeEach(() => {
     props = {
-      setReposOnKeyUp: jest.fn(),
+      handleFilterRepos: jest.fn(),
       openSelectedRepos: jest.fn(),
-      hideSelectedRepos: jest.fn(),
-      showAllRepos: jest.fn(),
-      selectAllRepos: jest.fn(),
-      isShowAllBtnDisabled: true,
-      selectedReposAreEmpty: true,
-      filterProjectsInput: 'project',
-      allReposAreSelected: false,
+      handleHideSelectedRepos: jest.fn(),
+      handleShowAllRepos: jest.fn(),
+      handleSelectAllRepos: jest.fn(),
+      restStore: {
+        isShowAllBtnDisabled: true,
+        selectedReposAreEmpty: true,
+        filterProjectsInput: 'project',
+        allReposAreSelected: false,
+      },
+      classes: {},
     };
-    wrapper = shallow(<UserReposHeader {...props} />);
+    wrapper = shallow(<UserReposHeader {...props} />).dive();
   });
 
   test('renders without crashing', () => {
@@ -30,41 +33,34 @@ describe('testing UserReposHeader', () => {
   });
 
   test('calls onChange event on select all checkbox', () => {
-    wrapper.find('input[type="checkbox"]').simulate('change');
-    expect(props.selectAllRepos).toHaveBeenCalled();
+    wrapper.find('.checkbox').simulate('change');
+    expect(props.handleSelectAllRepos).toHaveBeenCalled();
   });
 
   test('calls onChange event on filterProjectsInput', () => {
-    const filterInput = wrapper.find('input[type="text"]');
-    expect(filterInput.prop('value')).toEqual(props.filterProjectsInput);
+    const filterInput = wrapper.find('.input');
+    expect(filterInput.prop('value')).toEqual(props.restStore.filterProjectsInput);
     filterInput.simulate('change', { target: { value: 'ddds' } });
-    expect(props.setReposOnKeyUp).toHaveBeenCalledWith('ddds');
+    expect(props.handleFilterRepos).toHaveBeenCalledWith({ target: { value: 'ddds' } });
   });
 
   describe('testing buttons', () => {
-    let Buttons;
-    beforeEach(() => {
-      Buttons = wrapper.find('Button');
-    });
     test('calls event on openSelectedRepos', () => {
-      const firstButton = Buttons.at(0);
-      expect(firstButton.prop('text')).toEqual('open');
-      firstButton.simulate('click');
+      const openButton = wrapper.find('.open');
+      openButton.simulate('click');
       expect(props.openSelectedRepos).toHaveBeenCalled();
     });
 
     test('calls event on hideSelectedRepos', () => {
-      const firstButton = Buttons.at(1);
-      expect(firstButton.prop('text')).toEqual('hide');
-      firstButton.simulate('click');
-      expect(props.hideSelectedRepos).toHaveBeenCalled();
+      const hideButton = wrapper.find('.hide');
+      hideButton.simulate('click');
+      expect(props.handleHideSelectedRepos).toHaveBeenCalled();
     });
 
     test('calls event on showAllRepos', () => {
-      const firstButton = Buttons.at(2);
-      expect(firstButton.prop('text')).toEqual('show all');
-      firstButton.simulate('click');
-      expect(props.showAllRepos).toHaveBeenCalled();
+      const showAllButton = wrapper.find('.showAll');
+      showAllButton.simulate('click');
+      expect(props.handleShowAllRepos).toHaveBeenCalled();
     });
   });
 });

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -42,19 +41,21 @@ const UserReposListItem = ({
       button
       onClick={() => handleSelectUserRepo(id)}
       selected={isChecked}
+      className="listItem"
     >
       <Checkbox
         checked={isChecked}
         color="primary"
         readOnly
+        className="checkbox"
       />
       <Grid container direction="column">
         <ListItemText>
-          <Typography variant="subtitle2" gutterBottom>
+          <Typography variant="subtitle2" gutterBottom className="forkAndCount">
             {`${name}(forks: ${forks_count}, stars${stargazers_count})`}
           </Typography>
         </ListItemText>
-        <ListItemText primary={description} />
+        <ListItemText primary={description} className="description" />
       </Grid>
       <ListItemSecondaryAction>
         <Button
@@ -62,6 +63,7 @@ const UserReposListItem = ({
           color="primary"
           target="_blank"
           href={html_url}
+          className="open"
         >
         open
         </Button>
@@ -69,6 +71,7 @@ const UserReposListItem = ({
           variant="contained"
           color="primary"
           onClick={() => handleHideSingleRepo(id)}
+          className="hide"
         >
         hide
         </Button>
