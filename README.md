@@ -29,8 +29,3 @@ P.S. If you wants to open multiple windows in chrome you can do it  [here](chrom
 + styled components
 + jest
 
-To run this app:
-
-Clone this repo
-
-npm start
