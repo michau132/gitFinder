@@ -1,5 +1,4 @@
 .idea
 node_modules
-key.js
 .vscode
 dist/*
