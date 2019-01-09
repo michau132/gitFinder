@@ -1,13 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  FormControlLabel, Checkbox, Grid, TextField, Button, withStyles,
+  FormControlLabel, Checkbox, Grid, TextField, Button, withStyles, Tooltip,
 } from '@material-ui/core';
 
 const styles = {
   formControl: {
     margin: 0,
     textAlign: 'center',
+  },
+  tooltip: {
+    fontSize: '16px',
+    maxWidth: 500,
   },
 };
 
@@ -23,6 +27,7 @@ const UserReposHeader = ({
     selectedReposAreEmpty,
     filterProjectsInput,
     allReposAreSelected,
+    isFoundedCount,
   },
 }) => (
   <Grid container justify="space-between" alignItems="center" spacing={8}>
@@ -43,15 +48,23 @@ const UserReposHeader = ({
       />
     </Grid>
     <Grid item xs={7} container alignItems="center">
-      <TextField
-        type="search"
-        label="filter projects"
-        variant="outlined"
-        value={filterProjectsInput}
-        onChange={handleFilterRepos}
-        fullWidth
-        className="input"
-      />
+      <Tooltip
+        title={`Founded ${isFoundedCount} repositories`}
+        classes={{ tooltip: classes.tooltip }}
+        placement="bottom-end"
+        open={!!isFoundedCount}
+        leaveDelay={500}
+      >
+        <TextField
+          type="search"
+          label="filter projects"
+          variant="outlined"
+          value={filterProjectsInput}
+          onChange={handleFilterRepos}
+          fullWidth
+          className="input"
+        />
+      </Tooltip>
     </Grid>
     <Grid item xs={4} container alignItems="center">
       <Grid container justify="space-around" spacing={8}>

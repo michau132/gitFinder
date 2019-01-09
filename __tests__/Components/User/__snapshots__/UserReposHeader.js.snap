@@ -38,17 +38,29 @@ exports[`testing UserReposHeader matching snapshot 1`] = `
     item={true}
     xs={7}
   >
-    <TextField
-      className="input"
-      fullWidth={true}
-      label="filter projects"
-      onChange={[MockFunction]}
-      required={false}
-      select={false}
-      type="search"
-      value="project"
-      variant="outlined"
-    />
+    <WithStyles(Tooltip)
+      classes={
+        Object {
+          "tooltip": "UserReposHeader-tooltip-2",
+        }
+      }
+      leaveDelay={500}
+      open={false}
+      placement="bottom-end"
+      title="Founded undefined repositories"
+    >
+      <TextField
+        className="input"
+        fullWidth={true}
+        label="filter projects"
+        onChange={[MockFunction]}
+        required={false}
+        select={false}
+        type="search"
+        value="project"
+        variant="outlined"
+      />
+    </WithStyles(Tooltip)>
   </WithStyles(Grid)>
   <WithStyles(Grid)
     alignItems="center"

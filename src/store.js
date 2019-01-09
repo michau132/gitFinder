@@ -45,6 +45,8 @@ class Store {
 
   @observable allReposAreSelected = false
 
+  @observable isFoundedCount = 0
+
   fetchData = async (url) => {
     this.isLoading = true;
     const result = await axios(url);
@@ -80,10 +82,12 @@ class Store {
     this.filterProjectsInput = val;
     if (!val) {
       this.repos = this.repos.map(repo => ({ ...repo, isFounded: false }));
+      this.isFoundedCount = 0;
       this.isShowAllBtnDisabled = this.checkIsShowAllIsDisabled();
       return;
     }
     this.repos = this.repos.map(findMatchingRepos(val));
+    this.isFoundedCount = this.countIsFounded();
   }
 
   @action selectUserRepo = (id) => {
@@ -124,6 +128,7 @@ class Store {
     this.filterProjectsInput = '';
     this.allReposAreSelected = this.isEveryRepoIsSelected();
     this.isShowAllBtnDisabled = this.checkIsShowAllIsDisabled();
+    this.isFoundedCount = this.countIsFounded();
   }
 
   @action hideSingleRepo = (id) => {
@@ -156,6 +161,8 @@ class Store {
   checkIsShowAllIsDisabled = () => !this.repos.some(repo => (
     repo.isChecked === true || repo.isFounded === true || repo.isHidden === true
   ))
+
+  countIsFounded = () => this.repos.filter(repo => !!repo.isFounded).length
 }
 
 export default new Store();
