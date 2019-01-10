@@ -13,9 +13,9 @@ import Header from './Header';
 import EmptyUser from './EmptyUser';
 import GlobalStyle from '../Layout/GlobalStyle';
 
-const UserContainer = lazy(() => import('../Containers/UserContainer'));
+export const NotFound = lazy(() => import('./NotFound'));
+export const UserContainer = lazy(() => import('../Containers/UserContainer'));
 const User = lazy(() => import('./User'));
-const NotFound = lazy(() => import('./NotFound'));
 
 configure({ enforceActions: 'observed' });
 

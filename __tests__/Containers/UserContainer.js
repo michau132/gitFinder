@@ -1,6 +1,5 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import toJson from 'enzyme-to-json';
 import { UserContainer } from '../../src/Containers/UserContainer';
 import store from '../../src/store';
 
@@ -21,10 +20,6 @@ describe('testing UserContainer', () => {
 
   test('renders without crashing', () => {
     expect(wrapper).toBeDefined();
-  });
-
-  test('should match snapshot', () => {
-    expect(toJson(wrapper)).toMatchSnapshot();
   });
 
   test('getUserInfoAndRepos is called in ComponentDidMount', () => {

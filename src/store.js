@@ -45,7 +45,7 @@ class Store {
 
   @observable allReposAreSelected = false
 
-  @observable isFoundedCount = 0
+  @observable foundedCount = 0
 
   fetchData = async (url) => {
     this.isLoading = true;
@@ -68,6 +68,7 @@ class Store {
           this.informations = info;
           this.repos = repos;
           this.isLoading = false;
+          this.error = null;
         });
       })
       .catch((err) => {
@@ -82,12 +83,12 @@ class Store {
     this.filterProjectsInput = val;
     if (!val) {
       this.repos = this.repos.map(repo => ({ ...repo, isFounded: false }));
-      this.isFoundedCount = 0;
+      this.foundedCount = 0;
       this.isShowAllBtnDisabled = this.checkIsShowAllIsDisabled();
       return;
     }
     this.repos = this.repos.map(findMatchingRepos(val));
-    this.isFoundedCount = this.countIsFounded();
+    this.foundedCount = this.countIsFounded();
   }
 
   @action selectUserRepo = (id) => {
@@ -111,11 +112,14 @@ class Store {
   @action hideSelectedRepos = () => {
     this.repos = this.repos.map(repo => (
       (repo.isChecked === true || repo.isHidden === true)
-        ? { ...repo, isHidden: true, isChecked: false } : { ...repo, isHidden: false }));
+        ? {
+          ...repo, isHidden: true, isChecked: false, isFounded: false,
+        } : { ...repo, isHidden: false }));
 
     this.isShowAllBtnDisabled = this.checkIsShowAllIsDisabled();
     this.selectedReposAreEmpty = this.isOneRepoSelected();
     this.allReposAreSelected = this.isEveryRepoIsSelected();
+    this.foundedCount = this.countIsFounded();
   }
 
   @action showAllRepos = () => {
@@ -128,14 +132,18 @@ class Store {
     this.filterProjectsInput = '';
     this.allReposAreSelected = this.isEveryRepoIsSelected();
     this.isShowAllBtnDisabled = this.checkIsShowAllIsDisabled();
-    this.isFoundedCount = this.countIsFounded();
+    this.foundedCount = this.countIsFounded();
   }
 
   @action hideSingleRepo = (id) => {
     this.repos = this.repos.map(repo => (
-      repo.id === id ? { ...repo, isHidden: true, isChecked: false } : repo));
+      repo.id === id ? {
+        ...repo, isHidden: true, isChecked: false, isFounded: false,
+      } : repo
+    ));
     this.selectedReposAreEmpty = this.isOneRepoSelected();
     this.isShowAllBtnDisabled = this.checkIsShowAllIsDisabled();
+    this.foundedCount = this.countIsFounded();
   }
 
   @action selectAllRepos = () => {

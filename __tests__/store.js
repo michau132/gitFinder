@@ -6,7 +6,7 @@ describe('testing store', () => {
     store.getUserInfoAndRepos('aOko123');
 
     when(
-      () => store.beer.name > 0,
+      () => store.repos.length > 0,
       () => {
         expect(store.repos).toEqual(observable([
           {
@@ -33,6 +33,8 @@ describe('testing store', () => {
           loctation: 'Raszyn',
           avatar_url: 'https://via.placeholder.com/150',
         }));
+        expect(store.isLoading).toBeFalsy();
+        expect(store.error).toBeFalsy();
       },
     );
   });
@@ -59,6 +61,7 @@ describe('testing store', () => {
         isFounded: false,
       },
     ]));
+    expect(store.foundedCount).toBe(1);
   });
 
   test('should call selectUserRepo and to given repo set attribute isChecked to true', () => {
@@ -84,6 +87,9 @@ describe('testing store', () => {
         isFounded: false,
       },
     ]));
+    expect(store.selectedReposAreEmpty).toBeFalsy();
+    expect(store.allReposAreSelected).toBeFalsy();
+    expect(store.isShowAllBtnDisabled).toBeFalsy();
   });
 
   test('should call hideSelectedRepos and set isHidden attribute to isChecked = true attribute', () => {
@@ -96,7 +102,7 @@ describe('testing store', () => {
         stargazers_count: 0,
         description: 'First repo description',
         html_url: 'https://github.com/aOko123/firstRepo',
-        isFounded: true,
+        isFounded: false,
         isChecked: false,
         isHidden: true,
       },
@@ -111,6 +117,10 @@ describe('testing store', () => {
         isHidden: false,
       },
     ]));
+
+    expect(store.selectedReposAreEmpty).toBeTruthy();
+    expect(store.allReposAreSelected).toBeFalsy();
+    expect(store.isShowAllBtnDisabled).toBeFalsy();
   });
 
   test('should call showAllRepos and reset all attributes', () => {
@@ -139,6 +149,11 @@ describe('testing store', () => {
         isHidden: false,
       },
     ]));
+    expect(store.selectedReposAreEmpty).toBeTruthy();
+    expect(store.allReposAreSelected).toBeFalsy();
+    expect(store.isShowAllBtnDisabled).toBeTruthy();
+    expect(store.foundedCount).toBe(0);
+    expect(store.filterProjectsInput).toBe('');
   });
 
   test('should call hideSingleRepo and set attribute isHidden to true', () => {
@@ -167,34 +182,9 @@ describe('testing store', () => {
         isHidden: true,
       },
     ]));
-  });
-
-  test('should call hideSingleRepo and set attribute isChecked to true', () => {
-    store.hideSingleRepo(2);
-    expect(store.repos).toEqual(observable([
-      {
-        id: 1,
-        name: 'firstRepo',
-        forks_count: 0,
-        stargazers_count: 0,
-        description: 'First repo description',
-        html_url: 'https://github.com/aOko123/firstRepo',
-        isFounded: false,
-        isChecked: false,
-        isHidden: false,
-      },
-      {
-        id: 2,
-        name: 'secondRepo',
-        forks_count: 0,
-        stargazers_count: 0,
-        description: 'Second repo description',
-        html_url: 'https://github.com/aOko123/secondRepo',
-        isFounded: false,
-        isChecked: false,
-        isHidden: true,
-      },
-    ]));
+    expect(store.selectedReposAreEmpty).toBeTruthy();
+    expect(store.isShowAllBtnDisabled).toBeFalsy();
+    expect(store.foundedCount).toBe(0);
   });
 
   test('should call selectAllRepos and set attribute to all items isChecked to true', () => {
@@ -223,6 +213,9 @@ describe('testing store', () => {
         isHidden: true,
       },
     ]));
+    expect(store.selectedReposAreEmpty).toBeFalsy();
+    expect(store.allReposAreSelected).toBeTruthy();
+    expect(store.isShowAllBtnDisabled).toBeFalsy();
   });
 });
 

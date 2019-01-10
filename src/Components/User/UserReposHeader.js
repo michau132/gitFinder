@@ -33,7 +33,7 @@ const UserReposHeader = ({
     selectedReposAreEmpty,
     filterProjectsInput,
     allReposAreSelected,
-    isFoundedCount,
+    foundedCount,
   },
 }) => (
   <Grid container justify="space-between" alignItems="center" spacing={8}>
@@ -54,9 +54,9 @@ const UserReposHeader = ({
     </Grid>
     <Grid item xs={7} container alignItems="center">
       <StyledTooltip
-        title={`Founded ${isFoundedCount} repositories`}
+        title={`Founded ${foundedCount} repositories`}
         placement="bottom-end"
-        open={!!isFoundedCount}
+        open={!!foundedCount}
         leaveDelay={500}
       >
         <TextField

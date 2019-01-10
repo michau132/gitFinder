@@ -19,9 +19,8 @@ describe('testing UserReposHeader', () => {
         filterProjectsInput: 'project',
         allReposAreSelected: false,
       },
-      classes: {},
     };
-    wrapper = shallow(<UserReposHeader {...props} />).dive();
+    wrapper = shallow(<UserReposHeader {...props} />);
   });
 
   test('renders without crashing', () => {
