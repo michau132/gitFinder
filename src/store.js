@@ -18,7 +18,8 @@ const sortByDate = (a, b) => {
 };
 
 const findMatchingRepos = value => repo => (
-  (repo.name.includes(value) || (repo.description && repo.description.includes(value))
+  (!repo.isHidden
+    && (repo.name.includes(value) || (repo.description && repo.description.includes(value)))
     ? { ...repo, isFounded: true } : { ...repo, isFounded: false }
   )
 );
