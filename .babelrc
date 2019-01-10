@@ -24,5 +24,12 @@
     "@babel/plugin-proposal-numeric-separator",
     "@babel/plugin-proposal-throw-expressions",
     "@babel/plugin-transform-runtime"
-  ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        "babel-plugin-dynamic-import-node"
+      ]
+    }
+  }
 }
