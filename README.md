@@ -23,7 +23,6 @@ Live example: https://michau132.github.io/gitFinder/#/
 </dl>
 
 
-
 ## Description
 gitFinder is app which is showing profile from [github](https://github.com/). It is using [github API](https://developer.github.com/v3/) for fetching data for displaying user. If we change the url it would also search for user in github. It's show deatils, like: name, github login, email adress, and location and also  his repositories sorted by lasted update. With repositories we can open/hide single repository, open/hide multiple repositories, reseting to default view with button "Show All". With full coverage of tests made in [jest](https://jestjs.io/)
 
@@ -38,3 +37,8 @@ P.S. If you wants to open multiple windows in chrome you can do it  [here](chrom
 + styled components
 + jest
 
+## Todo
+
++ <input type="checkbox">Code-splitting
++ <input type="checkbox">Typescript
++ <input type="checkbox">Server-side rendering
