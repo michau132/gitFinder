@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing Header component matching snapshot 1`] = `
+<styled.header>
+  <form
+    onSubmit={[MockFunction]}
+  >
+    <WithStyles(Grid)
+      container={true}
+      justify="space-between"
+    >
+      <WithStyles(Tooltip)
+        classes={
+          Object {
+            "tooltip": "Header-tooltip-1",
+          }
+        }
+        disableFocusListener={true}
+        disableHoverListener={true}
+        disableTouchListener={true}
+        open={null}
+        title="Invalid github login. In login you can't have special signs like blank space, @, #, etc."
+      >
+        <Styled(TextField)
+          color="inherit"
+          error={null}
+          label="Github login"
+          onChange={[MockFunction]}
+          type="search"
+          value="adam"
+          variant="outlined"
+        />
+      </WithStyles(Tooltip)>
+      <WithStyles(Button)
+        color="primary"
+        type="submit"
+        variant="contained"
+      >
+        Search
+        <pure(SearchIcon) />
+      </WithStyles(Button)>
+    </WithStyles(Grid)>
+  </form>
+</styled.header>
+`;
