@@ -5,17 +5,19 @@ import {
   Button,
   Tooltip,
   Grid,
-  withStyles,
 } from '@material-ui/core';
 import { Search } from '@material-ui/icons';
 import styled from 'styled-components';
 
-const styles = {
-  tooltip: {
-    fontSize: '15px',
-    maxWidth: 700,
-  },
-};
+
+const StyledTooltip = styled(props => (
+  <Tooltip classes={{ popper: props.className, tooltip: 'asd' }} {...props} />
+))`
+  & .asd {
+    font-size: 15px;
+    max-width: 600px;
+  }
+`;
 
 const StyledTextField = styled(TextField)`
   width: calc(100% - 115px);
@@ -28,16 +30,15 @@ const StyledHeader = styled.header`
 `;
 
 const Header = ({
-  onFormSubmit, inputValue, updateInputValue, errorInput, classes,
+  onFormSubmit, inputValue, updateInputValue, errorInput,
 }) => (
   <StyledHeader>
     <form
       onSubmit={onFormSubmit}
     >
       <Grid container justify="space-between">
-        <Tooltip
+        <StyledTooltip
           open={errorInput}
-          classes={{ tooltip: classes.tooltip }}
           title="Invalid github login. In login you can&apos;t have special signs like blank space, @, #, etc."
           disableFocusListener
           disableHoverListener
@@ -52,7 +53,7 @@ const Header = ({
             variant="outlined"
             color="inherit"
           />
-        </Tooltip>
+        </StyledTooltip>
         <Button type="submit" variant="contained" color="primary">
             Search
           <Search />
@@ -71,7 +72,6 @@ Header.propTypes = {
   updateInputValue: PropTypes.func.isRequired,
   inputValue: PropTypes.string.isRequired,
   errorInput: PropTypes.bool,
-  classes: PropTypes.shape({}).isRequired,
 };
 
-export default withStyles(styles)(Header);
+export default Header;

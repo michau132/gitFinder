@@ -10,7 +10,6 @@ const StyledCard = styled(Card)`
   width: 100%;
 `;
 
-
 const UserDetails = ({
   informations: {
     name, login, email, location,

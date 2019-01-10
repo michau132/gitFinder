@@ -56,7 +56,7 @@ exports[`testing User component matching snapshot 1`] = `
     sm={12}
     xs={12}
   >
-    <WithStyles(UserReposHeader) />
+    <UserReposHeader />
     <UserReposList
       handleHideSingleRepo={[MockFunction]}
       handleSelectUserRepo={[MockFunction]}

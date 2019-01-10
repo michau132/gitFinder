@@ -5,7 +5,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import { configure } from 'mobx';
-import { Paper, withStyles } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import styled from 'styled-components';
 import { WithLoadingStyles } from '../hoc/Loading';
 import HeaderContainer from '../Containers/HeaderContainer';
@@ -19,19 +19,21 @@ const NotFound = lazy(() => import('./NotFound'));
 
 configure({ enforceActions: 'observed' });
 
-const styles = {
-  paper: {
-    backgroundColor: '#F5F5F5',
-  },
-};
-
 const PaperWithPadding = styled(Paper)`
-  padding: 8px;
+  && {
+    padding: 8px;
+  }
 `;
 
-const App = ({ classes }) => (
+const PaperWithBackground = styled(PaperWithPadding)`
+  && {
+    background-color: #F5F5F5;
+  }
+`;
+
+const App = () => (
   <HashRouter>
-    <PaperWithPadding classes={{ root: classes.paper }}>
+    <PaperWithBackground>
       <GlobalStyle />
       <PaperWithPadding>
         <HeaderContainer
@@ -58,9 +60,9 @@ const App = ({ classes }) => (
           </Switch>
         </Suspense>
       </PaperWithPadding>
-    </PaperWithPadding>
+    </PaperWithBackground>
   </HashRouter>
 
 );
 
-export default withStyles(styles)(App);
+export default App;

@@ -1,19 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import {
-  FormControlLabel, Checkbox, Grid, TextField, Button, withStyles, Tooltip,
+  FormControlLabel, Checkbox, Grid, TextField, Button, Tooltip,
 } from '@material-ui/core';
 
-const styles = {
-  formControl: {
-    margin: 0,
-    textAlign: 'center',
-  },
-  tooltip: {
-    fontSize: '16px',
-    maxWidth: 500,
-  },
-};
+
+const StyledFormControlLabel = styled(FormControlLabel)`
+  && {
+    margin: 0;
+    text-align: center;
+  }
+`;
+
+const StyledTooltip = styled(props => (
+  <Tooltip classes={{ popper: props.className, tooltip: 'tooltip' }} {...props} />
+))`
+  & .tooltip {
+    font-size: 16px;
+    max-width: 500px;
+  }
+`;
 
 const UserReposHeader = ({
   handleFilterRepos,
@@ -21,7 +28,6 @@ const UserReposHeader = ({
   handleHideSelectedRepos,
   handleShowAllRepos,
   handleSelectAllRepos,
-  classes,
   restStore: {
     isShowAllBtnDisabled,
     selectedReposAreEmpty,
@@ -32,8 +38,7 @@ const UserReposHeader = ({
 }) => (
   <Grid container justify="space-between" alignItems="center" spacing={8}>
     <Grid item xs={1} container justify="center">
-      <FormControlLabel
-        classes={{ root: classes.formControl }}
+      <StyledFormControlLabel
         control={(
           <Checkbox
             value="checkedI"
@@ -48,9 +53,8 @@ const UserReposHeader = ({
       />
     </Grid>
     <Grid item xs={7} container alignItems="center">
-      <Tooltip
+      <StyledTooltip
         title={`Founded ${isFoundedCount} repositories`}
-        classes={{ tooltip: classes.tooltip }}
         placement="bottom-end"
         open={!!isFoundedCount}
         leaveDelay={500}
@@ -64,7 +68,7 @@ const UserReposHeader = ({
           fullWidth
           className="input"
         />
-      </Tooltip>
+      </StyledTooltip>
     </Grid>
     <Grid item xs={4} container alignItems="center">
       <Grid container justify="space-around" spacing={8}>
@@ -112,7 +116,6 @@ UserReposHeader.propTypes = {
     filterProjectsInput: PropTypes.string.isRequired,
     allReposAreSelected: PropTypes.bool.isRequired,
   }).isRequired,
-  classes: PropTypes.shape({}).isRequired,
 };
 
-export default withStyles(styles)(UserReposHeader);
+export default UserReposHeader;
