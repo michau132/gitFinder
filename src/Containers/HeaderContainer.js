@@ -37,10 +37,11 @@ class HeaderContainer extends Component {
   }
 
   onFormSubmit = (e) => {
-    const { history } = this.props;
-    const { inputValue, errorInput } = this.state;
     e.preventDefault();
-    if (errorInput || !inputValue) {
+    const { history, location: { pathname } } = this.props;
+    const { inputValue, errorInput } = this.state;
+    const isPathSameAsInputValue = pathname.substring(1) === inputValue;
+    if (errorInput || !inputValue || isPathSameAsInputValue) {
       return;
     }
     history.push(`/${inputValue}`);

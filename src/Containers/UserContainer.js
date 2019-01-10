@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { observer } from 'mobx-react';
-import { withRouter } from 'react-router';
 import { toJS } from 'mobx';
 import store from '../store';
 
@@ -73,4 +72,4 @@ class UserContainer extends Component {
 
 export { UserContainer };
 
-export default withRouter(UserContainer);
+export default UserContainer;

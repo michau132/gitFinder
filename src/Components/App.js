@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import {
   HashRouter,
   Route,
@@ -6,13 +6,16 @@ import {
 } from 'react-router-dom';
 import { configure } from 'mobx';
 import { Paper, withStyles } from '@material-ui/core';
-import styled, { createGlobalStyle } from 'styled-components';
-import UserContainer from '../Containers/UserContainer';
+import styled from 'styled-components';
+import { WithLoadingStyles } from '../hoc/Loading';
 import HeaderContainer from '../Containers/HeaderContainer';
-import EmptyUser from './EmptyUser';
 import Header from './Header';
-import User from './User';
-import NotFound from './NotFound';
+import EmptyUser from './EmptyUser';
+import GlobalStyle from '../Layout/GlobalStyle';
+
+const UserContainer = lazy(() => import('../Containers/UserContainer'));
+const User = lazy(() => import('./User'));
+const NotFound = lazy(() => import('./NotFound'));
 
 configure({ enforceActions: 'observed' });
 
@@ -21,21 +24,6 @@ const styles = {
     backgroundColor: '#F5F5F5',
   },
 };
-
-const GlobalStyle = createGlobalStyle`
-  html {
-    box-sizing: border-box;
-  }
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
-  body {
-    background-color: #CCCCCC;
-  }
-  a {
-    text-decoration: none;
-  }
-`;
 
 const PaperWithPadding = styled(Paper)`
   padding: 8px;
@@ -51,21 +39,24 @@ const App = ({ classes }) => (
             <Header {...props} />
           )}
         />
-        <Switch>
-          <Route exact path="/" component={EmptyUser} />
-          <Route
-            exact
-            path="/:user"
-            render={() => (
-              <UserContainer
-                render={props => (
-                  <User {...props} />
-                )}
-              />
-            )}
-          />
-          <Route component={NotFound} />
-        </Switch>
+        <Suspense fallback={<WithLoadingStyles />}>
+          <Switch>
+            <Route exact path="/" render={() => <EmptyUser />} />
+            <Route
+              exact
+              path="/:user"
+              render={routeProps => (
+                <UserContainer
+                  {...routeProps}
+                  render={props => (
+                    <User {...props} />
+                  )}
+                />
+              )}
+            />
+            <Route render={() => <NotFound />} />
+          </Switch>
+        </Suspense>
       </PaperWithPadding>
     </PaperWithPadding>
   </HashRouter>

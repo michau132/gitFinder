@@ -13,7 +13,7 @@ const ldsHourglass = keyframes`
   }
 `;
 
-const WithLoadingStyles = styled.div`
+export const WithLoadingStyles = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
