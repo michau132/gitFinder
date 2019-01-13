@@ -1,3 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`testing Loading HOC should match snapshot 1`] = `<styled.div />`;
+exports[`testing Loading HOC should match snapshot 1`] = `
+<component
+  restStore={
+    Object {
+      "isLoading": true,
+    }
+  }
+/>
+`;

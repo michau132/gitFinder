@@ -1,23 +1,28 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const StyledTypography = styled(Typography)`
+  && {
+    margin-top: 60px;
+  }
+`;
 
 const HasError = Component => (props) => {
-  const { restStore: { error } } = props;
+  const { error } = props;
   if (error) {
     return (
-      <Typography variant="h5" color="error">
+      <StyledTypography variant="h5" color="error">
         Ups something goes wrong or user does not exist
-      </Typography>
+      </StyledTypography>
     );
   }
   return <Component {...props} />;
 };
 
 HasError.propTypes = {
-  restStore: PropTypes.shape({
-    error: PropTypes.bool.isRequired,
-  }).isRequired,
+  error: PropTypes.bool.isRequired,
 };
 
 export default HasError;

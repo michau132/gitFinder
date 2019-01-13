@@ -10,6 +10,7 @@ import {
   Typography,
   Collapse,
 } from '@material-ui/core';
+import { inject, observer, PropTypes as MobxPropTypes } from 'mobx-react';
 import styled from 'styled-components';
 
 const StyledCollapse = styled(Collapse)`
@@ -28,62 +29,72 @@ const UserReposListItem = ({
     isFounded = false,
     isHidden = false,
   },
-  handleSelectUserRepo,
-  handleHideSingleRepo,
-}) => (
-  <StyledCollapse
-    in={!isHidden}
-    timeout={700}
-    isfounded={isFounded ? 1 : 0}
-  >
-    <ListItem
-      divider
-      button
-      onClick={() => handleSelectUserRepo(id)}
-      selected={isChecked}
-      className="listItem"
+  store: {
+    hideSingleRepo,
+    selectUserRepo,
+  },
+}) => {
+  const handleHideSingleRepo = () => { hideSingleRepo(id); };
+
+  const handleSelectUserRepo = () => { selectUserRepo(id); };
+  return (
+    <StyledCollapse
+      in={!isHidden}
+      timeout={700}
+      isfounded={isFounded ? 1 : 0}
     >
-      <Checkbox
-        checked={isChecked}
-        color="primary"
-        readOnly
-        className="checkbox"
-      />
-      <Grid container direction="column">
-        <ListItemText>
-          <Typography variant="subtitle2" gutterBottom className="forkAndCount">
-            {`${name}(forks: ${forks_count}, stars${stargazers_count})`}
-          </Typography>
-        </ListItemText>
-        <ListItemText primary={description} className="description" />
-      </Grid>
-      <ListItemSecondaryAction>
-        <Button
-          variant="contained"
+      <ListItem
+        divider
+        button
+        onClick={handleSelectUserRepo}
+        selected={isChecked}
+        data-test="listItem"
+      >
+        <Checkbox
+          checked={isChecked}
           color="primary"
-          target="_blank"
-          href={html_url}
-          className="open"
-        >
+          readOnly
+          data-test="checkbox"
+        />
+        <Grid container direction="column">
+          <ListItemText>
+            <Typography variant="subtitle2" gutterBottom data-test="forkAndCount">
+              {`${name}(forks: ${forks_count}, stars${stargazers_count})`}
+            </Typography>
+          </ListItemText>
+          <ListItemText primary={description} data-test="description" />
+        </Grid>
+        <ListItemSecondaryAction>
+          <Button
+            variant="contained"
+            color="primary"
+            target="_blank"
+            href={html_url}
+            data-test="open"
+          >
         open
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => handleHideSingleRepo(id)}
-          className="hide"
-        >
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleHideSingleRepo}
+            data-test="hide"
+          >
         hide
-        </Button>
-      </ListItemSecondaryAction>
-    </ListItem>
-  </StyledCollapse>
-);
+          </Button>
+        </ListItemSecondaryAction>
+      </ListItem>
+    </StyledCollapse>
+  );
+};
 
 UserReposListItem.defaultProps = {
   listItem: {
     name: null,
     html_url: null,
+    isChecked: false,
+    isFounded: false,
+    isHidden: false,
   },
 };
 
@@ -99,8 +110,7 @@ UserReposListItem.propTypes = {
     isFounded: PropTypes.bool,
     isHidden: PropTypes.bool,
   }),
-  handleSelectUserRepo: PropTypes.func.isRequired,
-  handleHideSingleRepo: PropTypes.func.isRequired,
+  store: MobxPropTypes.observableObject.isRequired,
 };
 
-export default UserReposListItem;
+export default inject('store')(observer(UserReposListItem));

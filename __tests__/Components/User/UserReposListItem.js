@@ -1,7 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { observable } from 'mobx';
 import toJson from 'enzyme-to-json';
 import UserReposListItem from '../../../src/Components/User/UserReposListItem';
+
+const store = observable({
+  selectUserRepo: jest.fn(),
+  hideSingleRepo: jest.fn(),
+});
 
 describe('testing UserReposListItem component', () => {
   let wrapper;
@@ -16,11 +22,10 @@ describe('testing UserReposListItem component', () => {
         description: 'First repo description',
         html_url: 'https://github.com/aOko123/firstRepo',
       },
-      handleSelectUserRepo: jest.fn(),
-      handleHideSingleRepo: jest.fn(),
+      store,
     };
 
-    wrapper = shallow(<UserReposListItem {...props} />);
+    wrapper = shallow(<UserReposListItem.wrappedComponent {...props} />);
   });
 
   test('renders without crashing', () => {
@@ -39,29 +44,29 @@ describe('testing UserReposListItem component', () => {
   });
 
   test('wrapper should not have been selected', () => {
-    const listItem = wrapper.find('.listItem');
+    const listItem = wrapper.find('[data-test="listItem"]');
     expect(listItem.prop('selected')).toBeFalsy();
   });
 
   test('checkbox should not have been selected', () => {
-    const checkbox = wrapper.find('.checkbox');
+    const checkbox = wrapper.find('[data-test="checkbox"]');
     expect(checkbox.prop('checked')).toBeFalsy();
   });
 
-  test('calls event handleSelectUserRepo', () => {
-    const listItem = wrapper.find('.listItem');
+  test('calls action selectUserRepo', () => {
+    const listItem = wrapper.find('[data-test="listItem"]');
     listItem.simulate('click');
-    expect(props.handleSelectUserRepo).toHaveBeenCalledWith(props.listItem.id);
+    expect(props.store.selectUserRepo).toHaveBeenCalledWith(props.listItem.id);
   });
 
   test('Button should be defined and redirect to user repository', () => {
-    const button = wrapper.find('.open');
+    const button = wrapper.find('[data-test="open"]');
     expect(button.prop('href')).toBe(props.listItem.html_url);
   });
 
-  test('calls event handleHideSingleRepo', () => {
-    const button = wrapper.find('.hide');
+  test('calls action hideSingleRepo', () => {
+    const button = wrapper.find('[data-test="hide"]');
     button.simulate('click');
-    expect(props.handleHideSingleRepo).toHaveBeenCalledWith(props.listItem.id);
+    expect(props.store.hideSingleRepo).toHaveBeenCalledWith(props.listItem.id);
   });
 });

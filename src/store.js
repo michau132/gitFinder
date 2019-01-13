@@ -7,7 +7,7 @@ import key from '../key';
 
 const apikey = process.env.NODE_ENV === 'production' ? '' : key;
 
-const sortByDate = (a, b) => {
+export const sortByDate = (a, b) => {
   if (a.pushed_at > b.pushed_at) {
     return -1;
   }
@@ -28,7 +28,7 @@ class Store {
   @observable informations = {
     login: '',
     email: '',
-    avatar_url: '',
+    avatarUrl: '',
     name: '',
   }
 
@@ -49,12 +49,12 @@ class Store {
   @observable foundedCount = 0
 
   fetchData = async (url) => {
-    this.isLoading = true;
     const result = await axios(url);
     return result.data;
   }
 
   @action getUserInfoAndRepos = (name) => {
+    this.isLoading = true;
     const userInfoUrl = `https://api.github.com/users/${name}${apikey}`;
     const userRepoUrl = `https://api.github.com/users/${name}/repos${apikey}`;
     const response = Promise.all([

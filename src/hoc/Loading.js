@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
-
+import PropTypes from 'prop-types';
 
 const ldsHourglass = keyframes`
   0% {
@@ -35,18 +34,17 @@ export const WithLoadingStyles = styled.div`
   }
 `;
 
-const WithLoading = WrappedComponent => (props) => {
-  const { restStore: { isLoading } } = props;
+const Loading = WrappedComponent => (props) => {
+  const { isLoading } = props;
   if (isLoading) {
     return <WithLoadingStyles />;
   }
   return <WrappedComponent {...props} />;
 };
 
-WithLoading.propTypes = {
-  restStore: PropTypes.shape({
-    isLoading: PropTypes.bool.isRequired,
-  }).isRequired,
+Loading.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
 };
 
-export default WithLoading;
+
+export default Loading;

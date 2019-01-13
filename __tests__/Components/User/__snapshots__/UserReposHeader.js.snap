@@ -15,16 +15,16 @@ exports[`testing UserReposHeader matching snapshot 1`] = `
   >
     <Styled(WithStyles(WithFormControlContext(FormControlLabel)))
       checked={false}
-      className="checkbox"
       control={
         <WithStyles(Checkbox)
           color="primary"
           value="checkedI"
         />
       }
+      data-test="checkbox"
       label="Select all"
       labelPlacement="top"
-      onChange={[MockFunction]}
+      onChange={[Function]}
     />
   </WithStyles(Grid)>
   <WithStyles(Grid)
@@ -37,17 +37,17 @@ exports[`testing UserReposHeader matching snapshot 1`] = `
       leaveDelay={500}
       open={false}
       placement="bottom-end"
-      title="Founded undefined repositories"
+      title="Founded 0 repositories"
     >
       <TextField
-        className="input"
+        data-test="input"
         fullWidth={true}
         label="filter projects"
-        onChange={[MockFunction]}
+        onChange={[Function]}
         required={false}
         select={false}
         type="search"
-        value="project"
+        value=""
         variant="outlined"
       />
     </Styled(Component)>
@@ -64,28 +64,28 @@ exports[`testing UserReposHeader matching snapshot 1`] = `
       spacing={8}
     >
       <WithStyles(Button)
-        className="open"
         color="primary"
+        data-test="open"
         disabled={true}
-        onClick={[MockFunction]}
+        onClick={[Function]}
         variant="contained"
       >
         open
       </WithStyles(Button)>
       <WithStyles(Button)
-        className="hide"
         color="primary"
+        data-test="hide"
         disabled={true}
-        onClick={[MockFunction]}
+        onClick={[Function]}
         variant="contained"
       >
         hide
       </WithStyles(Button)>
       <WithStyles(Button)
-        className="showAll"
         color="primary"
-        disabled={true}
-        onClick={[MockFunction]}
+        data-test="showAll"
+        disabled={false}
+        onClick={[Function]}
         variant="contained"
       >
         show all

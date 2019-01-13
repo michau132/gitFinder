@@ -10,9 +10,7 @@ exports[`testing UserReposList component matching snapshot 1`] = `
     </WithStyles(Typography)>
   </styled.legend>
   <Styled(WithStyles(List))>
-    <UserReposListItem
-      handleHideSingleRepo={[MockFunction]}
-      handleSelectUserRepo={[MockFunction]}
+    <inject-UserReposListItem-with-store
       key="1"
       listItem={
         Object {
@@ -25,9 +23,7 @@ exports[`testing UserReposList component matching snapshot 1`] = `
         }
       }
     />
-    <UserReposListItem
-      handleHideSingleRepo={[MockFunction]}
-      handleSelectUserRepo={[MockFunction]}
+    <inject-UserReposListItem-with-store
       key="2"
       listItem={
         Object {

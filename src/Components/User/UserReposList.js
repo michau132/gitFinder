@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { List, Typography } from '@material-ui/core';
 import styled from 'styled-components';
+import { observer, inject, PropTypes as MobxPropTypes } from 'mobx-react';
 import UserReposListItem from './UserReposListItem';
 
 const StyledFieldset = styled.fieldset`
@@ -21,8 +21,7 @@ const StyledList = styled(List)`
 `;
 
 const UserReposList = ({
-  repos,
-  ...restProps
+  store: { repos },
 }) => (
   <StyledFieldset>
     <StyledLegend>
@@ -37,7 +36,6 @@ const UserReposList = ({
           <UserReposListItem
             listItem={listItem}
             key={listItem.id}
-            {...restProps}
           />
         ))
       }
@@ -46,18 +44,8 @@ const UserReposList = ({
 );
 
 UserReposList.propTypes = {
-  repos: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      forks_count: PropTypes.number,
-      stargazers_count: PropTypes.number,
-      description: PropTypes.string,
-      html_url: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-  handleHideSingleRepo: PropTypes.func.isRequired,
-  handleSelectUserRepo: PropTypes.func.isRequired,
+  store: MobxPropTypes.observableObject.isRequired,
 };
 
-export default UserReposList;
+
+export default inject('store')(observer(UserReposList));

@@ -1,10 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`testing HasError HOC should match snapshot 1`] = `
-<WithStyles(Typography)
-  color="error"
-  variant="h5"
->
-  Ups something goes wrong or user does not exist
-</WithStyles(Typography)>
+<component
+  restStore={
+    Object {
+      "error": true,
+    }
+  }
+/>
 `;

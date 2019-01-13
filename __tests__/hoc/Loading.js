@@ -23,4 +23,9 @@ describe('testing Loading HOC', () => {
   test('should match snapshot', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
+
+  test('Component is returned', () => {
+    wrapper.setProps({ restStore: { loading: false } });
+    expect(wrapper.html()).toBe('<h1>Hi there</h1>');
+  });
 });

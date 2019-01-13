@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { observer, PropTypes, inject } from 'mobx-react';
 import {
   Card, CardContent, Typography, CardActions, Button,
 } from '@material-ui/core';
@@ -11,8 +11,10 @@ const StyledCard = styled(Card)`
 `;
 
 const UserDetails = ({
-  informations: {
-    name, login, email, location,
+  store: {
+    informations: {
+      name, login, email, location,
+    },
   },
 }) => (
   <StyledCard>
@@ -36,12 +38,7 @@ const UserDetails = ({
 
 
 UserDetails.propTypes = {
-  informations: PropTypes.shape({
-    login: PropTypes.string.isRequired,
-    email: PropTypes.string,
-    avatar_url: PropTypes.string,
-    name: PropTypes.string,
-  }).isRequired,
+  store: PropTypes.observableObject.isRequired,
 };
 
-export default UserDetails;
+export default inject('store')(observer(UserDetails));

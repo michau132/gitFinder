@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { observer, PropTypes, inject } from 'mobx-react';
 
 const Image = styled.img`
   object-fit: contain;
@@ -8,12 +8,12 @@ const Image = styled.img`
   max-height: 100%;
 `;
 
-const UserAvatar = ({ avatarUrl }) => (
-  <Image src={avatarUrl} alt="avatar" />
+const UserAvatar = ({ store: { informations: { avatar_url } } }) => (
+  <Image src={avatar_url} alt="avatar" />
 );
 
 UserAvatar.propTypes = {
-  avatarUrl: PropTypes.string.isRequired,
+  store: PropTypes.observableObject.isRequired,
 };
 
-export default UserAvatar;
+export default inject('store')(observer(UserAvatar));

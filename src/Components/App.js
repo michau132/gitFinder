@@ -5,8 +5,10 @@ import {
   Switch,
 } from 'react-router-dom';
 import { configure } from 'mobx';
+import { Provider } from 'mobx-react';
 import { Paper } from '@material-ui/core';
 import styled from 'styled-components';
+import store from '../store';
 import { WithLoadingStyles } from '../hoc/Loading';
 import HeaderContainer from '../Containers/HeaderContainer';
 import Header from './Header';
@@ -32,37 +34,38 @@ const PaperWithBackground = styled(PaperWithPadding)`
 `;
 
 const App = () => (
-  <HashRouter>
-    <PaperWithBackground>
-      <GlobalStyle />
-      <PaperWithPadding>
-        <HeaderContainer
-          render={props => (
-            <Header {...props} />
-          )}
-        />
-        <Suspense fallback={<WithLoadingStyles />}>
-          <Switch>
-            <Route exact path="/" render={() => <EmptyUser />} />
-            <Route
-              exact
-              path="/:user"
-              render={routeProps => (
-                <UserContainer
-                  {...routeProps}
-                  render={props => (
-                    <User {...props} />
-                  )}
-                />
-              )}
-            />
-            <Route render={() => <NotFound />} />
-          </Switch>
-        </Suspense>
-      </PaperWithPadding>
-    </PaperWithBackground>
-  </HashRouter>
-
+  <Provider store={store}>
+    <HashRouter>
+      <PaperWithBackground>
+        <GlobalStyle />
+        <PaperWithPadding>
+          <HeaderContainer
+            render={props => (
+              <Header {...props} />
+            )}
+          />
+          <Suspense fallback={<WithLoadingStyles />}>
+            <Switch>
+              <Route exact path="/" render={() => <EmptyUser />} />
+              <Route
+                exact
+                path="/:user"
+                render={routeProps => (
+                  <UserContainer
+                    {...routeProps}
+                    render={props => (
+                      <User {...props} />
+                    )}
+                  />
+                )}
+              />
+              <Route render={() => <NotFound />} />
+            </Switch>
+          </Suspense>
+        </PaperWithPadding>
+      </PaperWithBackground>
+    </HashRouter>
+  </Provider>
 );
 
 export default App;

@@ -21,4 +21,8 @@ describe('testing HasError HOC', () => {
   test('should match snapshot', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
+  test('Component is returned', () => {
+    wrapper.setProps({ restStore: { error: false } });
+    expect(wrapper.html()).toBe('<h1>Hi there</h1>');
+  });
 });

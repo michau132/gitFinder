@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`testing User component matching snapshot 1`] = `
-<WithStyles(Grid)
-  className="mediaQueries"
+<Styled(WithStyles(Grid))
   container={true}
+  direction="row"
   spacing={40}
 >
-  <WithStyles(Grid)
-    className="mediaQueries"
+  <Styled(WithStyles(Grid))
     container={true}
+    direction="column"
     item={true}
     justify="space-between"
     md={3}
@@ -25,9 +25,7 @@ exports[`testing User component matching snapshot 1`] = `
       sm={6}
       xs={12}
     >
-      <UserAvatar
-        avatarUrl="https://via.placeholder.com/150"
-      />
+      <inject-UserAvatar-with-store />
     </WithStyles(Grid)>
     <WithStyles(Grid)
       item={true}
@@ -35,19 +33,9 @@ exports[`testing User component matching snapshot 1`] = `
       sm={6}
       xs={12}
     >
-      <UserDetails
-        informations={
-          Object {
-            "avatar_url": "https://via.placeholder.com/150",
-            "email": "aoko123@gmail.com",
-            "loctation": "Raszyn",
-            "login": "aOko123",
-            "name": "Adam Oko",
-          }
-        }
-      />
+      <inject-UserDetails-with-store />
     </WithStyles(Grid)>
-  </WithStyles(Grid)>
+  </Styled(WithStyles(Grid))>
   <WithStyles(Grid)
     container={true}
     item={true}
@@ -56,31 +44,8 @@ exports[`testing User component matching snapshot 1`] = `
     sm={12}
     xs={12}
   >
-    <UserReposHeader />
-    <UserReposList
-      handleHideSingleRepo={[MockFunction]}
-      handleSelectUserRepo={[MockFunction]}
-      repos={
-        Array [
-          Object {
-            "description": "First repo description",
-            "forks_count": 0,
-            "html_url": "https://github.com/aOko123/firstRepo",
-            "id": 1,
-            "name": "firstRepo",
-            "stargazers_count": 0,
-          },
-          Object {
-            "description": "Second repo description",
-            "forks_count": 0,
-            "html_url": "https://github.com/aOko123/secondRepo",
-            "id": 2,
-            "name": "secondRepo",
-            "stargazers_count": 0,
-          },
-        ]
-      }
-    />
+    <inject-UserReposHeader-with-store />
+    <inject-UserReposList-with-store />
   </WithStyles(Grid)>
-</WithStyles(Grid)>
+</Styled(WithStyles(Grid))>
 `;

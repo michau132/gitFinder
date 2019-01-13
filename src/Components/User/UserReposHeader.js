@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { inject, observer, PropTypes as MobxPropTypes } from 'mobx-react';
 import styled from 'styled-components';
 import {
   FormControlLabel, Checkbox, Grid, TextField, Button, Tooltip,
@@ -23,99 +23,104 @@ const StyledTooltip = styled(props => (
 `;
 
 const UserReposHeader = ({
-  handleFilterRepos,
-  openSelectedRepos,
-  handleHideSelectedRepos,
-  handleShowAllRepos,
-  handleSelectAllRepos,
-  restStore: {
+  store: {
+    filterRepos,
+    hideSelectedRepos,
+    showAllRepos,
+    selectAllRepos,
     isShowAllBtnDisabled,
     selectedReposAreEmpty,
     filterProjectsInput,
     allReposAreSelected,
     foundedCount,
+    repos,
   },
-}) => (
-  <Grid container justify="space-between" alignItems="center" spacing={8}>
-    <Grid item xs={1} container justify="center">
-      <StyledFormControlLabel
-        control={(
-          <Checkbox
-            value="checkedI"
-            color="primary"
-          />
-      )}
-        label="Select all"
-        labelPlacement="top"
-        onChange={handleSelectAllRepos}
-        checked={allReposAreSelected}
-        className="checkbox"
-      />
-    </Grid>
-    <Grid item xs={7} container alignItems="center">
-      <StyledTooltip
-        title={`Founded ${foundedCount} repositories`}
-        placement="bottom-end"
-        open={!!foundedCount}
-        leaveDelay={500}
-      >
-        <TextField
-          type="search"
-          label="filter projects"
-          variant="outlined"
-          value={filterProjectsInput}
-          onChange={handleFilterRepos}
-          fullWidth
-          className="input"
+}) => {
+  const handleFilterRepos = (e) => { filterRepos(e.target.value); };
+
+  const handleShowAllRepos = () => { showAllRepos(); };
+
+  const handleHideSelectedRepos = () => { hideSelectedRepos(); };
+
+  const handleSelectAllRepos = () => { selectAllRepos(); };
+
+  const openSelectedRepos = () => {
+    const openInNewTab = url => window.open(url, '_blank');
+    repos.forEach(repo => repo.isChecked && openInNewTab(repo.html_url));
+  };
+
+  return (
+    <Grid container justify="space-between" alignItems="center" spacing={8}>
+      <Grid item xs={1} container justify="center">
+        <StyledFormControlLabel
+          control={(
+            <Checkbox
+              value="checkedI"
+              color="primary"
+            />
+          )}
+          label="Select all"
+          labelPlacement="top"
+          onChange={handleSelectAllRepos}
+          checked={allReposAreSelected}
+          data-test="checkbox"
         />
-      </StyledTooltip>
-    </Grid>
-    <Grid item xs={4} container alignItems="center">
-      <Grid container justify="space-around" spacing={8}>
-        <Button
-          onClick={openSelectedRepos}
-          disabled={selectedReposAreEmpty}
-          variant="contained"
-          color="primary"
-          className="open"
+      </Grid>
+      <Grid item xs={7} container alignItems="center">
+        <StyledTooltip
+          title={`Founded ${foundedCount} repositories`}
+          placement="bottom-end"
+          open={!!foundedCount}
+          leaveDelay={500}
         >
-        open
-        </Button>
-        <Button
-          onClick={handleHideSelectedRepos}
-          disabled={selectedReposAreEmpty}
-          color="primary"
-          variant="contained"
-          className="hide"
-        >
-        hide
-        </Button>
-        <Button
-          onClick={handleShowAllRepos}
-          disabled={isShowAllBtnDisabled}
-          variant="contained"
-          color="primary"
-          className="showAll"
-        >
-        show all
-        </Button>
+          <TextField
+            type="search"
+            label="filter projects"
+            variant="outlined"
+            value={filterProjectsInput}
+            onChange={handleFilterRepos}
+            fullWidth
+            data-test="input"
+          />
+        </StyledTooltip>
+      </Grid>
+      <Grid item xs={4} container alignItems="center">
+        <Grid container justify="space-around" spacing={8}>
+          <Button
+            onClick={openSelectedRepos}
+            disabled={selectedReposAreEmpty}
+            variant="contained"
+            color="primary"
+            data-test="open"
+          >
+            open
+          </Button>
+          <Button
+            onClick={handleHideSelectedRepos}
+            disabled={selectedReposAreEmpty}
+            color="primary"
+            variant="contained"
+            data-test="hide"
+          >
+            hide
+          </Button>
+          <Button
+            onClick={handleShowAllRepos}
+            disabled={isShowAllBtnDisabled}
+            variant="contained"
+            color="primary"
+            data-test="showAll"
+          >
+            show all
+          </Button>
+        </Grid>
       </Grid>
     </Grid>
-  </Grid>
-);
-
-UserReposHeader.propTypes = {
-  handleFilterRepos: PropTypes.func.isRequired,
-  handleShowAllRepos: PropTypes.func.isRequired,
-  openSelectedRepos: PropTypes.func.isRequired,
-  handleHideSelectedRepos: PropTypes.func.isRequired,
-  handleSelectAllRepos: PropTypes.func.isRequired,
-  restStore: PropTypes.shape({
-    isShowAllBtnDisabled: PropTypes.bool.isRequired,
-    selectedReposAreEmpty: PropTypes.bool.isRequired,
-    filterProjectsInput: PropTypes.string.isRequired,
-    allReposAreSelected: PropTypes.bool.isRequired,
-  }).isRequired,
+  );
 };
 
-export default UserReposHeader;
+UserReposHeader.propTypes = {
+  store: MobxPropTypes.observableObject.isRequired,
+};
+
+export default inject('store')(observer(UserReposHeader));

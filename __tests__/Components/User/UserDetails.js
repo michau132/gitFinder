@@ -8,15 +8,17 @@ describe('testing UserDetails component', () => {
   let props;
   beforeEach(() => {
     props = {
-      informations: {
-        name: 'Adam Oko',
-        login: 'aOko123',
-        email: 'aoko123@gmail.com',
-        loctation: 'Raszyn',
+      store: {
+        informations: {
+          name: 'Adam Oko',
+          login: 'aOko123',
+          email: 'aoko123@gmail.com',
+          loctation: 'Raszyn',
+        },
       },
     };
     wrapper = shallow(
-      <UserDetails {...props} />,
+      <UserDetails.wrappedComponent {...props} />,
     );
   });
   test('renders without crashing', () => {
