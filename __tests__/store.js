@@ -104,8 +104,8 @@ describe('testing store', () => {
           description: 'Second repo description',
         },
       ]));
-      expect(store.selectedReposAreEmpty).toBeFalsy();
-      expect(store.allReposAreSelected).toBeFalsy();
+      expect(store.isNotAnyRepoChecked).toBeFalsy();
+      expect(store.areAllReposSelected).toBeFalsy();
       expect(store.isShowAllBtnDisabled).toBeFalsy();
     });
 
@@ -124,8 +124,8 @@ describe('testing store', () => {
           description: 'Second repo description',
         },
       ]));
-      expect(store.selectedReposAreEmpty).toBeTruthy();
-      expect(store.allReposAreSelected).toBeFalsy();
+      expect(store.isNotAnyRepoChecked).toBeTruthy();
+      expect(store.areAllReposSelected).toBeFalsy();
       expect(store.isShowAllBtnDisabled).toBeTruthy();
     });
   });
@@ -138,18 +138,18 @@ describe('testing store', () => {
           id: 1,
           name: 'firstRepo',
           description: 'First repo description',
-          isHidden: false,
+          isVisible: true,
         },
         {
           id: 2,
           name: 'secondRepo',
           description: 'Second repo description',
-          isHidden: false,
+          isVisible: true,
         },
       ]));
 
-      expect(store.selectedReposAreEmpty).toBeTruthy();
-      expect(store.allReposAreSelected).toBeFalsy();
+      expect(store.isNotAnyRepoChecked).toBeTruthy();
+      expect(store.areAllReposSelected).toBeFalsy();
       expect(store.isShowAllBtnDisabled).toBeTruthy();
       expect(store.foundedCount).toBe(0);
     });
@@ -162,7 +162,7 @@ describe('testing store', () => {
           id: 1,
           name: 'firstRepo',
           description: 'First repo description',
-          isHidden: true,
+          isVisible: false,
           isFounded: false,
           isChecked: false,
         },
@@ -170,13 +170,13 @@ describe('testing store', () => {
           id: 2,
           name: 'secondRepo',
           description: 'Second repo description',
-          isHidden: false,
+          isVisible: true,
           isFounded: true,
         },
       ]));
       expect(store.filterProjectsInput).toBe('repo');
-      expect(store.selectedReposAreEmpty).toBeTruthy();
-      expect(store.allReposAreSelected).toBeFalsy();
+      expect(store.isNotAnyRepoChecked).toBeTruthy();
+      expect(store.areAllReposSelected).toBeFalsy();
       expect(store.isShowAllBtnDisabled).toBeFalsy();
       expect(store.foundedCount).toBe(1);
 
@@ -186,7 +186,7 @@ describe('testing store', () => {
           id: 1,
           name: 'firstRepo',
           description: 'First repo description',
-          isHidden: false,
+          isVisible: true,
           isFounded: false,
           isChecked: false,
         },
@@ -194,21 +194,21 @@ describe('testing store', () => {
           id: 2,
           name: 'secondRepo',
           description: 'Second repo description',
-          isHidden: false,
+          isVisible: true,
           isFounded: false,
           isChecked: false,
         },
       ]));
 
       expect(store.filterProjectsInput).toBe('');
-      expect(store.selectedReposAreEmpty).toBeTruthy();
-      expect(store.allReposAreSelected).toBeFalsy();
+      expect(store.isNotAnyRepoChecked).toBeTruthy();
+      expect(store.areAllReposSelected).toBeFalsy();
       expect(store.isShowAllBtnDisabled).toBeTruthy();
       expect(store.foundedCount).toBe(0);
     });
   });
 
-  test('should call hideSingleRepo action and set attribute isHidden to true', () => {
+  test('should call hideSingleRepo action and set attribute isVisible to true', () => {
     store.hideSingleRepo(2);
     expect(store.repos).toEqual(observable([
       {
@@ -222,10 +222,10 @@ describe('testing store', () => {
         description: 'Second repo description',
         isFounded: false,
         isChecked: false,
-        isHidden: true,
+        isVisible: false,
       },
     ]));
-    expect(store.selectedReposAreEmpty).toBeTruthy();
+    expect(store.isNotAnyRepoChecked).toBeTruthy();
     expect(store.isShowAllBtnDisabled).toBeFalsy();
     expect(store.foundedCount).toBe(0);
   });
@@ -255,8 +255,8 @@ describe('testing store', () => {
           isChecked: true,
         },
       ]));
-      expect(store.selectedReposAreEmpty).toBeFalsy();
-      expect(store.allReposAreSelected).toBeTruthy();
+      expect(store.isNotAnyRepoChecked).toBeFalsy();
+      expect(store.areAllReposSelected).toBeTruthy();
       expect(store.isShowAllBtnDisabled).toBeFalsy();
     });
 
@@ -278,8 +278,8 @@ describe('testing store', () => {
           isChecked: false,
         },
       ]));
-      expect(store.selectedReposAreEmpty).toBeTruthy();
-      expect(store.allReposAreSelected).toBeFalsy();
+      expect(store.isNotAnyRepoChecked).toBeTruthy();
+      expect(store.areAllReposSelected).toBeFalsy();
       expect(store.isShowAllBtnDisabled).toBeTruthy();
     });
   });

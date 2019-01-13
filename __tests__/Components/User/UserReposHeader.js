@@ -10,9 +10,9 @@ const store = observable({
   showAllRepos: jest.fn(),
   selectAllRepos: jest.fn(),
   isShowAllBtnDisabled: false,
-  selectedReposAreEmpty: true,
+  isNotAnyRepoChecked: true,
   filterProjectsInput: '',
-  allReposAreSelected: false,
+  areAllReposSelected: false,
   foundedCount: 0,
   repos: [],
 });

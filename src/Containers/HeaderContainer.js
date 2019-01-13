@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { withRouter } from 'react-router';
 import githubUsernameRegex from 'github-username-regex';
 
+const isValidUser = user => githubUsernameRegex.test(user);
+
 class HeaderContainer extends Component {
   constructor(props) {
     super(props);
@@ -15,12 +17,11 @@ class HeaderContainer extends Component {
   componentDidMount() {
     const { location: { pathname } } = this.props;
     const path = pathname.substring(1);
-    const isValidPath = !githubUsernameRegex.test(path);
     if (path) {
       this.setState({
         inputValue: path,
         pathname,
-        errorInput: isValidPath,
+        errorInput: !isValidUser(path),
       });
     }
   }
@@ -28,9 +29,11 @@ class HeaderContainer extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     const { pathname } = nextProps.location;
     if (pathname !== prevState.pathname) {
+      const path = pathname.substring(1);
       return {
-        inputValue: pathname.substring(1),
+        inputValue: path,
         pathname,
+        errorInput: !isValidUser(path),
       };
     }
     return null;
@@ -49,7 +52,7 @@ class HeaderContainer extends Component {
 
   updateInputValue = (val) => {
     const { value } = val.target;
-    if (githubUsernameRegex.test(value) || !value) {
+    if (isValidUser(value) || !value) {
       this.setState({
         inputValue: value,
         errorInput: false,

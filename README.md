@@ -39,6 +39,6 @@ P.S. If you wants to open multiple windows in chrome you can do it  [here](chrom
 
 ## Todo
 
-+ <input type="checkbox">Code-splitting
++ <input type="checkbox" checked>Code-splitting
 + <input type="checkbox">Typescript
 + <input type="checkbox">Server-side rendering

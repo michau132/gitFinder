@@ -17,12 +17,17 @@ export const sortByDate = (a, b) => {
   return 0;
 };
 
-const findMatchingRepos = value => repo => (
-  (!repo.isHidden
+const findMatchingRepos = value => (repo) => {
+  // checking if isVisible atrribute is defined in repo object if it isn't would set to true
+  // (it is not defined by default when downloaded from github api )
+  const isVisible = repo.isVisible !== false;
+  return (
+    (isVisible
     && (repo.name.includes(value) || (repo.description && repo.description.includes(value)))
-    ? { ...repo, isFounded: true } : { ...repo, isFounded: false }
-  )
-);
+      ? { ...repo, isFounded: true } : { ...repo, isFounded: false }
+    )
+  );
+};
 
 class Store {
   @observable informations = {
@@ -40,11 +45,11 @@ class Store {
 
   @observable isShowAllBtnDisabled = true
 
-  @observable selectedReposAreEmpty = true
+  @observable isNotAnyRepoChecked = true
 
   @observable filterProjectsInput = ''
 
-  @observable allReposAreSelected = false
+  @observable areAllReposSelected = false
 
   @observable foundedCount = 0
 
@@ -105,33 +110,33 @@ class Store {
     } else {
       this.repos = [...prevRepos, { ...currentRepo, isChecked: true }, ...nextRepos];
     }
-    this.selectedReposAreEmpty = this.isOneRepoSelected();
-    this.allReposAreSelected = this.isEveryRepoIsSelected();
+    this.isNotAnyRepoChecked = this.isOneRepoSelected();
+    this.areAllReposSelected = this.isEveryRepoIsSelected();
     this.isShowAllBtnDisabled = this.checkIsShowAllIsDisabled();
   }
 
   @action hideSelectedRepos = () => {
     this.repos = this.repos.map(repo => (
-      (repo.isChecked === true || repo.isHidden === true)
+      (repo.isChecked === true || repo.isVisible === false)
         ? {
-          ...repo, isHidden: true, isChecked: false, isFounded: false,
-        } : { ...repo, isHidden: false }));
+          ...repo, isVisible: false, isChecked: false, isFounded: false,
+        } : { ...repo, isVisible: true }));
 
     this.isShowAllBtnDisabled = this.checkIsShowAllIsDisabled();
-    this.selectedReposAreEmpty = this.isOneRepoSelected();
-    this.allReposAreSelected = this.isEveryRepoIsSelected();
+    this.isNotAnyRepoChecked = this.isOneRepoSelected();
+    this.areAllReposSelected = this.isEveryRepoIsSelected();
     this.foundedCount = this.countIsFounded();
   }
 
   @action showAllRepos = () => {
     this.repos = this.repos.map(repo => (
       {
-        ...repo, isHidden: false, isChecked: false, isFounded: false,
+        ...repo, isVisible: true, isChecked: false, isFounded: false,
       }
     ));
-    this.selectedReposAreEmpty = this.isOneRepoSelected();
+    this.isNotAnyRepoChecked = this.isOneRepoSelected();
     this.filterProjectsInput = '';
-    this.allReposAreSelected = this.isEveryRepoIsSelected();
+    this.areAllReposSelected = this.isEveryRepoIsSelected();
     this.isShowAllBtnDisabled = this.checkIsShowAllIsDisabled();
     this.foundedCount = this.countIsFounded();
   }
@@ -139,17 +144,17 @@ class Store {
   @action hideSingleRepo = (id) => {
     this.repos = this.repos.map(repo => (
       repo.id === id ? {
-        ...repo, isHidden: true, isChecked: false, isFounded: false,
+        ...repo, isVisible: false, isChecked: false, isFounded: false,
       } : repo
     ));
-    this.selectedReposAreEmpty = this.isOneRepoSelected();
+    this.isNotAnyRepoChecked = this.isOneRepoSelected();
     this.isShowAllBtnDisabled = this.checkIsShowAllIsDisabled();
     this.foundedCount = this.countIsFounded();
   }
 
   @action selectAllRepos = () => {
     const { repos } = this;
-    const areAllReposAreHidden = repos.every(repo => repo.isHidden === true);
+    const areAllReposAreHidden = repos.every(repo => repo.isVisible === false);
     if (areAllReposAreHidden) {
       return;
     }
@@ -158,8 +163,8 @@ class Store {
     } else {
       this.repos = repos.map(repo => ({ ...repo, isChecked: true }));
     }
-    this.allReposAreSelected = this.isEveryRepoIsSelected();
-    this.selectedReposAreEmpty = this.isOneRepoSelected();
+    this.areAllReposSelected = this.isEveryRepoIsSelected();
+    this.isNotAnyRepoChecked = this.isOneRepoSelected();
     this.isShowAllBtnDisabled = this.checkIsShowAllIsDisabled();
   }
 
@@ -168,7 +173,7 @@ class Store {
   isOneRepoSelected = () => !this.repos.some(repo => repo.isChecked === true)
 
   checkIsShowAllIsDisabled = () => !this.repos.some(repo => (
-    repo.isChecked === true || repo.isFounded === true || repo.isHidden === true
+    repo.isChecked === true || repo.isFounded === true || repo.isVisible === false
   ))
 
   countIsFounded = () => this.repos.filter(repo => !!repo.isFounded).length

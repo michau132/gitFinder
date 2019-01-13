@@ -29,9 +29,9 @@ const UserReposHeader = ({
     showAllRepos,
     selectAllRepos,
     isShowAllBtnDisabled,
-    selectedReposAreEmpty,
+    isNotAnyRepoChecked,
     filterProjectsInput,
-    allReposAreSelected,
+    areAllReposSelected,
     foundedCount,
     repos,
   },
@@ -62,7 +62,7 @@ const UserReposHeader = ({
           label="Select all"
           labelPlacement="top"
           onChange={handleSelectAllRepos}
-          checked={allReposAreSelected}
+          checked={areAllReposSelected}
           data-test="checkbox"
         />
       </Grid>
@@ -88,7 +88,7 @@ const UserReposHeader = ({
         <Grid container justify="space-around" spacing={8}>
           <Button
             onClick={openSelectedRepos}
-            disabled={selectedReposAreEmpty}
+            disabled={isNotAnyRepoChecked}
             variant="contained"
             color="primary"
             data-test="open"
@@ -97,7 +97,7 @@ const UserReposHeader = ({
           </Button>
           <Button
             onClick={handleHideSelectedRepos}
-            disabled={selectedReposAreEmpty}
+            disabled={isNotAnyRepoChecked}
             color="primary"
             variant="contained"
             data-test="hide"

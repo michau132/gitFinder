@@ -27,7 +27,7 @@ const UserReposListItem = ({
     html_url,
     isChecked = false,
     isFounded = false,
-    isHidden = false,
+    isVisible = true,
   },
   store: {
     hideSingleRepo,
@@ -39,7 +39,7 @@ const UserReposListItem = ({
   const handleSelectUserRepo = () => { selectUserRepo(id); };
   return (
     <StyledCollapse
-      in={!isHidden}
+      in={isVisible}
       timeout={700}
       isfounded={isFounded ? 1 : 0}
     >
@@ -94,7 +94,7 @@ UserReposListItem.defaultProps = {
     html_url: null,
     isChecked: false,
     isFounded: false,
-    isHidden: false,
+    isVisible: false,
   },
 };
 
@@ -108,7 +108,7 @@ UserReposListItem.propTypes = {
     html_url: PropTypes.string.isRequired,
     isChecked: PropTypes.bool,
     isFounded: PropTypes.bool,
-    isHidden: PropTypes.bool,
+    isVisible: PropTypes.bool,
   }),
   store: MobxPropTypes.observableObject.isRequired,
 };
